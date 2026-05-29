@@ -6,7 +6,7 @@ const ZONES = ["Bareggio", "Milano", "Binasco", "Sesto San Giovanni", "Hinterlan
 
 export default function ServiceArea() {
   return (
-    <section id="area" className="shell py-24 md:py-36">
+    <section id="area" className="shell py-20 md:py-36">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
         <div>
           <Reveal>

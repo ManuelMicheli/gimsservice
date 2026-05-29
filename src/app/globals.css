@@ -22,11 +22,34 @@
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* No zoom-out su rotazione iOS, niente scroll orizzontale accidentale */
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-bg text-ink font-body;
     font-feature-settings: "ss01";
+    overflow-x: hidden;
+    /* Tap highlight blu di iOS via */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* iOS zooma sui campi con font < 16px al focus: forziamo 16px su mobile. */
+  @media (max-width: 767px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
+  }
+
+  /* Target touch comodi e niente outline tagliato sui link */
+  @media (hover: none) {
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
   }
 
   /* Tipografia display: Fraunces, asse ottico alto sui titoli grandi */

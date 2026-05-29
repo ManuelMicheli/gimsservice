@@ -10,7 +10,7 @@ import RotatingWord from "@/components/ui/RotatingWord";
  */
 export default function FeaturedWork() {
   return (
-    <section id="lavori" className="shell py-24 md:py-36">
+    <section id="lavori" className="shell py-20 md:py-36">
       <Reveal>
         <span className="overline text-accent">02 — Lavori in evidenza</span>
       </Reveal>

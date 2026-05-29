@@ -4,7 +4,7 @@ import Button from "@/components/ui/Button";
 
 export default function FaqTeaser() {
   return (
-    <section id="faq" className="border-t border-line bg-surface py-24 md:py-32">
+    <section id="faq" className="border-t border-line bg-surface py-20 md:py-32">
       <div className="shell grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
         <Reveal>
           <span className="overline text-accent">06 — Domande frequenti</span>

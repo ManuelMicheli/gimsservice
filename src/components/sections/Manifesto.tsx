@@ -12,7 +12,7 @@ const MARQUEE = [
 
 export default function Manifesto() {
   return (
-    <section id="manifesto" className="shell py-24 md:py-36">
+    <section id="manifesto" className="shell py-20 md:py-36">
       <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
         {/* Titolo centrato */}
         <Reveal>

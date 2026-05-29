@@ -4,7 +4,7 @@ import Button from "@/components/ui/Button";
 
 export default function Method() {
   return (
-    <section id="metodo" className="bg-ink py-24 text-bg md:py-36">
+    <section id="metodo" className="bg-ink py-20 text-bg md:py-36">
       <div className="shell">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <Reveal>

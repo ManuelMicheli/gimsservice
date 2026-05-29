@@ -106,7 +106,7 @@ export default function ContactForm() {
         </div>
       )}
 
-      <div className="flex items-center gap-4 sm:col-span-2">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-3 sm:col-span-2">
         <SubmitButton />
         {!state.ok && state.message && (
           <span className="font-body text-[0.78rem] text-accent">{state.message}</span>

@@ -5,7 +5,7 @@ import Reveal from "@/components/ui/Reveal";
  */
 export default function Partners() {
   return (
-    <section className="shell py-24 md:py-32">
+    <section className="shell py-20 md:py-32">
       <Reveal className="mx-auto max-w-3xl text-center">
         <p className="font-display text-2xl font-light leading-snug tracking-tight text-ink md:text-4xl">
           Collaboro con aziende selezionate del territorio che condividono i miei valori di

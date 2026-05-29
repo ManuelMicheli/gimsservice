@@ -11,7 +11,7 @@ function Stars() {
 
 export default function Testimonials() {
   return (
-    <section id="recensioni" className="border-y border-line bg-surface py-24 md:py-36">
+    <section id="recensioni" className="border-y border-line bg-surface py-20 md:py-36">
       <div className="shell">
         <Reveal>
           <span className="overline text-accent">03 — Recensioni</span>

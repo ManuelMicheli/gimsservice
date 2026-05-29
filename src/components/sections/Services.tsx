@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { SERVICES, type Service } from "@/lib/site";
@@ -13,7 +13,7 @@ import Reveal from "@/components/ui/Reveal";
  */
 export default function Services() {
   return (
-    <section id="servizi" className="shell py-24 md:py-32">
+    <section id="servizi" className="shell py-20 md:py-32">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <Reveal>
           <span className="overline text-accent">01 — Cosa faccio</span>
@@ -50,6 +50,17 @@ function ServiceCard({
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
 
+  // Sticky-stacking + dim/scale solo da md in su: su mobile lo stack si appiattisce
+  // in schede pulite, impilate verticalmente (più leggibile e niente jank touch).
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -66,10 +77,10 @@ function ServiceCard({
   const topPx = 96 + index * 14;
 
   return (
-    <div ref={ref} className="sticky" style={{ top: topPx }}>
+    <div ref={ref} className="static md:sticky" style={{ top: topPx }}>
       <motion.article
-        style={reduce ? undefined : { scale, filter }}
-        className="relative mb-6 flex h-[80vh] max-h-[780px] min-h-[480px] w-full origin-top flex-col overflow-hidden rounded-2xl bg-surface"
+        style={reduce || !isDesktop ? undefined : { scale, filter }}
+        className="relative mb-5 flex h-auto min-h-0 w-full origin-top flex-col overflow-hidden rounded-2xl bg-surface md:mb-6 md:h-[80vh] md:max-h-[780px] md:min-h-[480px]"
       >
         {/* Titolo e descrizione in alto, in risalto */}
         <div className="flex shrink-0 flex-col gap-5 p-8 sm:p-10 md:flex-row md:items-end md:justify-between md:gap-12 md:p-14">
@@ -91,7 +102,7 @@ function ServiceCard({
         </div>
 
         {/* Immagine in basso con parallax + numero in alto a sinistra */}
-        <div className="relative flex-1 overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/10] md:aspect-auto md:flex-1">
           <motion.div className="absolute inset-0" style={reduce ? undefined : { y, scale: 1.12 }}>
             <Image
               src={`/images/${service.img}.jpg`}
