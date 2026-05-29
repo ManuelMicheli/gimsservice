@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Design tokens — provvisori, palette tipo White Maple. Facili da sostituire. */
+  --bg: #f4f1ec; /* off-white caldo */
+  --surface: #ffffff;
+  --ink: #16140f; /* near-black */
+  --muted: #6b675e;
+  --accent: #8a5a36; /* terra/bronzo — provvisorio */
+  --line: #e2dcd2;
+
+  --shell: 1280px;
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-bg text-ink font-body;
+    font-feature-settings: "ss01";
+  }
+
+  /* Tipografia display: Fraunces, asse ottico alto sui titoli grandi */
+  h1, h2, h3, h4 {
+    @apply font-display;
+    font-optical-sizing: auto;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  /* Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* Full-wide su desktop: usa tutta la larghezza, con padding laterale che cresce. */
+  .shell {
+    @apply mx-auto w-full px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-28;
+  }
+
+  /* Overline / etichette tecniche */
+  .overline {
+    @apply font-body text-[0.7rem] uppercase tracking-[0.22em] text-muted;
+  }
+
+  /* Link sottolineato animato */
+  .link-underline {
+    @apply relative inline-flex items-center gap-1 text-ink;
+  }
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-500 ease-soft;
+  }
+  .link-underline:hover::after {
+    @apply origin-left scale-x-100;
+  }
+}
+
+/* Rispetta prefers-reduced-motion: disattiva animazioni pesanti */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
