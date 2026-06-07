@@ -8,14 +8,12 @@ import Button from "@/components/ui/Button";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-/**
- * FAQ teaser — Accordion. Una domanda aperta per volta.
- */
-export default function FaqTeaser() {
+// Variante B — Accordion. Una domanda aperta per volta.
+export default function FaqB() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="border-t border-line bg-surface py-20 md:py-32">
+    <section className="border-t border-line bg-surface py-24 md:py-32">
       <div className="shell grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
         <Reveal>
           <span className="overline text-accent">06 — Domande frequenti</span>

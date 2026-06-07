@@ -7,10 +7,8 @@ import Reveal from "@/components/ui/Reveal";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-/**
- * Recensioni — Spotlight Carousel. Una quote alla volta, auto-rotate + dots.
- */
-export default function Testimonials() {
+// Variante B — Spotlight Carousel. Una quote gigante per volta, auto-rotate.
+export default function TestimonialsB() {
   const reduce = useReducedMotion();
   const [i, setI] = useState(0);
   const t = TESTIMONIALS[i];
@@ -22,7 +20,7 @@ export default function Testimonials() {
   }, [reduce]);
 
   return (
-    <section id="recensioni" className="border-y border-line bg-surface py-20 md:py-36">
+    <section className="border-y border-line bg-surface py-24 md:py-36">
       <div className="shell">
         <Reveal className="text-center">
           <span className="overline text-accent">03 — Recensioni</span>
@@ -54,6 +52,7 @@ export default function Testimonials() {
             </span>
           </div>
 
+          {/* Dots */}
           <div className="mt-10 flex items-center justify-center gap-3">
             {TESTIMONIALS.map((d, k) => (
               <button

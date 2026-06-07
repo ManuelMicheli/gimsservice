@@ -12,7 +12,7 @@ export default function Footer() {
           <Reveal>
             <span className="overline text-bg/50">Contatti</span>
             <h2 className="mt-5 max-w-md font-display text-4xl leading-[1.05] text-bg md:text-6xl 2xl:text-7xl">
-              Parliamo del tuo <span className="italic text-accent">progetto</span>.
+              Parliamo del tuo <span className="text-accent">progetto</span>.
             </h2>
             <p className="mt-6 max-w-md font-body text-bg/60">
               Raccontami cosa hai in mente: ti rispondo di persona e fissiamo un sopralluogo

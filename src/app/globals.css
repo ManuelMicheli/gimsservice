@@ -24,13 +24,13 @@
     text-rendering: optimizeLegibility;
     /* No zoom-out su rotazione iOS, niente scroll orizzontale accidentale */
     -webkit-text-size-adjust: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
     @apply bg-bg text-ink font-body;
     font-feature-settings: "ss01";
-    overflow-x: hidden;
+    overflow-x: clip;
     /* Tap highlight blu di iOS via */
     -webkit-tap-highlight-color: transparent;
   }

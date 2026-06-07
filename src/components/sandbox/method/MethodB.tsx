@@ -7,19 +7,16 @@ import Button from "@/components/ui/Button";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-/**
- * Il Metodo GIMS — Ghost Rows.
- * Righe full-width con numero ghost gigante clippato al bordo destro.
- */
-export default function Method() {
+// Ghost Number — esecuzione 2: righe full-width, numero ghost gigante a destra (clippato al bordo).
+export default function MethodB() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="metodo" className="overflow-hidden bg-ink py-20 text-bg md:py-36">
+    <section className="overflow-hidden bg-ink py-24 text-bg md:py-32">
       <div className="shell">
         <Reveal>
           <span className="overline text-bg/50">04 — Come lavoro</span>
-          <h2 className="mt-5 max-w-2xl font-display text-4xl font-light leading-tight tracking-tight text-bg md:text-6xl 2xl:text-7xl">
+          <h2 className="mt-5 max-w-2xl font-display text-4xl font-light leading-tight tracking-tight text-bg md:text-6xl">
             Il Metodo GIMS
           </h2>
         </Reveal>

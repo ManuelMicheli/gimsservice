@@ -4,12 +4,10 @@ import Button from "@/components/ui/Button";
 
 const ZONES = ["Bareggio", "Milano", "Binasco", "Sesto San Giovanni", "Hinterland ovest"];
 
-/**
- * Area servita — Map-forward: mappa grande protagonista + card glass sovrapposta.
- */
-export default function ServiceArea() {
+// Variante B — Map-forward: mappa grande + card glass sovrapposta.
+export default function AreaB() {
   return (
-    <section id="area" className="shell py-20 md:py-36">
+    <section className="bg-bg shell py-24 md:py-32">
       <Reveal>
         <span className="overline text-accent">05 — Area servita</span>
       </Reveal>

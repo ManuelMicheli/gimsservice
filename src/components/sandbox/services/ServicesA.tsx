@@ -8,12 +8,8 @@ import Reveal from "@/components/ui/Reveal";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-/**
- * I Nostri Servizi — Index List editoriale.
- * 8 righe type-led; in hover (desktop) un'immagine flottante segue il cursore.
- * Su mobile resta una lista pulita, senza immagine.
- */
-export default function Services() {
+// Variante A — Index List con immagine flottante che segue il cursore.
+export default function ServicesA() {
   const reduce = useReducedMotion();
   const [hovered, setHovered] = useState<number | null>(null);
 
@@ -24,8 +20,7 @@ export default function Services() {
 
   return (
     <section
-      id="servizi"
-      className="relative shell py-20 md:py-32"
+      className="relative bg-bg shell py-24 md:py-32"
       onMouseMove={(e) => {
         mx.set(e.clientX);
         my.set(e.clientY);
@@ -34,7 +29,7 @@ export default function Services() {
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <Reveal>
           <span className="overline text-accent">01 — Cosa faccio</span>
-          <h2 className="mt-5 font-display text-4xl font-light leading-tight tracking-tight text-ink md:text-6xl 2xl:text-7xl">
+          <h2 className="mt-5 font-display text-4xl font-light leading-tight tracking-tight text-ink md:text-6xl">
             I Nostri Servizi
           </h2>
         </Reveal>
@@ -76,7 +71,7 @@ export default function Services() {
 
       {/* Immagine flottante (desktop, pointer fine) */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-40 hidden h-64 w-80 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-sm md:block"
+        className="pointer-events-none fixed left-0 top-0 z-50 hidden h-64 w-80 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-sm md:block"
         style={{ x, y }}
         animate={{ opacity: hovered !== null ? 1 : 0, scale: hovered !== null ? 1 : 0.9 }}
         transition={{ duration: 0.4, ease }}

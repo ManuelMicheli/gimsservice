@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
+import Acronym from "@/components/sections/Acronym";
 import Manifesto from "@/components/sections/Manifesto";
 import Services from "@/components/sections/Services";
 import Partners from "@/components/sections/Partners";
@@ -17,6 +18,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Acronym />
         <Manifesto />
         <Services />
         <Partners />

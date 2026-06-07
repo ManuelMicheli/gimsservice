@@ -1,13 +1,13 @@
+"use client";
+
 import { PARTNERS } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
 import Marquee from "@/components/sections/Marquee";
 
-/**
- * Partner di fiducia — claim centrato + banda marquee delle categorie partner.
- */
-export default function Partners() {
+// Variante B — Claim centrato + banda marquee delle categorie.
+export default function PartnersB() {
   return (
-    <section className="overflow-hidden py-20 md:py-32">
+    <section className="overflow-hidden bg-bg py-24 md:py-32">
       <Reveal className="mx-auto max-w-3xl px-6 text-center">
         <span className="overline text-accent">La rete</span>
         <p className="mt-6 font-display text-2xl font-light leading-snug tracking-tight text-ink md:text-4xl">

@@ -8,20 +8,17 @@ import RotatingWord from "@/components/ui/RotatingWord";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-/**
- * Lavori in evidenza — Alternating Rows.
- * Righe grandi con immagine alternata sx/dx, numero gigante, frame alternato in hover.
- */
-export default function FeaturedWork() {
+// Variante B — Alternating Rows. Righe grandi, immagine alternata sx/dx.
+export default function WorkB() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="lavori" className="shell py-20 md:py-36">
+    <section className="bg-bg shell py-24 md:py-32">
       <Reveal>
         <span className="overline text-accent">02 — Lavori in evidenza</span>
       </Reveal>
       <Reveal delay={0.05}>
-        <h2 className="mt-6 max-w-4xl font-display text-4xl font-light leading-[1.08] tracking-tight text-ink md:text-6xl 2xl:text-7xl">
+        <h2 className="mt-6 max-w-4xl font-display text-4xl font-light leading-[1.08] tracking-tight text-ink md:text-6xl">
           Realizzo <RotatingWord words={ROTATING_WORDS} /> che durano nel tempo.
         </h2>
       </Reveal>
@@ -58,21 +55,6 @@ export default function FeaturedWork() {
             </motion.a>
           );
         })}
-
-        {/* CTA galleria */}
-        <Reveal>
-          <a
-            href="#contatti"
-            className="flex flex-col items-start justify-between gap-6 rounded-sm border border-ink bg-ink p-8 text-bg transition-colors hover:bg-accent md:flex-row md:items-center md:p-12"
-          >
-            <span className="font-display text-3xl font-light leading-tight md:text-4xl">
-              Guarda tutti i lavori
-            </span>
-            <span className="inline-flex items-center gap-2 font-body text-[0.74rem] uppercase tracking-[0.18em]">
-              Vai alla galleria <span aria-hidden>→</span>
-            </span>
-          </a>
-        </Reveal>
       </div>
     </section>
   );

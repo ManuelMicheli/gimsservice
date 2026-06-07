@@ -2,43 +2,37 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { SITE } from "@/lib/site";
 import Button from "@/components/ui/Button";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-// Scena hero fissa (interno finito / finiture).
-const HERO = {
-  src: "/images/hero-1.jpg",
-  alt: "Soggiorno finito con finiture su misura",
-};
-
-// Headline mascherata riga per riga (Editorial Split).
+// Variante A — Editorial Split.
+// Foto full-bleed, top-bar a filo, headline mascherata riga per riga in basso a sinistra.
 const LINES = ["Artigiano edile a Bareggio", "da oltre trent'anni."];
 
-export default function Hero() {
+export default function HeroA() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="top" className="relative flex min-h-[100svh] items-end overflow-hidden">
-      {/* Immagine full-bleed */}
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-bg">
       <div className="absolute inset-0 z-0">
-        <Image
-          src={HERO.src}
-          alt={HERO.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        {/* Overlay scuro per leggibilità — intensità media */}
-        <div className="pointer-events-none absolute inset-0 z-10 bg-black/20" />
-        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/65 via-black/25 to-transparent" />
+        <Image src="/images/hero-1.jpg" alt="" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/40" />
       </div>
 
-      <div className="shell relative z-20 pb-14 pt-32 text-bg md:pb-20">
+      {/* Top bar a filo */}
+      <div className="relative z-20 shell flex items-center justify-between border-b border-bg/15 py-5">
+        <span className="font-display text-lg tracking-tight">G.I.M.S. Service</span>
+        <span className="overline !text-bg/70">EST. 1990 — Bareggio (MI)</span>
+      </div>
+
+      {/* Spacer */}
+      <div className="flex-1" />
+
+      {/* Blocco basso */}
+      <div className="relative z-20 shell pb-14 md:pb-20">
         <motion.p
-          className="overline !text-bg/80"
+          className="overline !text-bg/80 mb-6"
           initial={reduce ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease, delay: 0.15 }}
@@ -46,7 +40,7 @@ export default function Hero() {
           Imbiancatura · Decorazioni · Cartongesso · Finiture
         </motion.p>
 
-        <h1 className="mt-7 max-w-5xl font-display text-[2.5rem] font-light leading-[1.0] tracking-tight text-bg sm:text-6xl md:text-7xl lg:text-[5.5rem] 2xl:text-[7rem]">
+        <h1 className="max-w-5xl font-display text-[2.6rem] font-light leading-[1.0] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.5rem]">
           {LINES.map((line, i) => (
             <span key={i} className="block overflow-hidden">
               <motion.span
@@ -76,12 +70,10 @@ export default function Hero() {
             </p>
           </div>
           <span className="hidden font-body text-[0.7rem] uppercase tracking-[0.22em] text-bg/50 md:inline">
-            Bareggio (MI) — Ovest milanese
+            Scroll ↓
           </span>
         </motion.div>
       </div>
-
-      <span className="sr-only">{SITE.brand} — artigiano edile a Bareggio (MI)</span>
     </section>
   );
 }
