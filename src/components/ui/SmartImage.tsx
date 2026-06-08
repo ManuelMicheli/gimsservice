@@ -59,6 +59,16 @@ const AVAILABLE = new Set([
   "pavimenti", "pavimenti-2",
   "bagno", "tapparelle", "manutenzione",
   "area-a", "area-b",
+  // Foto reali G.I.M.S. Service (cantieri Bareggio / ovest milanese)
+  "g-hero", "g-manifesto",
+  "g-imbiancatura", "g-imbiancatura-2", "g-cantiere",
+  "g-decorazione",
+  "g-spatolato", "g-spatolato-2", "g-spatolato-3", "g-spatolato-nicchie",
+  "g-cartongesso", "g-cartongesso-2", "g-cartongesso-3", "g-cartongesso-4", "g-cartongesso-5",
+  "g-pavimenti", "g-pavimenti-2", "g-pavimenti-3", "g-pavimenti-4", "g-pavimenti-posa", "g-pavimenti-posa-2",
+  "g-bagno", "g-bagno-2", "g-bagno-3", "g-bagno-4", "g-bagno-5", "g-bagno-6", "g-bagno-7",
+  "g-bagno-before", "g-bagno-before-2",
+  "g-manutenzione", "g-manutenzione-2", "g-manutenzione-3",
 ]);
 
 export default function SmartImage({

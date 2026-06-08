@@ -29,6 +29,7 @@ export default function Header() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-soft ${
         scrolled
@@ -87,8 +88,10 @@ export default function Header() {
           />
         </button>
       </div>
+    </header>
 
-      {/* Overlay fullscreen mobile */}
+      {/* Overlay fullscreen mobile — fuori dall'header per non ereditare il
+          containing block creato da backdrop-filter quando l'header è scrollato. */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -119,6 +122,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

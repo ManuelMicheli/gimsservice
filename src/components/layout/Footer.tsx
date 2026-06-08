@@ -50,7 +50,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-2.5 font-body text-sm text-bg/70">
               {SERVICES.map((s) => (
                 <li key={s.n}>
-                  <Link href="#servizi" className="transition-colors hover:text-bg">
+                  <Link href={`/servizi/${s.slug}`} className="transition-colors hover:text-bg">
                     {s.title}
                   </Link>
                 </li>

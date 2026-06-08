@@ -19,7 +19,7 @@ export const SITE = {
 } as const;
 
 export const NAV = [
-  { label: "Servizi", href: "#servizi" },
+  { label: "Servizi", href: "/servizi" },
   { label: "Galleria", href: "#lavori" },
   { label: "Il Metodo", href: "#metodo" },
   { label: "Chi Siamo", href: "#manifesto" },
@@ -31,17 +31,19 @@ export type Service = {
   desc: string;
   /** chiave immagine (vedi components/ui/SmartImage placeholder) */
   img: string;
+  /** slug della pagina servizio dedicata: /servizi/<slug> */
+  slug: string;
 };
 
 export const SERVICES: Service[] = [
-  { n: "01", title: "Imbiancatura", img: "imbiancatura", desc: "Imbiancature per interni ed esterni con materiali certificati dei migliori marchi italiani, eseguite con tecniche professionali per garantire durata e qualità." },
-  { n: "02", title: "Decorazioni", img: "decorazione", desc: "Decorazioni realizzate con materiali certificati e tecniche professionali, per un risultato di qualità che resiste nel tempo." },
-  { n: "03", title: "Spatolati", img: "spatolati", desc: "Finiture spatolate, anche in stucco antico veneziano, con materiali certificati e tecniche professionali per superfici di pregio." },
-  { n: "04", title: "Cartongesso", img: "cartongesso", desc: "Pareti e controsoffitti in cartongesso con materiali certificati e tecniche professionali." },
-  { n: "05", title: "Pavimenti e Rivestimenti", img: "pavimenti", desc: "Fornitura e posa di pavimenti in piastrelle, laminato, PVC e parquet, con materiali certificati e tecniche professionali." },
-  { n: "06", title: "Ristrutturazione Bagni", img: "bagno", desc: "Rendi unico il tuo bagno: trasformo lo spazio in un ambiente di comfort e stile, chiavi in mano." },
-  { n: "07", title: "Tapparelle", img: "tapparelle", desc: "Installazione e manutenzione di tapparelle con materiali resistenti e lavorazioni accurate." },
-  { n: "08", title: "Manutenzione Stabili", img: "manutenzione", desc: "Manutenzione ordinaria e straordinaria di stabili, con interventi programmati e materiali certificati." },
+  { n: "01", title: "Imbiancatura", img: "imbiancatura", slug: "imbiancatura", desc: "Imbiancature per interni ed esterni con materiali certificati dei migliori marchi italiani, eseguite con tecniche professionali per garantire durata e qualità." },
+  { n: "02", title: "Decorazioni", img: "decorazione", slug: "decorazioni-pareti", desc: "Decorazioni realizzate con materiali certificati e tecniche professionali, per un risultato di qualità che resiste nel tempo." },
+  { n: "03", title: "Spatolati", img: "g-spatolato", slug: "spatolato-veneziano", desc: "Finiture spatolate, anche in stucco antico veneziano, con materiali certificati e tecniche professionali per superfici di pregio." },
+  { n: "04", title: "Cartongesso", img: "g-cartongesso", slug: "cartongesso", desc: "Pareti e controsoffitti in cartongesso con materiali certificati e tecniche professionali." },
+  { n: "05", title: "Pavimenti e Rivestimenti", img: "g-pavimenti", slug: "pavimenti-e-rivestimenti", desc: "Fornitura e posa di pavimenti in piastrelle, laminato, PVC e parquet, con materiali certificati e tecniche professionali." },
+  { n: "06", title: "Ristrutturazione Bagni", img: "g-bagno", slug: "ristrutturazione-bagni", desc: "Rendi unico il tuo bagno: trasformo lo spazio in un ambiente di comfort e stile, chiavi in mano." },
+  { n: "07", title: "Tapparelle", img: "tapparelle", slug: "tapparelle", desc: "Installazione e manutenzione di tapparelle con materiali resistenti e lavorazioni accurate." },
+  { n: "08", title: "Manutenzione Stabili", img: "g-manutenzione", slug: "manutenzione-stabili", desc: "Manutenzione ordinaria e straordinaria di stabili, con interventi programmati e materiali certificati." },
 ];
 
 export type Project = {
@@ -54,9 +56,9 @@ export type Project = {
 export const PROJECTS: Project[] = [
   { n: "01", title: "Decorazione", img: "decorazione", imgAlt: "decorazione-2" },
   { n: "02", title: "Imbiancatura", img: "imbiancatura", imgAlt: "imbiancatura-2" },
-  { n: "03", title: "Spatolati", img: "spatolati", imgAlt: "spatolati-2" },
-  { n: "04", title: "Cartongesso", img: "cartongesso", imgAlt: "cartongesso-2" },
-  { n: "05", title: "Pavimenti", img: "pavimenti", imgAlt: "pavimenti-2" },
+  { n: "03", title: "Spatolati", img: "g-spatolato", imgAlt: "g-spatolato-nicchie" },
+  { n: "04", title: "Cartongesso", img: "g-cartongesso", imgAlt: "g-cartongesso-2" },
+  { n: "05", title: "Pavimenti", img: "g-pavimenti", imgAlt: "g-pavimenti-2" },
 ];
 
 export const ROTATING_WORDS = [
@@ -67,7 +69,10 @@ export const ROTATING_WORDS = [
   "bagni",
 ];
 
-export type Testimonial = { n: string; name: string; place: string; text: string };
+export type Testimonial = { n: string; name: string; place: string; text: string; avatar: string };
+
+const avatar = (seed: string) =>
+  `https://api.dicebear.com/10.x/lorelei/svg?seed=${encodeURIComponent(seed)}`;
 
 export const TESTIMONIALS: Testimonial[] = [
   {
@@ -75,18 +80,21 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Rinaldo",
     place: "Milano",
     text: "Ci siamo rivolti a GIMS Service per diversi interventi: tinteggiatura, installazione di condizionatori e lavori sull'impianto idraulico. Sempre puntuali e precisi, ci hanno saputo consigliare le soluzioni più adatte, garantendo qualità e affidabilità in ogni fase.",
+    avatar: avatar("Rinaldo"),
   },
   {
     n: "02",
     name: "Luca Conti",
     place: "Binasco",
     text: "Professionalità e cura hanno trasformato la nostra casa. Risultati che parlano da soli e qualità senza compromessi.",
+    avatar: avatar("Luca Conti"),
   },
   {
     n: "03",
     name: "Elena Rossi",
     place: "Sesto San Giovanni",
     text: "Servizio impeccabile e soluzioni su misura hanno reso il nostro progetto un'esperienza senza stress e altamente soddisfacente.",
+    avatar: avatar("Elena Rossi"),
   },
 ];
 

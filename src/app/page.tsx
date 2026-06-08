@@ -6,6 +6,7 @@ import Manifesto from "@/components/sections/Manifesto";
 import Services from "@/components/sections/Services";
 import Partners from "@/components/sections/Partners";
 import FeaturedWork from "@/components/sections/FeaturedWork";
+import BeforeAfter from "@/components/sections/BeforeAfter";
 import Testimonials from "@/components/sections/Testimonials";
 import Method from "@/components/sections/Method";
 import ServiceArea from "@/components/sections/ServiceArea";
@@ -23,6 +24,7 @@ export default function Home() {
         <Services />
         <Partners />
         <FeaturedWork />
+        <BeforeAfter />
         <Testimonials />
         <Method />
         <ServiceArea />

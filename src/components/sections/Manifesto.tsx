@@ -7,9 +7,9 @@ import Reveal from "@/components/ui/Reveal";
 
 // Le 3 immagini che la foto sticky attraversa scorrendo (desktop).
 const STICKY_IMAGES = [
-  { key: "manifesto", alt: "José Giardino al lavoro — cura dei dettagli" },
-  { key: "spatolati", alt: "Finitura spatolata — dettaglio della lavorazione" },
-  { key: "bagno", alt: "Ambiente finito — risultato consegnato chiavi in mano" },
+  { key: "g-manifesto", alt: "José Giardino al lavoro — cura dei dettagli" },
+  { key: "g-spatolato", alt: "Finitura spatolata — dettaglio della lavorazione" },
+  { key: "g-bagno", alt: "Ambiente finito — risultato consegnato chiavi in mano" },
 ];
 
 // Layout: desktop = Sticky Scroll (foto fissa che attraversa 3 immagini, testo a comparsa).
@@ -35,7 +35,7 @@ export default function Manifesto() {
       <div className="md:hidden">
         <div className="relative aspect-[3/4] w-full overflow-hidden">
           <SmartImage
-            imgKey="manifesto"
+            imgKey="g-manifesto"
             alt="José Giardino al lavoro — cura dei dettagli"
             label="Manifesto — dettaglio artigiano"
             sizes="100vw"

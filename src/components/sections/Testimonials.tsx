@@ -49,11 +49,20 @@ export default function Testimonials() {
         </div>
 
         <div className="mt-8 flex items-end justify-between border-t border-ink pt-5">
-          <div>
-            <span className="text-accent" aria-label="5 stelle su 5">★★★★★</span>
-            <p className="mt-2 font-body text-sm text-muted">
-              <span className="text-ink">{t.name}</span> · {t.place}
-            </p>
+          <div className="flex items-center gap-3">
+            <img
+              src={t.avatar}
+              alt={t.name}
+              width={44}
+              height={44}
+              className="h-11 w-11 shrink-0 rounded-full border border-line bg-bg"
+            />
+            <div>
+              <span className="text-accent" aria-label="5 stelle su 5">★★★★★</span>
+              <p className="mt-1 font-body text-sm text-muted">
+                <span className="text-ink">{t.name}</span> · {t.place}
+              </p>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-body text-[0.7rem] tracking-[0.2em] text-muted">
@@ -102,9 +111,16 @@ export default function Testimonials() {
             </AnimatePresence>
           </div>
 
-          <div className="mt-10 flex flex-col items-center gap-1">
+          <div className="mt-10 flex flex-col items-center gap-3">
+            <img
+              src={t.avatar}
+              alt={t.name}
+              width={56}
+              height={56}
+              className="h-14 w-14 rounded-full border border-line bg-bg"
+            />
             <span className="text-accent" aria-label="5 stelle su 5">★★★★★</span>
-            <span className="mt-3 font-body text-sm text-muted">
+            <span className="mt-1 font-body text-sm text-muted">
               <span className="text-ink">{t.name}</span> · {t.place}
             </span>
           </div>

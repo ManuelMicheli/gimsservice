@@ -50,7 +50,7 @@ export default function Services() {
         {SERVICES.map((s, i) => (
           <motion.a
             key={s.n}
-            href="#contatti"
+            href={`/servizi/${s.slug}`}
             className="flex items-center gap-4 border-b border-line py-4"
             initial={reduce ? false : { opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ export default function Services() {
         {SERVICES.map((s, i) => (
           <motion.a
             key={s.n}
-            href="#contatti"
+            href={`/servizi/${s.slug}`}
             className="group grid grid-cols-12 items-center gap-3 border-b border-line py-7 transition-colors duration-500"
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}

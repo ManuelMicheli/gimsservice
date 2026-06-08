@@ -1,75 +1,66 @@
 import type { Metadata, Viewport } from "next";
 import { bodyMono, fraunces } from "@/lib/fonts";
 import { SITE } from "@/lib/site";
+import {
+  SITE_URL,
+  META_TITLE,
+  META_DESCRIPTION,
+  KEYWORDS,
+  buildJsonLd,
+} from "@/lib/seo";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Preloader from "@/components/layout/Preloader";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.gims-service.it"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      "G.I.M.S. Service — Imbiancatura, ristrutturazioni e finiture a Bareggio (MI)",
+    default: META_TITLE,
     template: "%s — G.I.M.S. Service",
   },
-  description:
-    "Oltre 30 anni di esperienza in imbiancatura, decorazioni, cartongesso, pavimenti, ristrutturazione bagni e tapparelle. Artigiano edile a Bareggio (MI) — un solo referente, dal sopralluogo alla consegna.",
-  keywords: [
-    "imbiancatura Bareggio",
-    "ristrutturazioni Bareggio",
-    "cartongesso Milano",
-    "spatolato veneziano",
-    "ristrutturazione bagni",
-    "artigiano edile Bareggio",
-  ],
+  description: META_DESCRIPTION,
+  keywords: [...KEYWORDS],
+  applicationName: SITE.brand,
   authors: [{ name: SITE.owner }],
+  creator: SITE.owner,
+  publisher: SITE.brand,
+  category: "Construction & Home Improvement",
   alternates: { canonical: "/" },
+  formatDetection: { telephone: true, email: true, address: true },
   openGraph: {
     type: "website",
     locale: "it_IT",
     siteName: SITE.brand,
-    title:
-      "G.I.M.S. Service — Imbiancatura, ristrutturazioni e finiture a Bareggio (MI)",
-    description:
-      "Oltre 30 anni di esperienza in imbiancatura, decorazioni, cartongesso, pavimenti, ristrutturazione bagni e tapparelle.",
+    title: META_TITLE,
+    description: META_DESCRIPTION,
     url: "/",
+    // L'immagine è generata da app/opengraph-image.tsx (auto-collegata da Next).
   },
-  robots: { index: true, follow: true },
+  twitter: {
+    card: "summary_large_image",
+    title: META_TITLE,
+    description: META_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  // Inserire i codici quando disponibili (Google Search Console, Bing).
+  // verification: { google: "...", other: { "msvalidate.01": "..." } },
 };
 
 export const viewport: Viewport = {
   themeColor: "#16140f",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: SITE.brand,
-  image: "https://www.gims-service.it/og.jpg",
-  description:
-    "Impresa artigiana edile: imbiancatura, decorazioni, spatolati, cartongesso, pavimenti, ristrutturazione bagni, tapparelle, manutenzione stabili.",
-  telephone: "+39 347 800 4971",
-  email: SITE.email,
-  url: "https://www.gims-service.it",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Via Primo Maggio, 21",
-    postalCode: "20008",
-    addressLocality: "Bareggio",
-    addressRegion: "MI",
-    addressCountry: "IT",
-  },
-  geo: { "@type": "GeoCoordinates", latitude: 45.4767, longitude: 8.9938 },
-  areaServed: [
-    "Bareggio",
-    "Milano",
-    "Binasco",
-    "Sesto San Giovanni",
-    "Ovest milanese",
-  ],
-  founder: { "@type": "Person", name: SITE.owner },
-  priceRange: "€€",
-};
+const jsonLd = buildJsonLd();
 
 export default function RootLayout({
   children,
