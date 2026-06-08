@@ -104,6 +104,7 @@ export const PARTNERS = [
   { label: "Serramenti", key: "serramenti" },
   { label: "Condizionamento", key: "condizionamento" },
   { label: "Impianti Idraulici", key: "idraulica" },
+  { label: "Pompe di Calore", key: "pompa-calore" },
 ];
 
 export const FAQ_TEASER = [

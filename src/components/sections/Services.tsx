@@ -45,12 +45,41 @@ export default function Services() {
         </Reveal>
       </div>
 
-      <div className="mt-16 border-t border-line md:mt-20">
+      {/* ===== MOBILE — Thumb List ===== */}
+      <div className="mt-12 border-t border-line md:hidden">
         {SERVICES.map((s, i) => (
           <motion.a
             key={s.n}
             href="#contatti"
-            className="group grid grid-cols-12 items-center gap-3 border-b border-line py-6 transition-colors duration-500 md:py-7"
+            className="flex items-center gap-4 border-b border-line py-4"
+            initial={reduce ? false : { opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-6% 0px" }}
+            transition={{ duration: 0.5, ease, delay: i * 0.03 }}
+          >
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md">
+              <Image src={`/images/${s.img}.jpg`} alt="" fill sizes="80px" className="object-cover" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <span className="font-body text-[0.58rem] uppercase tracking-[0.2em] text-accent">
+                {s.n}
+              </span>
+              <h3 className="font-display text-[1.35rem] font-light leading-tight tracking-tight text-ink">
+                {s.title}
+              </h3>
+              <p className="mt-1 font-body text-[0.74rem] leading-snug text-muted">{s.desc}</p>
+            </div>
+          </motion.a>
+        ))}
+      </div>
+
+      {/* ===== DESKTOP — Index List (immagine flottante in hover) ===== */}
+      <div className="mt-20 hidden border-t border-line md:block">
+        {SERVICES.map((s, i) => (
+          <motion.a
+            key={s.n}
+            href="#contatti"
+            className="group grid grid-cols-12 items-center gap-3 border-b border-line py-7 transition-colors duration-500"
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
             initial={reduce ? false : { opacity: 0, y: 16 }}
@@ -58,16 +87,16 @@ export default function Services() {
             viewport={{ once: true, margin: "-8% 0px" }}
             transition={{ duration: 0.6, ease, delay: i * 0.04 }}
           >
-            <span className="col-span-2 font-body text-[0.7rem] uppercase tracking-[0.2em] text-muted md:col-span-1">
+            <span className="col-span-1 font-body text-[0.7rem] uppercase tracking-[0.2em] text-muted">
               {s.n}
             </span>
-            <h3 className="col-span-10 font-display text-3xl font-light tracking-tight text-ink transition-all duration-500 ease-soft group-hover:translate-x-3 group-hover:text-accent md:col-span-5 md:text-5xl">
+            <h3 className="col-span-5 font-display text-3xl font-light tracking-tight text-ink transition-all duration-500 ease-soft group-hover:translate-x-3 group-hover:text-accent md:text-5xl">
               {s.title}
             </h3>
-            <p className="col-span-12 mt-2 font-body text-sm leading-relaxed text-muted md:col-span-5 md:mt-0 md:text-right">
+            <p className="col-span-5 font-body text-sm leading-relaxed text-muted md:text-right">
               {s.desc}
             </p>
-            <span className="col-span-12 mt-1 hidden text-right font-body text-lg text-ink transition-all duration-500 group-hover:text-accent md:col-span-1 md:mt-0 md:inline">
+            <span className="col-span-1 text-right font-body text-lg text-ink transition-all duration-500 group-hover:text-accent">
               →
             </span>
           </motion.a>

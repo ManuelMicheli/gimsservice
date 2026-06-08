@@ -22,7 +22,7 @@ export default function FaqTeaser() {
           <h2 className="mt-5 font-display text-3xl font-light leading-tight tracking-tight text-ink md:text-5xl">
             Le risposte alle domande più comuni.
           </h2>
-          <Button href="#contatti" variant="outline" className="mt-8">
+          <Button href="#contatti" variant="outline" className="mt-8 hidden lg:inline-flex">
             Tutte le domande →
           </Button>
         </Reveal>
@@ -61,6 +61,11 @@ export default function FaqTeaser() {
             })}
           </div>
         </Reveal>
+
+        {/* CTA mobile — sotto l'accordion, full-width */}
+        <Button href="#contatti" variant="outline" className="w-full justify-center lg:hidden">
+          Tutte le domande →
+        </Button>
       </div>
     </section>
   );

@@ -31,14 +31,14 @@ export default function Hero() {
           sizes="100vw"
           className="object-cover"
         />
-        {/* Overlay scuro per leggibilità — intensità media */}
+        {/* Overlay scuro per leggibilità — più intenso su mobile */}
         <div className="pointer-events-none absolute inset-0 z-10 bg-black/20" />
-        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/65 via-black/25 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/45 to-transparent md:from-black/65 md:via-black/25" />
       </div>
 
       <div className="shell relative z-20 pb-14 pt-32 text-bg md:pb-20">
         <motion.p
-          className="overline !text-bg/80"
+          className="overline absolute left-5 top-12 right-5 !text-bg/80 md:static md:left-auto md:right-auto md:top-auto"
           initial={reduce ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease, delay: 0.15 }}
@@ -46,7 +46,7 @@ export default function Hero() {
           Imbiancatura · Decorazioni · Cartongesso · Finiture
         </motion.p>
 
-        <h1 className="mt-7 max-w-5xl font-display text-[2.5rem] font-light leading-[1.0] tracking-tight text-bg sm:text-6xl md:text-7xl lg:text-[5.5rem] 2xl:text-[7rem]">
+        <h1 className="mt-0 max-w-5xl font-display text-[2.05rem] font-light leading-[1.05] tracking-tight text-bg sm:mt-7 sm:text-6xl md:text-7xl lg:text-[5.5rem] 2xl:text-[7rem]">
           {LINES.map((line, i) => (
             <span key={i} className="block overflow-hidden">
               <motion.span
@@ -67,15 +67,15 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease, delay: 0.6 }}
         >
-          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:gap-9">
-            <Button href="#contatti" variant="solid" className="!bg-bg !text-ink hover:!bg-accent hover:!text-bg">
+          <div className="flex w-full flex-col-reverse items-start gap-6 md:w-auto md:flex-row md:items-center md:gap-9">
+            <Button href="#contatti" variant="solid" className="w-full justify-center !bg-bg !text-ink hover:!bg-accent hover:!text-bg md:w-auto">
               Richiedi un preventivo gratuito
             </Button>
-            <p className="max-w-xs font-body text-sm leading-relaxed text-bg/75">
+            <p className="max-w-xs font-body text-sm leading-relaxed text-white md:text-bg/75">
               Un solo artigiano, dal primo sopralluogo alla consegna.
             </p>
           </div>
-          <span className="hidden font-body text-[0.7rem] uppercase tracking-[0.22em] text-bg/50 md:inline">
+          <span className="block w-full text-center font-body text-[0.7rem] uppercase tracking-[0.22em] text-bg/50 md:inline md:w-auto md:text-left">
             Bareggio (MI) — Ovest milanese
           </span>
         </motion.div>

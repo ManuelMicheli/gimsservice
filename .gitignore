@@ -11,3 +11,6 @@ next-env.d.ts
 
 # Immagini upscalate non usate (56MB, sperimentali)
 /public/images/upscayl_png_upscayl-standard-4x_4x/
+
+.vercel
+.env*.local

@@ -99,6 +99,15 @@
   .link-underline:hover::after {
     @apply origin-left scale-x-100;
   }
+
+  /* Nasconde scrollbar (anteprima phone-frame sandbox) */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Rispetta prefers-reduced-motion: disattiva animazioni pesanti */

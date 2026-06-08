@@ -35,14 +35,14 @@ export default function Method() {
               transition={{ duration: 0.7, ease, delay: i * 0.05 }}
             >
               {/* Numero ghost gigante, clippato a destra */}
-              <span className="pointer-events-none absolute -right-6 top-1/2 -translate-y-1/2 select-none font-display text-[10rem] font-light leading-none text-white/[0.06] transition-colors duration-700 group-hover:text-accent/20 md:text-[16rem]">
+              <span className="pointer-events-none absolute -right-4 top-1/2 -translate-y-1/2 select-none font-display text-[7rem] font-light leading-none text-white/[0.07] transition-colors duration-700 group-hover:text-accent/20 md:-right-6 md:text-[16rem]">
                 {s.n}
               </span>
-              <div className="relative z-10 max-w-2xl">
-                <h3 className="font-display text-3xl font-light tracking-tight text-bg md:text-5xl">
+              <div className="relative z-10 max-w-[16rem] md:max-w-2xl">
+                <h3 className="font-display text-[1.6rem] font-light leading-tight tracking-tight text-bg md:text-5xl">
                   {s.title}
                 </h3>
-                <p className="mt-4 font-body text-sm leading-relaxed text-bg/60 md:text-base">
+                <p className="mt-3 font-body text-[0.82rem] leading-relaxed text-bg/60 md:mt-4 md:text-base">
                   {s.desc}
                 </p>
               </div>
@@ -52,7 +52,7 @@ export default function Method() {
 
         <Reveal delay={0.1}>
           <div className="mt-16 flex justify-center">
-            <Button href="#contatti" variant="solid" className="bg-bg text-ink hover:bg-accent hover:text-bg">
+            <Button href="#contatti" variant="solid" className="w-full justify-center bg-bg text-ink hover:bg-accent hover:text-bg md:w-auto">
               Richiedi il tuo preventivo gratuito
             </Button>
           </div>

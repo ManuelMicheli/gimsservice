@@ -7,7 +7,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 // G.I.M.S. — l'acronimo dietro il nome. "Giardino" è il cognome dell'artigiano José Giardino.
 const LETTERS = [
-  { l: "G", word: "Giardino", desc: "Cura del verde e degli spazi esterni." },
+  { l: "G", word: "Giardino", desc: "Il cognome di José Giardino, l'artigiano dietro G.I.M.S." },
   { l: "I", word: "Imbiancatura", desc: "Tinteggiature per interni ed esterni." },
   { l: "M", word: "Muratura", desc: "Opere edili e ristrutturazioni." },
   { l: "S", word: "Sanitari", desc: "Impianti e bagni chiavi in mano." },
@@ -37,22 +37,24 @@ export default function Acronym() {
         {LETTERS.map((item, i) => (
           <motion.div
             key={item.l}
-            className="group grid grid-cols-12 items-center gap-4 border-b border-line py-7 transition-colors duration-500 hover:bg-ink/[0.02] md:py-9"
+            className="group flex flex-col gap-3 border-b border-line py-7 transition-colors duration-500 hover:bg-ink/[0.02] md:grid md:grid-cols-12 md:items-center md:gap-4 md:py-9"
             initial={reduce ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-12% 0px" }}
             transition={{ duration: 0.7, ease, delay: i * 0.08 }}
           >
-            <span className="col-span-2 font-body text-[0.7rem] uppercase tracking-[0.2em] text-muted md:col-span-1">
+            <span className="hidden font-body text-[0.7rem] uppercase tracking-[0.2em] text-muted md:col-span-1 md:block">
               0{i + 1}
             </span>
-            <span className="col-span-3 font-display text-6xl font-light leading-none text-ink transition-colors duration-500 group-hover:text-accent md:col-span-2 md:text-8xl">
-              {item.l}
-            </span>
-            <h3 className="col-span-7 font-display text-2xl font-light tracking-tight text-ink transition-transform duration-500 ease-soft group-hover:translate-x-2 md:col-span-4 md:text-4xl">
-              {item.word}
-            </h3>
-            <p className="col-span-12 mt-2 font-body text-sm leading-relaxed text-muted md:col-span-5 md:mt-0 md:text-right">
+            <div className="flex items-baseline gap-4 md:contents">
+              <span className="font-display text-5xl font-light leading-none text-accent transition-colors duration-500 group-hover:text-accent md:col-span-2 md:text-8xl md:text-ink">
+                {item.l}
+              </span>
+              <h3 className="font-display text-[1.6rem] font-light tracking-tight text-ink transition-transform duration-500 ease-soft group-hover:translate-x-2 md:col-span-4 md:text-4xl">
+                {item.word}
+              </h3>
+            </div>
+            <p className="font-body text-sm leading-relaxed text-muted md:col-span-5 md:mt-0 md:text-right">
               {item.desc}
             </p>
           </motion.div>

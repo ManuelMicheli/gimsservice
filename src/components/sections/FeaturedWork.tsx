@@ -26,7 +26,37 @@ export default function FeaturedWork() {
         </h2>
       </Reveal>
 
-      <div className="mt-16 flex flex-col gap-16 md:mt-24 md:gap-28">
+      {/* ===== MOBILE — Overlay Cards ===== */}
+      <div className="mt-12 flex flex-col gap-5 md:hidden">
+        {PROJECTS.map((p, i) => (
+          <motion.a
+            key={p.n}
+            href="#contatti"
+            className="relative block aspect-[4/5] w-full overflow-hidden rounded-lg bg-line"
+            initial={reduce ? false : { opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-8% 0px" }}
+            transition={{ duration: 0.7, ease, delay: i * 0.03 }}
+          >
+            <SmartImage imgKey={p.img} alt={p.title} label={p.title} sizes="100vw" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+            <span className="absolute right-5 top-5 font-display text-3xl font-light leading-none text-bg/70">
+              {p.n}
+            </span>
+            <div className="absolute inset-x-5 bottom-5 flex items-end justify-between">
+              <h3 className="font-display text-[2rem] font-light leading-none tracking-tight text-bg">
+                {p.title}
+              </h3>
+              <span className="mb-1 font-body text-[0.66rem] uppercase tracking-[0.18em] text-bg">
+                Vedi →
+              </span>
+            </div>
+          </motion.a>
+        ))}
+      </div>
+
+      {/* ===== DESKTOP — Alternating Rows ===== */}
+      <div className="mt-24 hidden flex-col gap-28 md:flex">
         {PROJECTS.map((p, i) => {
           const flip = i % 2 === 1;
           return (
@@ -58,8 +88,10 @@ export default function FeaturedWork() {
             </motion.a>
           );
         })}
+      </div>
 
-        {/* CTA galleria */}
+      {/* CTA galleria */}
+      <div className="mt-12 md:mt-28">
         <Reveal>
           <a
             href="#contatti"
