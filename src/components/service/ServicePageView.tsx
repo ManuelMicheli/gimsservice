@@ -73,7 +73,7 @@ export default function ServicePageView({ page }: { page: ServicePage }) {
 
             {/* Griglia foto reali — riempie lo spazio bianco sotto il titolo */}
             {strip.length > 0 && (
-              <div className="mt-auto grid grid-cols-2 gap-3 pt-10 md:gap-4">
+              <div className="mt-auto hidden grid-cols-2 gap-3 pt-10 md:grid md:gap-4">
                 {strip.map((g, i) => (
                   <div
                     key={g}
