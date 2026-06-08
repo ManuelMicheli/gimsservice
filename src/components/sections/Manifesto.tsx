@@ -39,8 +39,15 @@ export default function Manifesto() {
               equilibrio tra qualità e investimento, per creare spazi unici e duraturi.
             </p>
           </Reveal>
-          <Reveal delay={0.2}>
-            <p className="pt-1 font-display text-xl italic text-accent">— José Giardino</p>
+          <Reveal delay={0.18}>
+            <p>
+              Dalla ristrutturazione di appartamenti e negozi alla manutenzione di stabili, fino a
+              tapparelle e cartongesso: unisco competenza tecnica e sensibilità estetica per
+              trasformare gli spazi in ambienti funzionali e armoniosi.
+            </p>
+          </Reveal>
+          <Reveal delay={0.22}>
+            <p className="pt-1 font-display text-xl italic text-accent">— José Giardino, geometra</p>
           </Reveal>
         </div>
       </div>
@@ -84,8 +91,15 @@ export default function Manifesto() {
                   equilibrio tra qualità e investimento, per creare spazi unici e duraturi.
                 </p>
               </Reveal>
-              <Reveal delay={0.2}>
-                <p className="pt-1 font-display text-xl italic text-ink">— José Giardino</p>
+              <Reveal delay={0.18}>
+                <p>
+                  Dalla ristrutturazione di appartamenti e negozi alla manutenzione di stabili, fino
+                  a tapparelle e cartongesso: unisco competenza tecnica e sensibilità estetica per
+                  trasformare gli spazi in ambienti funzionali e armoniosi.
+                </p>
+              </Reveal>
+              <Reveal delay={0.22}>
+                <p className="pt-1 font-display text-xl italic text-ink">— José Giardino, geometra</p>
               </Reveal>
             </div>
           </div>

@@ -40,7 +40,7 @@ export default function Services() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="max-w-sm font-body text-muted">
-            Qualità e precisione al centro di ogni progetto.
+            Una gamma completa di servizi, dove qualità e precisione sono al centro di ogni progetto.
           </p>
         </Reveal>
       </div>
@@ -58,7 +58,7 @@ export default function Services() {
             transition={{ duration: 0.5, ease, delay: i * 0.03 }}
           >
             <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md">
-              <Image src={`/images/${s.img}.jpg`} alt="" fill sizes="80px" className="object-cover" />
+              <Image src={`/images/${s.img}.jpg`} alt={`${s.title} — G.I.M.S. Service, Bareggio`} fill sizes="80px" className="object-cover" />
             </div>
             <div className="min-w-0 flex-1">
               <span className="font-body text-[0.58rem] uppercase tracking-[0.2em] text-accent">

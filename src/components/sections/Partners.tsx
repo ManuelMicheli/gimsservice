@@ -15,6 +15,11 @@ export default function Partners() {
           professionalità e attenzione ai dettagli — con un unico referente:{" "}
           <span className="italic text-accent">io</span>.
         </p>
+        <p className="mx-auto mt-6 max-w-xl font-body text-sm leading-relaxed text-muted">
+          Partner qualificati per impianti elettrici, serramenti, condizionamento e idraulica: così
+          garantisco materiali certificati e soluzioni tecniche affidabili, per un servizio completo
+          e coordinato.
+        </p>
       </Reveal>
 
       {/* ===== MOBILE — Numbered List ===== */}

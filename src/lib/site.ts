@@ -34,14 +34,14 @@ export type Service = {
 };
 
 export const SERVICES: Service[] = [
-  { n: "01", title: "Imbiancatura", img: "imbiancatura", desc: "Imbiancature per interni ed esterni con materiali certificati dei migliori marchi italiani." },
-  { n: "02", title: "Decorazioni", img: "decorazione", desc: "Decorazioni realizzate con materiali certificati e tecniche professionali." },
-  { n: "03", title: "Spatolati", img: "spatolati", desc: "Finiture spatolate, anche stucco antico veneziano, per superfici di pregio." },
-  { n: "04", title: "Cartongesso", img: "cartongesso", desc: "Pareti, controsoffitti ed elementi decorativi in cartongesso su misura." },
-  { n: "05", title: "Pavimenti e Rivestimenti", img: "pavimenti", desc: "Posa di piastrelle, laminato, PVC e parquet." },
-  { n: "06", title: "Ristrutturazione Bagni", img: "bagno", desc: "Trasformiamo il bagno in un ambiente di comfort e stile, chiavi in mano." },
-  { n: "07", title: "Tapparelle", img: "tapparelle", desc: "Installazione e manutenzione con materiali resistenti e lavorazioni accurate." },
-  { n: "08", title: "Manutenzione Stabili", img: "manutenzione", desc: "Manutenzione ordinaria e straordinaria con interventi programmati." },
+  { n: "01", title: "Imbiancatura", img: "imbiancatura", desc: "Imbiancature per interni ed esterni con materiali certificati dei migliori marchi italiani, eseguite con tecniche professionali per garantire durata e qualità." },
+  { n: "02", title: "Decorazioni", img: "decorazione", desc: "Decorazioni realizzate con materiali certificati e tecniche professionali, per un risultato di qualità che resiste nel tempo." },
+  { n: "03", title: "Spatolati", img: "spatolati", desc: "Finiture spatolate, anche in stucco antico veneziano, con materiali certificati e tecniche professionali per superfici di pregio." },
+  { n: "04", title: "Cartongesso", img: "cartongesso", desc: "Pareti e controsoffitti in cartongesso con materiali certificati e tecniche professionali." },
+  { n: "05", title: "Pavimenti e Rivestimenti", img: "pavimenti", desc: "Fornitura e posa di pavimenti in piastrelle, laminato, PVC e parquet, con materiali certificati e tecniche professionali." },
+  { n: "06", title: "Ristrutturazione Bagni", img: "bagno", desc: "Rendi unico il tuo bagno: trasformo lo spazio in un ambiente di comfort e stile, chiavi in mano." },
+  { n: "07", title: "Tapparelle", img: "tapparelle", desc: "Installazione e manutenzione di tapparelle con materiali resistenti e lavorazioni accurate." },
+  { n: "08", title: "Manutenzione Stabili", img: "manutenzione", desc: "Manutenzione ordinaria e straordinaria di stabili, con interventi programmati e materiali certificati." },
 ];
 
 export type Project = {
