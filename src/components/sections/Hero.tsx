@@ -38,12 +38,12 @@ export default function Hero() {
 
       <div className="shell relative z-20 pb-14 pt-32 text-bg md:pb-20">
         <motion.p
-          className="overline absolute left-5 top-12 right-5 !text-bg/80 md:static md:left-auto md:right-auto md:top-auto"
+          className="overline absolute left-5 top-12 right-5 !text-bg md:static md:left-auto md:right-auto md:top-auto"
           initial={reduce ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease, delay: 0.15 }}
         >
-          Imbiancatura · Decorazioni · Cartongesso · Finiture
+          José Giardino
         </motion.p>
 
         <h1 className="mt-0 max-w-5xl font-display text-[2.05rem] font-light leading-[1.05] tracking-tight text-bg sm:mt-7 sm:text-6xl md:text-7xl lg:text-[5.5rem] 2xl:text-[7rem]">
