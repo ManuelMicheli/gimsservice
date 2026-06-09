@@ -22,6 +22,15 @@ export default function Services() {
           <p className="max-w-sm font-body text-muted">
             Una gamma completa di servizi, dove qualità e precisione sono al centro di ogni progetto.
           </p>
+          <a
+            href="/servizi"
+            className="group mt-5 inline-flex items-center gap-2 font-body text-sm font-medium uppercase tracking-[0.15em] text-accent"
+          >
+            Scopri tutti i servizi
+            <span className="text-lg transition-transform duration-500 ease-soft group-hover:translate-x-1">
+              →
+            </span>
+          </a>
         </Reveal>
       </div>
 
