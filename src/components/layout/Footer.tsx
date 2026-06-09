@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SERVICES, SITE } from "@/lib/site";
 import ContactForm from "./ContactForm";
 import Reveal from "@/components/ui/Reveal";
@@ -95,7 +96,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="overline text-bg/40">{SITE.brand}</h3>
+            <Image
+              src="/logo.png"
+              alt={SITE.brand}
+              width={510}
+              height={342}
+              className="h-16 w-auto rounded-md"
+            />
             <p className="mt-5 font-body text-sm leading-relaxed text-bg/70">
               {SITE.address}
               <br />

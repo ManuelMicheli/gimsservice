@@ -1,10 +1,15 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "fs/promises";
+import { join } from "path";
 
-// Favicon / logo generato dinamicamente. Monogramma "G" su fondo scuro brand.
+// Favicon / app icon: logo reale G.I.M.S. Service centrato su fondo brand.
 export const size = { width: 256, height: 256 };
 export const contentType = "image/png";
 
-export default function Icon() {
+export default async function Icon() {
+  const data = await readFile(join(process.cwd(), "public/logo.png"));
+  const src = `data:image/png;base64,${data.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -15,13 +20,11 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#16140f",
-          color: "#8a5a36",
-          fontSize: 180,
-          fontWeight: 500,
-          fontFamily: "Georgia, serif",
+          padding: 18,
         }}
       >
-        G
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} width={220} height={148} alt="G.I.M.S. Service" />
       </div>
     ),
     size

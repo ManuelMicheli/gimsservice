@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { NAV, SITE } from "@/lib/site";
 import Button from "@/components/ui/Button";
 
@@ -40,11 +41,20 @@ export default function Header() {
         <Link
           href="#top"
           aria-label={`${SITE.brand} — home`}
-          className={`font-display tracking-tight text-ink transition-all duration-500 ease-soft ${
-            scrolled ? "py-4 text-xl md:text-2xl" : "py-6 text-2xl md:text-[1.7rem]"
+          className={`flex items-center transition-all duration-500 ease-soft ${
+            scrolled ? "py-3" : "py-4"
           }`}
         >
-          {SITE.brand}
+          <Image
+            src="/logo.png"
+            alt={SITE.brand}
+            width={510}
+            height={342}
+            priority
+            className={`w-auto transition-all duration-500 ease-soft ${
+              scrolled ? "h-10 md:h-11" : "h-12 md:h-14"
+            }`}
+          />
         </Link>
 
         <nav className="hidden items-center gap-9 md:flex">

@@ -145,58 +145,71 @@ export default function FeaturedWork() {
     </div>
   );
 
-  // Fallback (reduced motion): strip a scroll orizzontale nativo.
-  if (reduce) {
-    return (
-      <section id="lavori" className="overflow-hidden py-20 md:py-32">
-        {Heading}
-        <div className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:px-8 md:gap-8 md:px-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {PROJECTS.map((p) => (
-            <div key={p.n} className="aspect-[4/5] snap-start sm:aspect-[4/3]">
-              <Card p={p} />
-            </div>
-          ))}
-          <CtaCard />
+  // Strip a scroll orizzontale NATIVO (momentum del browser, fluidissimo su touch).
+  // Usato su mobile sempre, e su desktop con reduced-motion.
+  const NativeStrip = (
+    <div
+      className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain px-5 pb-4 sm:px-8 md:gap-8 md:px-12 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    >
+      {PROJECTS.map((p) => (
+        <div key={p.n} className="aspect-[4/5] snap-start sm:aspect-[4/3]">
+          <Card p={p} />
         </div>
-      </section>
-    );
-  }
+      ))}
+      <CtaCard />
+    </div>
+  );
 
   return (
-    <section
-      id="lavori"
-      ref={sectionRef}
-      style={{ height: distance ? vh + distance * SCROLL_LEN : undefined }}
-      className="relative"
-    >
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-10">
+    <section id="lavori" className="relative">
+      {/* ===== MOBILE — scroll orizzontale nativo (smooth, niente scroll-jacking) ===== */}
+      <div className="overflow-hidden py-20 md:hidden">
         {Heading}
-
-        {/* contatore + progress */}
-        <div className="shell mt-8 flex items-center gap-6">
-          <span className="font-body text-[0.74rem] tabular-nums tracking-[0.1em] text-ink">
-            {String(idx + 1).padStart(2, "0")}
-            <span className="text-muted"> / {String(PROJECTS.length).padStart(2, "0")}</span>
-          </span>
-          <div className="relative h-px flex-1 bg-line">
-            <div ref={barRef} className="absolute inset-y-0 left-0 bg-accent" style={{ width: "4%" }} />
-          </div>
-          <span className="hidden font-body text-[0.7rem] uppercase tracking-[0.18em] text-muted sm:block">
-            Scorri ↓
-          </span>
-        </div>
-
-        {/* track orizzontale guidato dallo scroll */}
-        <div
-          ref={trackRef}
-          className="mt-10 flex h-[58vh] gap-5 pl-5 pr-5 will-change-transform sm:pl-8 md:gap-8 md:pl-12 lg:pl-16 xl:pl-20 2xl:pl-28"
-        >
-          {PROJECTS.map((p) => (
-            <Card key={p.n} p={p} />
-          ))}
-          <CtaCard />
-        </div>
+        {NativeStrip}
       </div>
+
+      {/* ===== DESKTOP — Pinned Horizontal Scroll (guidato dallo scroll, su mouse è fluido) ===== */}
+      {reduce ? (
+        <div className="hidden overflow-hidden py-32 md:block">
+          {Heading}
+          {NativeStrip}
+        </div>
+      ) : (
+        <div
+          ref={sectionRef}
+          style={{ height: distance ? vh + distance * SCROLL_LEN : undefined }}
+          className="hidden md:block"
+        >
+          <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-10">
+            {Heading}
+
+            {/* contatore + progress */}
+            <div className="shell mt-8 flex items-center gap-6">
+              <span className="font-body text-[0.74rem] tabular-nums tracking-[0.1em] text-ink">
+                {String(idx + 1).padStart(2, "0")}
+                <span className="text-muted"> / {String(PROJECTS.length).padStart(2, "0")}</span>
+              </span>
+              <div className="relative h-px flex-1 bg-line">
+                <div ref={barRef} className="absolute inset-y-0 left-0 bg-accent" style={{ width: "4%" }} />
+              </div>
+              <span className="hidden font-body text-[0.7rem] uppercase tracking-[0.18em] text-muted sm:block">
+                Scorri ↓
+              </span>
+            </div>
+
+            {/* track orizzontale guidato dallo scroll */}
+            <div
+              ref={trackRef}
+              className="mt-10 flex h-[58vh] gap-5 pl-5 pr-5 will-change-transform sm:pl-8 md:gap-8 md:pl-12 lg:pl-16 xl:pl-20 2xl:pl-28"
+            >
+              {PROJECTS.map((p) => (
+                <Card key={p.n} p={p} />
+              ))}
+              <CtaCard />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
