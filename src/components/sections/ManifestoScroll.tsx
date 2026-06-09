@@ -46,21 +46,12 @@ export default function ManifestoScroll({ children }: { children: React.ReactNod
           lerpStops(p, [0.32, 0.44, 0.62, 0.72], [0, 1, 1, 0]),
           lerpStops(p, [0.64, 0.76, 1], [0, 1, 1]),
         ];
-        // Slide opposto: desktop = orizzontale (X), mobile = verticale (Y).
+        // Slide orizzontale opposto: solo desktop (data-image/data-text presenti).
         const stops = [0, 0.32, 0.44, 0.64, 0.76, 1];
-        const vertical = el.getAttribute("data-axis") === "y";
-        if (vertical) {
-          // Mobile: testo parte in alto (0→100→0), foto parte in basso (100→0→100).
-          const textY = lerpStops(p, stops, [0, 0, 100, 100, 0, 0]);
-          const imageY = lerpStops(p, stops, [100, 100, 0, 0, 100, 100]);
-          if (imageWrap) imageWrap.style.transform = `translateY(${imageY}%)`;
-          if (textWrap) textWrap.style.transform = `translateY(${textY}%)`;
-        } else {
-          const imageX = lerpStops(p, stops, [0, 0, 100, 100, 0, 0]);
-          const textX = lerpStops(p, stops, [100, 100, 0, 0, 100, 100]);
-          if (imageWrap) imageWrap.style.transform = `translateX(${imageX}%)`;
-          if (textWrap) textWrap.style.transform = `translateX(${textX}%)`;
-        }
+        const imageX = lerpStops(p, stops, [0, 0, 100, 100, 0, 0]);
+        const textX = lerpStops(p, stops, [100, 100, 0, 0, 100, 100]);
+        if (imageWrap) imageWrap.style.transform = `translateX(${imageX}%)`;
+        if (textWrap) textWrap.style.transform = `translateX(${textX}%)`;
         const stepX = lerpStops(p, [0, 1], [0, 200]);
         if (dot) dot.style.left = `${stepX}%`;
         ops.forEach((o, i) => {

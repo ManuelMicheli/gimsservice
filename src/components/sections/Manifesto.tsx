@@ -14,85 +14,75 @@ export default function Manifesto() {
   return (
     <section id="manifesto" className="py-24 md:py-32">
       <ManifestoScroll>
-      {/* ===== MOBILE — Sticky Scroll verticale: testo↕foto si scambiano (alto↔basso) + 3 immagini/frasi in cross-fade ===== */}
-      <div data-manifesto data-axis="y" className="md:hidden">
+      {/* ===== MOBILE — Sticky Scroll: foto fissa in basso, 3 immagini + 3 frasi in cross-fade scorrendo ===== */}
+      <div data-manifesto className="md:hidden">
         <div className="relative h-[300vh]">
-          <div className="sticky top-[8vh] h-[84vh]">
-            <div className="relative h-full px-5">
-              {/* TESTO — metà altezza, parte in alto, scivola in basso e torna. 3 capitoli in cross-fade. */}
-              <div
-                data-text
-                className="absolute inset-x-0 top-0 h-1/2 will-change-transform"
-                style={{ transform: "translateY(0%)" }}
-              >
-                <div data-txt-op className="absolute inset-0 flex flex-col justify-center" style={{ opacity: 1 }}>
-                  <span className="overline text-accent">Chi sono</span>
-                  <h2 className="mt-3 font-display text-[2rem] font-light leading-[1.08] tracking-tight text-ink">
-                    Dal primo sopralluogo alla <span className="italic">consegna</span> finale.
-                  </h2>
-                  <p className="mt-4 font-body text-[0.88rem] leading-relaxed text-ink">
-                    Ogni spazio merita di riflettere la tua personalità. Per questo metto al centro
-                    l&apos;artigianalità, la cura dei dettagli e la competenza tecnica. Con oltre
-                    trent&apos;anni di esperienza ti seguo personalmente in ogni fase.
-                  </p>
-                </div>
-
-                <div data-txt-op className="absolute inset-0 flex flex-col justify-center" style={{ opacity: 0 }}>
-                  <p className="font-display text-[1.45rem] font-light leading-snug tracking-tight text-ink">
-                    Non sono il più economico e non sono il più costoso: cerco sempre il giusto
-                    equilibrio tra <span className="italic text-accent">qualità e investimento</span>,
-                    per creare spazi unici e duraturi.
-                  </p>
-                </div>
-
-                <div data-txt-op className="absolute inset-0 flex flex-col justify-center" style={{ opacity: 0 }}>
-                  <p className="font-body text-[0.88rem] leading-relaxed text-ink">
-                    Dalla ristrutturazione di appartamenti e negozi alla manutenzione di stabili, fino
-                    a tapparelle e cartongesso: unisco competenza tecnica e sensibilità estetica.
-                  </p>
-                  <p className="mt-4 font-display text-xl italic text-accent">— José Giardino, geometra</p>
-                </div>
+          <div className="sticky top-[8vh] flex h-[84vh] flex-col px-5">
+            {/* TESTO — 3 capitoli in cross-fade (sopra) */}
+            <div className="relative flex-1">
+              <div data-txt-op className="absolute inset-0 flex flex-col justify-center [transform:translateZ(0)] will-change-[opacity]" style={{ opacity: 1 }}>
+                <span className="overline text-accent">Chi sono</span>
+                <h2 className="mt-3 font-display text-[2rem] font-light leading-[1.08] tracking-tight text-ink">
+                  Dal primo sopralluogo alla <span className="italic">consegna</span> finale.
+                </h2>
+                <p className="mt-4 font-body text-[0.88rem] leading-relaxed text-ink">
+                  Ogni spazio merita di riflettere la tua personalità. Per questo metto al centro
+                  l&apos;artigianalità, la cura dei dettagli e la competenza tecnica. Con oltre
+                  trent&apos;anni di esperienza ti seguo personalmente in ogni fase.
+                </p>
               </div>
 
-              {/* IMMAGINE — metà altezza, parte in basso, scivola in alto e torna. Cross-fade tra le 3. */}
-              <div
-                data-image
-                className="absolute inset-x-0 top-0 h-1/2 overflow-hidden rounded-sm bg-line will-change-transform"
-                style={{ transform: "translateY(100%)" }}
-              >
-                {STICKY_IMAGES.map((img, idx) => (
-                  <div
-                    key={img.key}
-                    data-img-op
-                    className="absolute inset-0"
-                    style={{ opacity: idx === 0 ? 1 : 0 }}
-                  >
-                    <SmartImage
-                      imgKey={img.key}
-                      src={img.src}
-                      alt={img.alt}
-                      label="Manifesto — dettaglio artigiano"
-                      sizes="100vw"
-                    />
-                  </div>
-                ))}
+              <div data-txt-op className="absolute inset-0 flex flex-col justify-center [transform:translateZ(0)] will-change-[opacity]" style={{ opacity: 0 }}>
+                <p className="font-display text-[1.45rem] font-light leading-snug tracking-tight text-ink">
+                  Non sono il più economico e non sono il più costoso: cerco sempre il giusto
+                  equilibrio tra <span className="italic text-accent">qualità e investimento</span>,
+                  per creare spazi unici e duraturi.
+                </p>
+              </div>
 
-                {/* Indicatore step in basso */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/55 to-transparent px-5 pb-4 pt-14">
-                  <span className="font-body text-[0.66rem] uppercase tracking-[0.22em] text-bg/80">
-                    Chi sono
-                  </span>
-                  <span className="font-body text-[0.66rem] uppercase tracking-[0.22em] text-bg/80">
-                    01 — 03
-                  </span>
-                </div>
-                <div className="absolute inset-x-5 bottom-[2.6rem] h-px bg-bg/25">
-                  <span
-                    data-dot
-                    className="absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-accent"
-                    style={{ left: "0%" }}
+              <div data-txt-op className="absolute inset-0 flex flex-col justify-center [transform:translateZ(0)] will-change-[opacity]" style={{ opacity: 0 }}>
+                <p className="font-body text-[0.88rem] leading-relaxed text-ink">
+                  Dalla ristrutturazione di appartamenti e negozi alla manutenzione di stabili, fino
+                  a tapparelle e cartongesso: unisco competenza tecnica e sensibilità estetica.
+                </p>
+                <p className="mt-4 font-display text-xl italic text-accent">— José Giardino, geometra</p>
+              </div>
+            </div>
+
+            {/* IMMAGINE — sempre in basso, cross-fade tra le 3 */}
+            <div className="relative h-[46%] shrink-0 overflow-hidden rounded-sm bg-line">
+              {STICKY_IMAGES.map((img, idx) => (
+                <div
+                  key={img.key}
+                  data-img-op
+                  className="absolute inset-0 [transform:translateZ(0)] will-change-[opacity]"
+                  style={{ opacity: idx === 0 ? 1 : 0 }}
+                >
+                  <SmartImage
+                    imgKey={img.key}
+                    src={img.src}
+                    alt={img.alt}
+                    label="Manifesto — dettaglio artigiano"
+                    sizes="100vw"
                   />
                 </div>
+              ))}
+
+              {/* Indicatore step in basso */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/55 to-transparent px-5 pb-4 pt-14">
+                <span className="font-body text-[0.66rem] uppercase tracking-[0.22em] text-bg/80">
+                  Chi sono
+                </span>
+                <span className="font-body text-[0.66rem] uppercase tracking-[0.22em] text-bg/80">
+                  01 — 03
+                </span>
+              </div>
+              <div className="absolute inset-x-5 bottom-[2.6rem] h-px bg-bg/25">
+                <span
+                  data-dot
+                  className="absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-accent"
+                  style={{ left: "0%" }}
+                />
               </div>
             </div>
           </div>
