@@ -58,9 +58,13 @@ export default function Acronym() {
         aria-label="Cosa significa G.I.M.S.?"
         aria-expanded={open}
         tabIndex={open ? -1 : 0}
-        className={`group fixed left-0 top-1/2 z-30 -translate-y-1/2 items-center gap-0 rounded-r-md border border-l-0 border-ink/20 bg-bg py-4 pl-1 pr-1.5 text-ink shadow-lg transition-[opacity,transform] duration-500 ease-soft hover:bg-ink hover:text-bg md:flex md:gap-3 md:py-5 md:pl-3 md:pr-2.5 ${
+        className={`group fixed left-4 top-16 z-30 items-center gap-0 rounded-b-md border border-t-0 border-ink/20 bg-bg px-1.5 py-3 text-ink shadow-lg transition-[opacity,transform] duration-500 ease-soft hover:bg-ink hover:text-bg md:left-0 md:top-1/2 md:gap-3 md:rounded-b-none md:rounded-r-md md:border-l-0 md:border-t md:px-0 md:py-5 md:pl-3 md:pr-2.5 ${
           pastHero ? "flex" : "hidden"
-        } ${open ? "pointer-events-none -translate-x-12 opacity-0" : "translate-x-0 opacity-100"}`}
+        } md:flex ${
+          open
+            ? "pointer-events-none -translate-y-16 opacity-0 md:-translate-x-12 md:-translate-y-1/2"
+            : "translate-x-0 translate-y-0 opacity-100 md:-translate-y-1/2"
+        }`}
       >
         <span
           className="font-body text-[0.6rem] uppercase tracking-[0.18em] md:text-[0.7rem] md:tracking-[0.28em]"
