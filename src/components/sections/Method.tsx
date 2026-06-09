@@ -1,19 +1,12 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import { METHOD } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
-
-const ease = [0.16, 1, 0.3, 1] as const;
 
 /**
  * Il Metodo GIMS — Ghost Rows.
  * Righe full-width con numero ghost gigante clippato al bordo destro.
  */
 export default function Method() {
-  const reduce = useReducedMotion();
-
   return (
     <section id="metodo" className="overflow-hidden bg-ink py-20 text-bg md:py-36">
       <div className="shell">
@@ -26,13 +19,12 @@ export default function Method() {
 
         <ol className="mt-16 border-t border-white/10 md:mt-20">
           {METHOD.map((s, i) => (
-            <motion.li
+            <Reveal
+              as="li"
               key={s.n}
+              y={24}
+              delay={i * 0.05}
               className="group relative flex items-center overflow-hidden border-b border-white/10 py-10 md:py-14"
-              initial={reduce ? false : { opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-15% 0px" }}
-              transition={{ duration: 0.7, ease, delay: i * 0.05 }}
             >
               {/* Numero ghost gigante, clippato a destra */}
               <span className="pointer-events-none absolute -right-4 top-1/2 -translate-y-1/2 select-none font-display text-[7rem] font-light leading-none text-white/[0.07] transition-colors duration-700 group-hover:text-accent/20 md:-right-6 md:text-[16rem]">
@@ -46,7 +38,7 @@ export default function Method() {
                   {s.desc}
                 </p>
               </div>
-            </motion.li>
+            </Reveal>
           ))}
         </ol>
 

@@ -1,56 +1,45 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
 import { PROJECTS, ROTATING_WORDS } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
 import RotatingWord from "@/components/ui/RotatingWord";
-
-const ease = [0.16, 1, 0.3, 1] as const;
 
 // Frazione di scroll verticale rispetto alla distanza orizzontale.
 // < 1 = la riga scorre più veloce e la sezione finisce prima (appena la CTA è in vista).
 const SCROLL_LEN = 0.65;
 
-/** Card placeholder (nessuna foto): gradient palette + numero + meta. */
+/** Card foto reale: singola immagine full-bleed + meta. */
 function Card({ p }: { p: (typeof PROJECTS)[number] }) {
   return (
     <a
       href="#contatti"
       className="group relative block h-full w-[82vw] shrink-0 overflow-hidden rounded-sm border border-line bg-line/40 sm:w-[56vw] lg:w-[38vw] xl:w-[32vw]"
     >
-      {/* sfondo placeholder */}
-      <div className="absolute inset-0 bg-gradient-to-br from-ink/[0.06] to-accent/[0.10] transition-colors duration-700 group-hover:from-ink/[0.10] group-hover:to-accent/[0.16]" />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.05]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, #16140f 1px, transparent 1px), linear-gradient(to bottom, #16140f 1px, transparent 1px)",
-          backgroundSize: "44px 44px",
-        }}
+      {/* foto */}
+      <Image
+        src={`/images/${p.img}.jpg`}
+        alt={`${p.title} — ${p.category}`}
+        fill
+        sizes="(max-width: 640px) 82vw, (max-width: 1024px) 56vw, 32vw"
+        className="object-cover"
       />
 
-      <span className="absolute right-6 top-5 font-display text-6xl font-light leading-none text-ink/15 md:text-7xl">
-        {p.n}
-      </span>
+      {/* gradient per leggibilità meta */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/20" />
 
-      <span className="absolute left-6 top-6 font-body text-[0.6rem] uppercase tracking-[0.2em] text-muted">
-        Foto in arrivo
+      <span className="absolute right-6 top-5 font-display text-6xl font-light leading-none text-bg/30 md:text-7xl">
+        {p.n}
       </span>
 
       <div className="absolute inset-x-6 bottom-6">
         <span className="flex items-center gap-3 font-body text-[0.66rem] uppercase tracking-[0.2em] text-accent">
           {p.category}
         </span>
-        <h3 className="mt-2 flex items-end justify-between font-display text-3xl font-light leading-none tracking-tight text-ink md:text-4xl">
+        <h3 className="mt-2 flex items-end justify-between font-display text-3xl font-light leading-none tracking-tight text-bg md:text-4xl">
           {p.title}
-          <span className="mb-1 text-base text-ink transition-transform duration-500 ease-soft group-hover:translate-x-1.5" aria-hidden>
+          <span className="mb-1 text-base text-bg transition-transform duration-500 ease-soft group-hover:translate-x-1.5" aria-hidden>
             →
           </span>
         </h3>
@@ -75,20 +64,24 @@ function CtaCard() {
 
 /**
  * Lavori in evidenza — Pinned Horizontal Scroll.
- * La sezione si "pinna" e la riga di card placeholder scorre in orizzontale
- * mentre l'utente scrolla la pagina. Fallback: scroll orizzontale nativo.
+ * La sezione si "pinna" e la riga di card scorre in orizzontale mentre l'utente
+ * scrolla. Guidato da un handler scroll diretto (rAF, niente framer-motion).
+ * Fallback reduced-motion: scroll orizzontale nativo.
  */
 export default function FeaturedWork() {
-  const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
   const [distance, setDistance] = useState(0);
   const [vh, setVh] = useState(0);
   const [idx, setIdx] = useState(0);
-  const [progress, setProgress] = useState(0);
+  const [reduce, setReduce] = useState(false);
+
+  useEffect(() => {
+    setReduce(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
 
   // Distanza orizzontale = bordo destro dell'ultima card (CTA) - viewport.
-  // Misurata dal bordo reale dell'ultimo figlio così non resta MAI spazio dopo la CTA.
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -99,7 +92,6 @@ export default function FeaturedWork() {
       setVh(window.innerHeight);
     };
     calc();
-    // ricalcolo dopo layout/font + ad ogni cambio dimensione (evita race al mount).
     const raf = requestAnimationFrame(calc);
     const t = setTimeout(calc, 600);
     const ro = new ResizeObserver(calc);
@@ -113,17 +105,32 @@ export default function FeaturedWork() {
     };
   }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-  const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
-
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    const p = Math.min(Math.max(v, 0), 1);
-    setProgress(p);
-    setIdx(Math.round(p * (PROJECTS.length - 1)));
-  });
+  // Scroll → traslazione orizzontale della track (transform diretto, niente re-render).
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (reduce || !section || !distance) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const total = section.offsetHeight - window.innerHeight;
+      const p = total > 0 ? Math.min(Math.max((window.scrollY - section.offsetTop) / total, 0), 1) : 0;
+      if (trackRef.current) trackRef.current.style.transform = `translate3d(${-distance * p}px, 0, 0)`;
+      if (barRef.current) barRef.current.style.width = `${Math.max(p * 100, 4)}%`;
+      const ni = Math.round(p * (PROJECTS.length - 1));
+      setIdx((prev) => (prev !== ni ? ni : prev));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [distance, reduce]);
 
   const Heading = (
     <div className="shell">
@@ -172,10 +179,7 @@ export default function FeaturedWork() {
             <span className="text-muted"> / {String(PROJECTS.length).padStart(2, "0")}</span>
           </span>
           <div className="relative h-px flex-1 bg-line">
-            <div
-              className="absolute inset-y-0 left-0 bg-accent"
-              style={{ width: `${Math.max(progress * 100, 4)}%` }}
-            />
+            <div ref={barRef} className="absolute inset-y-0 left-0 bg-accent" style={{ width: "4%" }} />
           </div>
           <span className="hidden font-body text-[0.7rem] uppercase tracking-[0.18em] text-muted sm:block">
             Scorri ↓
@@ -183,16 +187,15 @@ export default function FeaturedWork() {
         </div>
 
         {/* track orizzontale guidato dallo scroll */}
-        <motion.div
+        <div
           ref={trackRef}
-          style={{ x }}
-          className="mt-10 flex h-[58vh] gap-5 pl-5 pr-5 sm:pl-8 md:gap-8 md:pl-12 lg:pl-16 xl:pl-20 2xl:pl-28"
+          className="mt-10 flex h-[58vh] gap-5 pl-5 pr-5 will-change-transform sm:pl-8 md:gap-8 md:pl-12 lg:pl-16 xl:pl-20 2xl:pl-28"
         >
           {PROJECTS.map((p) => (
             <Card key={p.n} p={p} />
           ))}
           <CtaCard />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

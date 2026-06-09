@@ -1,11 +1,6 @@
-"use client";
-
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
 import { SITE } from "@/lib/site";
 import Button from "@/components/ui/Button";
-
-const ease = [0.16, 1, 0.3, 1] as const;
 
 // Scena hero fissa (interno di una casa in ristrutturazione).
 const HERO = {
@@ -17,8 +12,6 @@ const HERO = {
 const LINES = ["Artigiano edile a Bareggio", "da oltre trent'anni."];
 
 export default function Hero() {
-  const reduce = useReducedMotion();
-
   return (
     <section id="top" className="relative flex min-h-[100svh] items-end overflow-hidden">
       {/* Immagine full-bleed */}
@@ -28,6 +21,7 @@ export default function Hero() {
           alt={HERO.alt}
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover"
         />
@@ -37,36 +31,21 @@ export default function Hero() {
       </div>
 
       <div className="shell relative z-20 pb-14 pt-32 text-bg md:pb-20">
-        <motion.p
-          className="overline absolute left-5 top-12 right-5 !text-bg md:static md:left-auto md:right-auto md:top-auto"
-          initial={reduce ? false : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease, delay: 0.15 }}
-        >
+        {/* Niente animazione d'entrata sopra la piega: il testo dipinge subito
+            (LCP/Speed Index ottimali). Le animazioni restano sotto la piega. */}
+        <p className="overline absolute left-5 top-12 right-5 !text-bg md:static md:left-auto md:right-auto md:top-auto">
           José Giardino
-        </motion.p>
+        </p>
 
         <h1 className="mt-0 max-w-5xl font-display text-[2.05rem] font-light leading-[1.05] tracking-tight text-bg sm:mt-7 sm:text-6xl md:text-7xl lg:text-[5.5rem] 2xl:text-[7rem]">
           {LINES.map((line, i) => (
-            <span key={i} className="block overflow-hidden">
-              <motion.span
-                className="block"
-                initial={reduce ? false : { y: "110%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, ease, delay: 0.3 + i * 0.12 }}
-              >
-                {line}
-              </motion.span>
+            <span key={i} className="block">
+              {line}
             </span>
           ))}
         </h1>
 
-        <motion.div
-          className="mt-11 flex flex-col items-start gap-7 border-t border-bg/15 pt-8 md:flex-row md:items-center md:justify-between"
-          initial={reduce ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease, delay: 0.6 }}
-        >
+        <div className="mt-11 flex flex-col items-start gap-7 border-t border-bg/15 pt-8 md:flex-row md:items-center md:justify-between">
           <div className="flex w-full flex-col-reverse items-start gap-6 md:w-auto md:flex-row md:items-center md:gap-9">
             <Button href="#contatti" variant="solid" className="w-full justify-center !bg-bg !text-ink hover:!bg-accent hover:!text-bg md:w-auto">
               Richiedi un preventivo gratuito
@@ -78,7 +57,7 @@ export default function Hero() {
           <span className="block w-full text-center font-body text-[0.7rem] uppercase tracking-[0.22em] text-bg/50 md:inline md:w-auto md:text-left">
             Bareggio (MI) — Ovest milanese
           </span>
-        </motion.div>
+        </div>
       </div>
 
       <span className="sr-only">{SITE.brand} — artigiano edile a Bareggio (MI)</span>

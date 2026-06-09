@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
 import { NAV, SITE } from "@/lib/site";
 import Button from "@/components/ui/Button";
 
@@ -81,37 +80,33 @@ export default function SubPageHeader() {
         </div>
       </header>
 
-      {/* Overlay fullscreen mobile */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="fixed inset-0 z-40 flex flex-col justify-center gap-8 bg-bg px-8 md:hidden"
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      {/* Overlay fullscreen mobile — sempre montato, transizione CSS. */}
+      <div
+        className={`fixed inset-0 z-40 flex flex-col justify-center gap-8 bg-bg px-8 transition-[opacity,transform] duration-300 ease-soft md:hidden ${
+          open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-4 opacity-0"
+        }`}
+        aria-hidden={!open}
+      >
+        {NAV.map((n) => (
+          <Link
+            key={n.href}
+            href={toAbsolute(n.href)}
+            onClick={() => setOpen(false)}
+            tabIndex={open ? 0 : -1}
+            className="font-display text-4xl text-ink"
           >
-            {NAV.map((n) => (
-              <Link
-                key={n.href}
-                href={toAbsolute(n.href)}
-                onClick={() => setOpen(false)}
-                className="font-display text-4xl text-ink"
-              >
-                {n.label}
-              </Link>
-            ))}
-            <div className="mt-4 flex flex-col gap-4 border-t border-line pt-8">
-              <a href={SITE.phoneHref} className="font-body text-lg">
-                {SITE.phoneDisplay}
-              </a>
-              <Button href="#contatti" variant="solid" className="self-start">
-                Preventivo Gratuito
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {n.label}
+          </Link>
+        ))}
+        <div className="mt-4 flex flex-col gap-4 border-t border-line pt-8">
+          <a href={SITE.phoneHref} className="font-body text-lg">
+            {SITE.phoneDisplay}
+          </a>
+          <Button href="#contatti" variant="solid" className="self-start">
+            Preventivo Gratuito
+          </Button>
+        </div>
+      </div>
     </>
   );
 }

@@ -1,37 +1,16 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import { SERVICES } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
-
-const ease = [0.16, 1, 0.3, 1] as const;
+import ServicesHover from "@/components/sections/ServicesHover";
 
 /**
- * I Nostri Servizi.
- * Desktop = Index List: titolo + descrizione contenuta per riga; al passaggio
- * del mouse compare un'immagine flottante che segue il cursore (nessuno sfondo
- * dietro al titolo). Mobile = thumb list pulita.
+ * I Nostri Servizi (server component).
+ * Le liste sono HTML statico (niente hydration). L'unica parte client è
+ * l'immagine flottante desktop, isolata in <ServicesHover>.
  */
 export default function Services() {
-  const reduce = useReducedMotion();
-  const [hovered, setHovered] = useState<number | null>(null);
-
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const x = useSpring(mx, { stiffness: 220, damping: 28, mass: 0.4 });
-  const y = useSpring(my, { stiffness: 220, damping: 28, mass: 0.4 });
-
   return (
-    <section
-      id="servizi"
-      className="relative shell py-20 md:py-32"
-      onMouseMove={(e) => {
-        mx.set(e.clientX);
-        my.set(e.clientY);
-      }}
-    >
+    <section id="servizi" className="relative shell py-20 md:py-32">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <Reveal>
           <span className="overline text-accent">01 — Cosa faccio</span>
@@ -46,82 +25,57 @@ export default function Services() {
         </Reveal>
       </div>
 
-      {/* ===== MOBILE — Thumb List ===== */}
-      <div className="mt-12 border-t border-line md:hidden">
-        {SERVICES.map((s, i) => (
-          <motion.a
-            key={s.n}
-            href={`/servizi/${s.slug}`}
-            className="flex items-center gap-4 border-b border-line py-4"
-            initial={reduce ? false : { opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-6% 0px" }}
-            transition={{ duration: 0.5, ease, delay: i * 0.03 }}
-          >
-            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md">
-              <Image src={`/images/${s.img}.jpg`} alt={`${s.title} — G.I.M.S. Service, Bareggio`} fill sizes="80px" className="object-cover" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <span className="font-body text-[0.58rem] uppercase tracking-[0.2em] text-accent">
+      <ServicesHover images={SERVICES.map((s) => s.img)}>
+        {/* ===== MOBILE — Thumb List ===== */}
+        <div className="mt-12 border-t border-line md:hidden">
+          {SERVICES.map((s, i) => (
+            <a
+              key={s.n}
+              data-idx={i}
+              href={`/servizi/${s.slug}`}
+              className="flex items-center gap-4 border-b border-line py-4"
+            >
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md">
+                <Image src={`/images/${s.img}.jpg`} alt={`${s.title} — G.I.M.S. Service, Bareggio`} fill sizes="80px" className="object-cover" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <span className="font-body text-[0.58rem] uppercase tracking-[0.2em] text-accent">
+                  {s.n}
+                </span>
+                <h3 className="font-display text-[1.35rem] font-light leading-tight tracking-tight text-ink">
+                  {s.title}
+                </h3>
+                <p className="mt-1 font-body text-[0.74rem] leading-snug text-muted">{s.desc}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        {/* ===== DESKTOP — Index List + immagine flottante che segue il mouse ===== */}
+        <div className="mt-20 hidden border-t border-line md:block">
+          {SERVICES.map((s, i) => (
+            <a
+              key={s.n}
+              data-idx={i}
+              href={`/servizi/${s.slug}`}
+              className="group grid grid-cols-12 items-center gap-3 border-b border-line py-7 transition-colors duration-500"
+            >
+              <span className="col-span-1 font-body text-[0.7rem] uppercase tracking-[0.2em] text-muted">
                 {s.n}
               </span>
-              <h3 className="font-display text-[1.35rem] font-light leading-tight tracking-tight text-ink">
+              <h3 className="col-span-5 font-display text-3xl font-light tracking-tight text-ink transition-all duration-500 ease-soft group-hover:translate-x-3 group-hover:text-accent md:text-5xl">
                 {s.title}
               </h3>
-              <p className="mt-1 font-body text-[0.74rem] leading-snug text-muted">{s.desc}</p>
-            </div>
-          </motion.a>
-        ))}
-      </div>
-
-      {/* ===== DESKTOP — Index List + immagine flottante che segue il mouse ===== */}
-      <div className="mt-20 hidden border-t border-line md:block">
-        {SERVICES.map((s, i) => (
-          <motion.a
-            key={s.n}
-            href={`/servizi/${s.slug}`}
-            className="group grid grid-cols-12 items-center gap-3 border-b border-line py-7 transition-colors duration-500"
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-            initial={reduce ? false : { opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-8% 0px" }}
-            transition={{ duration: 0.6, ease, delay: i * 0.04 }}
-          >
-            <span className="col-span-1 font-body text-[0.7rem] uppercase tracking-[0.2em] text-muted">
-              {s.n}
-            </span>
-            <h3 className="col-span-5 font-display text-3xl font-light tracking-tight text-ink transition-all duration-500 ease-soft group-hover:translate-x-3 group-hover:text-accent md:text-5xl">
-              {s.title}
-            </h3>
-            <p className="col-span-5 line-clamp-2 font-body text-sm leading-relaxed text-muted md:text-right">
-              {s.desc}
-            </p>
-            <span className="col-span-1 text-right text-lg text-ink transition-all duration-500 group-hover:text-accent group-hover:-rotate-45">
-              →
-            </span>
-          </motion.a>
-        ))}
-      </div>
-
-      {/* Immagine flottante (desktop, pointer fine) */}
-      <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-50 hidden h-64 w-80 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-sm md:block"
-        style={{ x, y }}
-        animate={{ opacity: hovered !== null ? 1 : 0, scale: hovered !== null ? 1 : 0.9 }}
-        transition={{ duration: 0.4, ease }}
-      >
-        {SERVICES.map((s, i) => (
-          <Image
-            key={s.n}
-            src={`/images/${s.img}.jpg`}
-            alt=""
-            fill
-            sizes="320px"
-            className={`object-cover transition-opacity duration-300 ${hovered === i ? "opacity-100" : "opacity-0"}`}
-          />
-        ))}
-      </motion.div>
+              <p className="col-span-5 line-clamp-2 font-body text-sm leading-relaxed text-muted md:text-right">
+                {s.desc}
+              </p>
+              <span className="col-span-1 text-right text-lg text-ink transition-all duration-500 group-hover:text-accent group-hover:-rotate-45">
+                →
+              </span>
+            </a>
+          ))}
+        </div>
+      </ServicesHover>
     </section>
   );
 }

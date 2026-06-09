@@ -1,28 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
-
-const ease = [0.16, 1, 0.3, 1] as const;
 
 /**
  * Recensioni.
  * Desktop = Spotlight Carousel centrato (auto-rotate + dots).
  * Mobile = Editorial Slider (quote a sx, virgoletta accent, nav frecce + contatore).
+ * Crossfade tra le quote via CSS (key change → keyframe `fade-up`).
  */
 export default function Testimonials() {
-  const reduce = useReducedMotion();
   const [i, setI] = useState(0);
   const t = TESTIMONIALS[i];
   const go = (d: number) => setI((p) => (p + d + TESTIMONIALS.length) % TESTIMONIALS.length);
 
   useEffect(() => {
-    if (reduce) return;
     const id = setInterval(() => setI((p) => (p + 1) % TESTIMONIALS.length), 6000);
     return () => clearInterval(id);
-  }, [reduce]);
+  }, []);
 
   return (
     <section id="recensioni" className="border-y border-line bg-surface py-16 md:py-36">
@@ -34,18 +30,12 @@ export default function Testimonials() {
           “
         </span>
         <div className="min-h-[16rem]">
-          <AnimatePresence mode="wait">
-            <motion.blockquote
-              key={i}
-              initial={reduce ? false : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? undefined : { opacity: 0, y: -18 }}
-              transition={{ duration: 0.6, ease }}
-              className="font-display text-[1.6rem] font-light leading-[1.35] tracking-tight text-ink"
-            >
-              {t.text}
-            </motion.blockquote>
-          </AnimatePresence>
+          <blockquote
+            key={i}
+            className="fade-up font-display text-[1.6rem] font-light leading-[1.35] tracking-tight text-ink"
+          >
+            {t.text}
+          </blockquote>
         </div>
 
         <div className="mt-8 flex items-end justify-between border-t border-ink pt-5">
@@ -97,18 +87,12 @@ export default function Testimonials() {
             “
           </span>
           <div className="min-h-[16rem]">
-            <AnimatePresence mode="wait">
-              <motion.blockquote
-                key={i}
-                initial={reduce ? false : { opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? undefined : { opacity: 0, y: -18 }}
-                transition={{ duration: 0.6, ease }}
-                className="font-display text-2xl font-light leading-[1.35] tracking-tight text-ink md:text-4xl"
-              >
-                {t.text}
-              </motion.blockquote>
-            </AnimatePresence>
+            <blockquote
+              key={i}
+              className="fade-up font-display text-2xl font-light leading-[1.35] tracking-tight text-ink md:text-4xl"
+            >
+              {t.text}
+            </blockquote>
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-3">

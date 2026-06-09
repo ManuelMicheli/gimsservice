@@ -1,11 +1,9 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import type { CSSProperties } from "react";
 
 /**
- * Marquee orizzontale a loop infinito (GSAP), trasparente e riusabile.
- * Pensato anche come banda di sfondo dietro altri elementi.
+ * Marquee orizzontale a loop infinito (CSS puro, niente JS).
+ * I contenuti sono duplicati: l'animazione trasla di -50% = loop continuo.
+ * prefers-reduced-motion ferma l'animazione (globals.css).
  */
 export default function Marquee({
   items,
@@ -24,21 +22,6 @@ export default function Marquee({
   duration?: number;
   reverse?: boolean;
 }) {
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || !trackRef.current) return;
-    const tween = gsap.fromTo(
-      trackRef.current,
-      { xPercent: reverse ? -50 : 0 },
-      { xPercent: reverse ? 0 : -50, repeat: -1, duration, ease: "none" }
-    );
-    return () => {
-      tween.kill();
-    };
-  }, [duration, reverse]);
-
   const Group = ({ ariaHidden = false }: { ariaHidden?: boolean }) => (
     <div className="flex shrink-0 items-center" aria-hidden={ariaHidden}>
       {items.map((t, i) => (
@@ -52,7 +35,11 @@ export default function Marquee({
 
   return (
     <div className="w-full overflow-hidden">
-      <div ref={trackRef} className="flex w-max">
+      <div
+        className="marquee-track"
+        data-reverse={reverse}
+        style={{ "--marquee-dur": `${duration}s` } as CSSProperties}
+      >
         <Group />
         <Group ariaHidden />
       </div>

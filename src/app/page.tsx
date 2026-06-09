@@ -22,15 +22,15 @@ export default function Home() {
         <Hero />
         <Manifesto />
         <Services />
-        <Partners />
+        <div className="cv"><Partners /></div>
         <FeaturedWork />
-        <BeforeAfter />
-        <Testimonials />
-        <Method />
-        <ServiceArea />
-        <FaqTeaser />
+        <div className="cv"><BeforeAfter /></div>
+        <div className="cv"><Testimonials /></div>
+        <div className="cv"><Method /></div>
+        <div className="cv"><ServiceArea /></div>
+        <div className="cv"><FaqTeaser /></div>
       </main>
-      <Footer />
+      <div className="cv"><Footer /></div>
     </>
   );
 }

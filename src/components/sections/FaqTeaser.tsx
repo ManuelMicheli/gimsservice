@@ -1,19 +1,12 @@
-"use client";
-
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { FAQ_TEASER } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 
-const ease = [0.16, 1, 0.3, 1] as const;
-
 /**
- * FAQ teaser — Accordion. Una domanda aperta per volta.
+ * FAQ teaser — Accordion nativo (<details>): zero JS, server component.
+ * La prima domanda è aperta di default.
  */
 export default function FaqTeaser() {
-  const [open, setOpen] = useState<number | null>(0);
-
   return (
     <section id="faq" className="border-t border-line bg-surface py-20 md:py-32">
       <div className="shell grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
@@ -29,36 +22,21 @@ export default function FaqTeaser() {
 
         <Reveal delay={0.1}>
           <div className="border-t border-line">
-            {FAQ_TEASER.map((f, i) => {
-              const active = open === i;
-              return (
-                <div key={f.q} className="border-b border-line">
-                  <button
-                    onClick={() => setOpen(active ? null : i)}
-                    aria-expanded={active}
-                    className="flex w-full items-center justify-between gap-6 py-6 text-left"
-                  >
-                    <span className="font-display text-xl font-light text-ink md:text-2xl">{f.q}</span>
-                    <span className={`shrink-0 font-body text-2xl text-accent transition-transform duration-500 ease-soft ${active ? "rotate-45" : ""}`}>
-                      +
-                    </span>
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {active && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.5, ease }}
-                        className="overflow-hidden"
-                      >
-                        <p className="max-w-xl pb-7 font-body text-sm leading-relaxed text-muted">{f.a}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
+            {FAQ_TEASER.map((f, i) => (
+              <details
+                key={f.q}
+                open={i === 0}
+                className="group border-b border-line"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-left [&::-webkit-details-marker]:hidden">
+                  <span className="font-display text-xl font-light text-ink md:text-2xl">{f.q}</span>
+                  <span className="shrink-0 font-body text-2xl text-accent transition-transform duration-500 ease-soft group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="max-w-xl pb-7 font-body text-sm leading-relaxed text-muted">{f.a}</p>
+              </details>
+            ))}
           </div>
         </Reveal>
 

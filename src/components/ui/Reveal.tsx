@@ -1,44 +1,26 @@
-"use client";
+import type { CSSProperties, ReactNode } from "react";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
-
-/** Reveal coordinato allo scroll: fade + translate Y. Rispetta reduced-motion. */
+/** Reveal su scroll: 100% CSS (animation-timeline: view()) → server component,
+ *  zero JS / zero hydration. prefers-reduced-motion gestito in globals.css.
+ *  `delay` è mantenuto per compatibilità API ma non usato (lo scroll-timeline
+ *  scandisce l'animazione in base alla posizione, non al tempo). */
 export default function Reveal({
   children,
-  delay = 0,
   y = 28,
   className = "",
-  as = "div",
+  as: Tag = "div",
 }: {
   children: ReactNode;
+  /** Mantenuto per compatibilità API; non usato (scroll-timeline). */
   delay?: number;
   y?: number;
   className?: string;
   as?: "div" | "span" | "li" | "section";
 }) {
-  const reduce = useReducedMotion();
-
-  const variants: Variants = {
-    hidden: { opacity: 0, y: reduce ? 0 : y },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay },
-    },
-  };
-
-  const MotionTag = motion[as];
-
+  const style = { "--reveal-y": `${y}px` } as CSSProperties;
   return (
-    <MotionTag
-      className={className}
-      variants={variants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-12% 0px -12% 0px" }}
-    >
+    <Tag style={style} className={`reveal ${className}`}>
       {children}
-    </MotionTag>
+    </Tag>
   );
 }
