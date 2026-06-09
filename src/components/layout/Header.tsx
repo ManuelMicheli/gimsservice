@@ -46,7 +46,7 @@ export default function Header() {
           }`}
         >
           <Image
-            src="/logo-mark.png"
+            src={scrolled ? "/logo-mark-color.png" : "/logo-mark.png"}
             alt={SITE.brand}
             width={504}
             height={327}

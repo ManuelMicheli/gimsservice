@@ -32,7 +32,7 @@ export default function SubPageHeader() {
         <div className="shell flex items-center justify-between py-5">
           <Link href="/" aria-label={`${SITE.brand} — home`} className="flex items-center">
             <Image
-              src="/logo-mark.png"
+              src="/logo-mark-color.png"
               alt={SITE.brand}
               width={504}
               height={327}

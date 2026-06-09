@@ -4,7 +4,8 @@ const fs = require("fs");
 const zlib = require("zlib");
 
 const SRC = "public/logo.png";
-const OUT = "public/logo-mark.png";
+const OUT = "public/logo-mark.png";          // ink -> bianco (sfondo scuro)
+const OUT_COLOR = "public/logo-mark-color.png"; // ink -> RGB originale (sfondo chiaro)
 
 function decode(file) {
   const b = fs.readFileSync(file);
@@ -128,7 +129,10 @@ for (let s = 0; s < N; s++) {
   cid++;
 }
 
-// alpha: bianco->0, riquadro->0, resto = intensità ink
+// alpha: bianco->0, riquadro->0, resto = intensità ink.
+// white = RGB bianco; color = RGB originale (rosso). Stesso alpha/crop.
+const white = Buffer.alloc(N * 4);
+const color = Buffer.alloc(N * 4);
 let minX = w, minY = h, maxX = 0, maxY = 0;
 for (let py = 0; py < h; py++) {
   for (let px = 0; px < w; px++) {
@@ -136,9 +140,8 @@ for (let py = 0; py < h; py++) {
     const i = p * 4;
     let a = frame[p] ? 0 : inkAt(i);
     if (a < 20) a = 0;
-    // ink -> bianco (visibile su sfondo scuro), alpha = intensità
-    data[i] = 255; data[i + 1] = 255; data[i + 2] = 255;
-    data[i + 3] = a;
+    white[i] = 255; white[i + 1] = 255; white[i + 2] = 255; white[i + 3] = a;
+    color[i] = data[i]; color[i + 1] = data[i + 1]; color[i + 2] = data[i + 2]; color[i + 3] = a;
     if (a > 0) {
       if (px < minX) minX = px;
       if (px > maxX) maxX = px;
@@ -153,9 +156,13 @@ const pad = 8;
 minX = Math.max(0, minX - pad); minY = Math.max(0, minY - pad);
 maxX = Math.min(w - 1, maxX + pad); maxY = Math.min(h - 1, maxY + pad);
 const cw = maxX - minX + 1, ch = maxY - minY + 1;
-const cropped = Buffer.alloc(cw * ch * 4);
-for (let y = 0; y < ch; y++)
-  data.copy(cropped, y * cw * 4, idx(minX, minY + y), idx(minX, minY + y) + cw * 4);
+const cropOf = (buf) => {
+  const out = Buffer.alloc(cw * ch * 4);
+  for (let y = 0; y < ch; y++)
+    buf.copy(out, y * cw * 4, idx(minX, minY + y), idx(minX, minY + y) + cw * 4);
+  return out;
+};
 
-fs.writeFileSync(OUT, encode({ w: cw, h: ch, data: cropped }));
-console.log(`OK ${OUT} ${cw}x${ch}  (orig ${w}x${h}, comps ${cid})`);
+fs.writeFileSync(OUT, encode({ w: cw, h: ch, data: cropOf(white) }));
+fs.writeFileSync(OUT_COLOR, encode({ w: cw, h: ch, data: cropOf(color) }));
+console.log(`OK ${OUT} + ${OUT_COLOR} ${cw}x${ch}  (orig ${w}x${h}, comps ${cid})`);
