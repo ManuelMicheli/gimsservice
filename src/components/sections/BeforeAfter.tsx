@@ -15,7 +15,7 @@ type Pair = {
 const PAIRS: Pair[] = [
   {
     before: "/images/g-bagno-before.jpg",
-    after: "/images/g-bagno-2.jpg",
+    after: "/images/g-prima-dopo-after.jpg",
     title: "Ristrutturazione bagno — effetto marmo",
     place: "Bareggio (MI)",
   },

@@ -37,13 +37,13 @@ export type Service = {
 
 export const SERVICES: Service[] = [
   { n: "01", title: "Imbiancatura", img: "imbiancatura", slug: "imbiancatura", desc: "Imbiancature per interni ed esterni con materiali certificati dei migliori marchi italiani, eseguite con tecniche professionali per garantire durata e qualità." },
-  { n: "02", title: "Decorazioni", img: "decorazione", slug: "decorazioni-pareti", desc: "Decorazioni realizzate con materiali certificati e tecniche professionali, per un risultato di qualità che resiste nel tempo." },
-  { n: "03", title: "Spatolati", img: "g-spatolato", slug: "spatolato-veneziano", desc: "Finiture spatolate, anche in stucco antico veneziano, con materiali certificati e tecniche professionali per superfici di pregio." },
-  { n: "04", title: "Cartongesso", img: "g-cartongesso", slug: "cartongesso", desc: "Pareti e controsoffitti in cartongesso con materiali certificati e tecniche professionali." },
-  { n: "05", title: "Pavimenti e Rivestimenti", img: "g-pavimenti", slug: "pavimenti-e-rivestimenti", desc: "Fornitura e posa di pavimenti in piastrelle, laminato, PVC e parquet, con materiali certificati e tecniche professionali." },
-  { n: "06", title: "Ristrutturazione Bagni", img: "g-bagno", slug: "ristrutturazione-bagni", desc: "Rendi unico il tuo bagno: trasformo lo spazio in un ambiente di comfort e stile, chiavi in mano." },
+  { n: "02", title: "Decorazioni", img: "cover-decorazioni", slug: "decorazioni-pareti", desc: "Decorazioni realizzate con materiali certificati e tecniche professionali, per un risultato di qualità che resiste nel tempo." },
+  { n: "03", title: "Spatolati", img: "cover-spatolato", slug: "spatolato-veneziano", desc: "Finiture spatolate, anche in stucco antico veneziano, con materiali certificati e tecniche professionali per superfici di pregio." },
+  { n: "04", title: "Cartongesso", img: "cover-cartongesso", slug: "cartongesso", desc: "Pareti e controsoffitti in cartongesso con materiali certificati e tecniche professionali." },
+  { n: "05", title: "Pavimenti e Rivestimenti", img: "cover-pavimenti", slug: "pavimenti-e-rivestimenti", desc: "Fornitura e posa di pavimenti in piastrelle, laminato, PVC e parquet, con materiali certificati e tecniche professionali." },
+  { n: "06", title: "Ristrutturazione Bagni", img: "bagno", slug: "ristrutturazione-bagni", desc: "Rendi unico il tuo bagno: trasformo lo spazio in un ambiente di comfort e stile, chiavi in mano." },
   { n: "07", title: "Tapparelle", img: "tapparelle", slug: "tapparelle", desc: "Installazione e manutenzione di tapparelle con materiali resistenti e lavorazioni accurate." },
-  { n: "08", title: "Manutenzione Stabili", img: "g-manutenzione", slug: "manutenzione-stabili", desc: "Manutenzione ordinaria e straordinaria di stabili, con interventi programmati e materiali certificati." },
+  { n: "08", title: "Manutenzione Stabili", img: "cover-manutenzione", slug: "manutenzione-stabili", desc: "Manutenzione ordinaria e straordinaria di stabili, con interventi programmati e materiali certificati." },
 ];
 
 export type Project = {
@@ -54,11 +54,10 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
-  { n: "01", title: "Decorazione", img: "decorazione", imgAlt: "decorazione-2" },
-  { n: "02", title: "Imbiancatura", img: "imbiancatura", imgAlt: "imbiancatura-2" },
-  { n: "03", title: "Spatolati", img: "g-spatolato", imgAlt: "g-spatolato-nicchie" },
-  { n: "04", title: "Cartongesso", img: "g-cartongesso", imgAlt: "g-cartongesso-2" },
-  { n: "05", title: "Pavimenti", img: "g-pavimenti", imgAlt: "g-pavimenti-2" },
+  { n: "01", title: "Imbiancatura", img: "g-imbiancatura", imgAlt: "g-imbiancatura-2" },
+  { n: "02", title: "Spatolati", img: "g-spatolato", imgAlt: "g-spatolato-2" },
+  { n: "03", title: "Cartongesso", img: "g-cartongesso", imgAlt: "g-cartongesso-2" },
+  { n: "04", title: "Pavimenti", img: "g-pavimenti", imgAlt: "g-pavimenti-2" },
 ];
 
 export const ROTATING_WORDS = [

@@ -7,10 +7,10 @@ import Button from "@/components/ui/Button";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-// Scena hero fissa (interno finito / finiture).
+// Scena hero fissa (interno di una casa in ristrutturazione).
 const HERO = {
-  src: "/images/hero-1.jpg",
-  alt: "Soggiorno finito con finiture su misura",
+  src: "/images/hero-reno.jpg",
+  alt: "Interno di una casa in ristrutturazione a Bareggio",
 };
 
 // Headline mascherata riga per riga (Editorial Split).

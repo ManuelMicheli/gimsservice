@@ -161,7 +161,7 @@ export const SERVICE_PAGES: ServicePage[] = [
 
   {
     slug: "cartongesso",
-    imgKey: "g-cartongesso",
+    imgKey: "reno-cartongesso",
     gallery: ["g-cartongesso", "g-cartongesso-2", "g-cartongesso-3", "g-cartongesso-4", "g-cartongesso-5", "g-hero"],
     h1: "Cartongesso a Bareggio: pareti, controsoffitti e arredo",
     metaTitle: "Cartongesso Bareggio e Milano — Pareti e controsoffitti",
@@ -204,7 +204,7 @@ export const SERVICE_PAGES: ServicePage[] = [
   {
     slug: "pavimenti-e-rivestimenti",
     imgKey: "g-pavimenti",
-    gallery: ["g-pavimenti", "g-pavimenti-2", "g-pavimenti-3", "g-pavimenti-4", "g-pavimenti-posa", "g-pavimenti-posa-2"],
+    gallery: ["g-pavimenti", "g-pavimenti-2", "g-pavimenti-3", "g-pavimenti-4", "g-pavimenti-5", "g-pavimenti-posa", "g-pavimenti-posa-2"],
     h1: "Piastrellista a Bareggio: pavimenti e rivestimenti",
     metaTitle: "Piastrellista Bareggio — Pavimenti e rivestimenti",
     metaDescription:
@@ -328,7 +328,7 @@ export const SERVICE_PAGES: ServicePage[] = [
 
   {
     slug: "manutenzione-stabili",
-    imgKey: "g-manutenzione",
+    imgKey: "reno-manutenzione",
     gallery: ["g-manutenzione", "g-manutenzione-2", "g-manutenzione-3", "g-manifesto"],
     h1: "Manutenzione stabili e condomini nell'ovest milanese",
     metaTitle: "Manutenzione Stabili Bareggio — Condomini e immobili",

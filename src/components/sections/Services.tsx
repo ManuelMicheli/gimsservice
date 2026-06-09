@@ -9,9 +9,10 @@ import Reveal from "@/components/ui/Reveal";
 const ease = [0.16, 1, 0.3, 1] as const;
 
 /**
- * I Nostri Servizi — Index List editoriale.
- * 8 righe type-led; in hover (desktop) un'immagine flottante segue il cursore.
- * Su mobile resta una lista pulita, senza immagine.
+ * I Nostri Servizi.
+ * Desktop = Index List: titolo + descrizione contenuta per riga; al passaggio
+ * del mouse compare un'immagine flottante che segue il cursore (nessuno sfondo
+ * dietro al titolo). Mobile = thumb list pulita.
  */
 export default function Services() {
   const reduce = useReducedMotion();
@@ -73,7 +74,7 @@ export default function Services() {
         ))}
       </div>
 
-      {/* ===== DESKTOP — Index List (immagine flottante in hover) ===== */}
+      {/* ===== DESKTOP — Index List + immagine flottante che segue il mouse ===== */}
       <div className="mt-20 hidden border-t border-line md:block">
         {SERVICES.map((s, i) => (
           <motion.a
@@ -93,10 +94,10 @@ export default function Services() {
             <h3 className="col-span-5 font-display text-3xl font-light tracking-tight text-ink transition-all duration-500 ease-soft group-hover:translate-x-3 group-hover:text-accent md:text-5xl">
               {s.title}
             </h3>
-            <p className="col-span-5 font-body text-sm leading-relaxed text-muted md:text-right">
+            <p className="col-span-5 line-clamp-2 font-body text-sm leading-relaxed text-muted md:text-right">
               {s.desc}
             </p>
-            <span className="col-span-1 text-right font-body text-lg text-ink transition-all duration-500 group-hover:text-accent">
+            <span className="col-span-1 text-right text-lg text-ink transition-all duration-500 group-hover:text-accent group-hover:-rotate-45">
               →
             </span>
           </motion.a>
@@ -105,7 +106,7 @@ export default function Services() {
 
       {/* Immagine flottante (desktop, pointer fine) */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-40 hidden h-64 w-80 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-sm md:block"
+        className="pointer-events-none fixed left-0 top-0 z-50 hidden h-64 w-80 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-sm md:block"
         style={{ x, y }}
         animate={{ opacity: hovered !== null ? 1 : 0, scale: hovered !== null ? 1 : 0.9 }}
         transition={{ duration: 0.4, ease }}
