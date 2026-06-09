@@ -72,7 +72,8 @@ export default function Acronym() {
           Cosa significa G.I.M.S.
         </span>
         <span className="text-accent transition-colors group-hover:text-bg md:text-base" aria-hidden>
-          →
+          <span className="md:hidden">↓</span>
+          <span className="hidden md:inline">→</span>
         </span>
       </button>
 
@@ -81,8 +82,10 @@ export default function Acronym() {
         role="dialog"
         aria-modal="true"
         aria-label="Significato di G.I.M.S."
-        className={`fixed left-0 top-1/2 z-[60] flex max-h-[82vh] w-[80vw] max-w-[420px] -translate-y-1/2 flex-col overflow-y-auto rounded-r-lg border border-l-0 border-line bg-bg shadow-2xl transition-[opacity,transform] duration-500 ease-soft md:max-h-[88vh] md:w-[90vw] ${
-          open ? "translate-x-0 opacity-100" : "pointer-events-none -translate-x-full opacity-0"
+        className={`fixed left-1/2 top-0 z-[60] flex max-h-[85vh] w-full max-w-[460px] -translate-x-1/2 flex-col overflow-y-auto rounded-b-lg border border-t-0 border-line bg-bg shadow-2xl transition-[opacity,transform] duration-500 ease-soft md:left-0 md:top-1/2 md:max-h-[88vh] md:w-[90vw] md:max-w-[420px] md:translate-x-0 md:-translate-y-1/2 md:rounded-b-none md:rounded-r-lg md:border-l-0 md:border-t ${
+          open
+            ? "translate-y-0 opacity-100 md:translate-x-0 md:-translate-y-1/2"
+            : "pointer-events-none -translate-y-full opacity-0 md:-translate-x-full md:-translate-y-1/2"
         }`}
       >
         <div className="flex items-center justify-between border-b border-line px-6 py-5 md:px-7">
