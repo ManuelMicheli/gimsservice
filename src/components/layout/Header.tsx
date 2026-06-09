@@ -46,10 +46,10 @@ export default function Header() {
           }`}
         >
           <Image
-            src="/logo.png"
+            src="/logo-mark.png"
             alt={SITE.brand}
-            width={510}
-            height={342}
+            width={504}
+            height={327}
             priority
             className={`w-auto transition-all duration-500 ease-soft ${
               scrolled ? "h-10 md:h-11" : "h-12 md:h-14"

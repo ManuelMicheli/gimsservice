@@ -97,11 +97,11 @@ export default function Footer() {
 
           <div>
             <Image
-              src="/logo.png"
+              src="/logo-mark.png"
               alt={SITE.brand}
-              width={510}
-              height={342}
-              className="h-16 w-auto rounded-md"
+              width={504}
+              height={327}
+              className="h-16 w-auto"
             />
             <p className="mt-5 font-body text-sm leading-relaxed text-bg/70">
               {SITE.address}

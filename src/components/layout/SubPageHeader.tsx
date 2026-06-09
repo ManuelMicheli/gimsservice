@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { NAV, SITE } from "@/lib/site";
 import Button from "@/components/ui/Button";
 
@@ -29,12 +30,15 @@ export default function SubPageHeader() {
     <>
       <header className="border-b border-line bg-bg">
         <div className="shell flex items-center justify-between py-5">
-          <Link
-            href="/"
-            aria-label={`${SITE.brand} — home`}
-            className="font-display text-xl tracking-tight text-ink md:text-2xl"
-          >
-            {SITE.brand}
+          <Link href="/" aria-label={`${SITE.brand} — home`} className="flex items-center">
+            <Image
+              src="/logo-mark.png"
+              alt={SITE.brand}
+              width={504}
+              height={327}
+              priority
+              className="h-11 w-auto md:h-12"
+            />
           </Link>
 
           {/* Nav desktop */}

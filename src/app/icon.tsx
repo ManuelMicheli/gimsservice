@@ -7,7 +7,7 @@ export const size = { width: 256, height: 256 };
 export const contentType = "image/png";
 
 export default async function Icon() {
-  const data = await readFile(join(process.cwd(), "public/logo.png"));
+  const data = await readFile(join(process.cwd(), "public/logo-mark.png"));
   const src = `data:image/png;base64,${data.toString("base64")}`;
 
   return new ImageResponse(
@@ -20,11 +20,11 @@ export default async function Icon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#16140f",
-          padding: 18,
+          padding: 16,
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} width={220} height={148} alt="G.I.M.S. Service" />
+        <img src={src} width={216} height={140} alt="G.I.M.S. Service" />
       </div>
     ),
     size
