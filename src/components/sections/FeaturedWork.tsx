@@ -96,7 +96,7 @@ function MobileDeck() {
         href="#contatti"
         className="mt-2 flex items-center justify-between rounded-xl bg-ink p-6 text-bg transition-colors active:bg-accent"
       >
-        <span className="font-display text-2xl font-light leading-tight">Guarda tutti i lavori</span>
+        <span className="font-display text-2xl font-light leading-tight">Aggiungi anche il tuo lavoro</span>
         <span aria-hidden className="text-lg">→</span>
       </a>
     </div>
@@ -109,9 +109,9 @@ function CtaCard() {
       href="#contatti"
       className="flex h-full w-[82vw] shrink-0 flex-col justify-between rounded-sm border border-ink bg-ink p-7 text-bg transition-colors hover:bg-accent sm:w-[56vw] lg:w-[38vw] xl:w-[32vw]"
     >
-      <span className="overline text-bg/60">Galleria completa</span>
+      <span className="overline text-bg/60">Il tuo progetto</span>
       <span className="font-display text-4xl font-light leading-tight">
-        Guarda tutti<br />i lavori →
+        Aggiungi anche<br />il tuo lavoro →
       </span>
     </a>
   );
