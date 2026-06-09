@@ -136,6 +136,8 @@ for (let py = 0; py < h; py++) {
     const i = p * 4;
     let a = frame[p] ? 0 : inkAt(i);
     if (a < 20) a = 0;
+    // ink -> bianco (visibile su sfondo scuro), alpha = intensità
+    data[i] = 255; data[i + 1] = 255; data[i + 2] = 255;
     data[i + 3] = a;
     if (a > 0) {
       if (px < minX) minX = px;
