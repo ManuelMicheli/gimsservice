@@ -5,19 +5,38 @@ import { useEffect, useState } from "react";
 import { SITE } from "@/lib/site";
 
 /** Preloader iniziale con zoom fluido che transita nell'hero. Rispetta reduced-motion. */
+const SEEN_KEY = "gims-preloader-seen";
+
 export default function Preloader() {
   const reduce = useReducedMotion();
-  const [done, setDone] = useState(false);
+  // Parte già "fatto" finché non sappiamo se è la prima visita della sessione:
+  // evita un flash del preloader sui reload successivi.
+  const [done, setDone] = useState(true);
+  const [armed, setArmed] = useState(false);
 
   useEffect(() => {
-    if (reduce) {
-      setDone(true);
-      return;
+    if (reduce) return;
+    // Mostra il preloader solo la prima volta che si apre il sito in questa
+    // sessione del browser; i reload successivi lo saltano.
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem(SEEN_KEY) === "1";
+    } catch {
+      // sessionStorage non disponibile: trattalo come prima visita.
     }
+    if (seen) return;
+
+    setDone(false);
+    setArmed(true);
     document.documentElement.style.overflow = "hidden";
     const t = setTimeout(() => {
       setDone(true);
       document.documentElement.style.overflow = "";
+      try {
+        sessionStorage.setItem(SEEN_KEY, "1");
+      } catch {
+        // ignora
+      }
     }, 1700);
     return () => {
       clearTimeout(t);
@@ -25,7 +44,7 @@ export default function Preloader() {
     };
   }, [reduce]);
 
-  if (reduce) return null;
+  if (reduce || !armed) return null;
 
   return (
     <AnimatePresence>

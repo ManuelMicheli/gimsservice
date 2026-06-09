@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE } from "@/lib/site";
 import { SITE_URL } from "@/lib/seo";
 import { SERVICE_PAGES } from "@/lib/services-content";
 import SmartImage from "@/components/ui/SmartImage";
 import Reveal from "@/components/ui/Reveal";
-import Button from "@/components/ui/Button";
 import Footer from "@/components/layout/Footer";
+import SubPageHeader from "@/components/layout/SubPageHeader";
 
 export const metadata: Metadata = {
   title: "Servizi — Imbianchino, decorazioni e ristrutturazioni a Bareggio",
@@ -57,19 +56,7 @@ export default function ServiziIndex() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <header className="border-b border-line bg-bg">
-        <div className="shell flex items-center justify-between py-5">
-          <Link href="/" aria-label={`${SITE.brand} — home`} className="font-display text-xl tracking-tight text-ink md:text-2xl">
-            {SITE.brand}
-          </Link>
-          <nav className="flex items-center gap-6">
-            <a href={SITE.phoneHref} className="link-underline hidden font-body text-[0.8rem] tracking-[0.04em] sm:inline">
-              {SITE.phoneDisplay}
-            </a>
-            <Button href="#contatti" variant="solid">Preventivo</Button>
-          </nav>
-        </div>
-      </header>
+      <SubPageHeader />
 
       <main id="top">
         <nav aria-label="Breadcrumb" className="shell pt-8">

@@ -6,6 +6,7 @@ import SmartImage from "@/components/ui/SmartImage";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 import Footer from "@/components/layout/Footer";
+import SubPageHeader from "@/components/layout/SubPageHeader";
 
 /**
  * Pagina servizio×città (/servizi/<slug>/<city>).
@@ -25,23 +26,8 @@ export default function CityServicePageView({
 
   return (
     <>
-      {/* ===== Header leggero ===== */}
-      <header className="border-b border-line bg-bg">
-        <div className="shell flex items-center justify-between py-5">
-          <Link href="/" aria-label={`${SITE.brand} — home`} className="font-display text-xl tracking-tight text-ink md:text-2xl">
-            {SITE.brand}
-          </Link>
-          <nav className="flex items-center gap-6">
-            <Link href="/#servizi" className="link-underline hidden font-body text-[0.8rem] uppercase tracking-[0.14em] sm:inline">
-              Servizi
-            </Link>
-            <a href={SITE.phoneHref} className="link-underline hidden font-body text-[0.8rem] tracking-[0.04em] sm:inline">
-              {SITE.phoneDisplay}
-            </a>
-            <Button href="#contatti" variant="solid">Preventivo</Button>
-          </nav>
-        </div>
-      </header>
+      {/* ===== Header sottopagina (con nav mobile) ===== */}
+      <SubPageHeader />
 
       <main id="top">
         {/* ===== Breadcrumb ===== */}
