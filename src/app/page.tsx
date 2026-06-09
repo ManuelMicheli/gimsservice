@@ -17,9 +17,9 @@ export default function Home() {
   return (
     <>
       <Header />
+      <Acronym />
       <main>
         <Hero />
-        <Acronym />
         <Manifesto />
         <Services />
         <Partners />

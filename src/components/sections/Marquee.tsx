@@ -11,37 +11,40 @@ export default function Marquee({
   items,
   itemClassName = "",
   separatorClassName = "text-accent",
+  separator = "·",
   gap = "px-8",
   duration = 26,
+  reverse = false,
 }: {
   items: string[];
   itemClassName?: string;
   separatorClassName?: string;
+  separator?: string;
   gap?: string;
   duration?: number;
+  reverse?: boolean;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce || !trackRef.current) return;
-    const tween = gsap.to(trackRef.current, {
-      xPercent: -50,
-      repeat: -1,
-      duration,
-      ease: "none",
-    });
+    const tween = gsap.fromTo(
+      trackRef.current,
+      { xPercent: reverse ? -50 : 0 },
+      { xPercent: reverse ? 0 : -50, repeat: -1, duration, ease: "none" }
+    );
     return () => {
       tween.kill();
     };
-  }, [duration]);
+  }, [duration, reverse]);
 
   const Group = ({ ariaHidden = false }: { ariaHidden?: boolean }) => (
     <div className="flex shrink-0 items-center" aria-hidden={ariaHidden}>
       {items.map((t, i) => (
         <span key={i} className="flex items-center">
           <span className={`${gap} ${itemClassName}`}>{t}</span>
-          <span className={separatorClassName}>·</span>
+          <span className={separatorClassName}>{separator}</span>
         </span>
       ))}
     </div>

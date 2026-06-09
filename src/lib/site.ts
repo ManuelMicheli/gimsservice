@@ -51,13 +51,16 @@ export type Project = {
   title: string;
   img: string;
   imgAlt: string; // secondo frame per l'hover (effetto White Maple)
+  category: string;
 };
 
 export const PROJECTS: Project[] = [
-  { n: "01", title: "Imbiancatura", img: "g-imbiancatura", imgAlt: "g-imbiancatura-2" },
-  { n: "02", title: "Spatolati", img: "g-spatolato", imgAlt: "g-spatolato-2" },
-  { n: "03", title: "Cartongesso", img: "g-cartongesso", imgAlt: "g-cartongesso-2" },
-  { n: "04", title: "Pavimenti", img: "g-pavimenti", imgAlt: "g-pavimenti-2" },
+  { n: "01", title: "Stucco Veneziano", category: "Spatolato", img: "g-spatolato", imgAlt: "g-spatolato-nicchie" },
+  { n: "02", title: "Bagno chiavi in mano", category: "Ristrutturazione", img: "g-bagno", imgAlt: "g-bagno-3" },
+  { n: "03", title: "Pareti e luce", category: "Cartongesso", img: "g-cartongesso", imgAlt: "g-cartongesso-3" },
+  { n: "04", title: "Posa pavimenti", category: "Pavimenti", img: "g-pavimenti", imgAlt: "g-pavimenti-posa" },
+  { n: "05", title: "Finiture interni", category: "Imbiancatura", img: "g-imbiancatura", imgAlt: "g-imbiancatura-2" },
+  { n: "06", title: "Decorazioni d'autore", category: "Decorazioni", img: "g-decorazione", imgAlt: "g-best-5" },
 ];
 
 export const ROTATING_WORDS = [

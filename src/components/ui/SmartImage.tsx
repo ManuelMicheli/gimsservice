@@ -73,6 +73,8 @@ const AVAILABLE = new Set([
   "g-best-1", "g-best-2", "g-best-3", "g-best-4", "g-best-5",
   // Hero + cover servizi (case in ristrutturazione, Pexels licenza libera)
   "hero-reno", "reno-cartongesso", "reno-manutenzione",
+  // Cover card servizi (stesse della home)
+  "cover-decorazioni", "cover-spatolato", "cover-cartongesso", "cover-pavimenti", "cover-manutenzione",
 ]);
 
 export default function SmartImage({

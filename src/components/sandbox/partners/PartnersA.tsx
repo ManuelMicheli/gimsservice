@@ -1,49 +1,69 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { PARTNERS } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
+import Marquee from "@/components/sections/Marquee";
 
-const ease = [0.16, 1, 0.3, 1] as const;
+const STATS = [
+  { n: "5", label: "categorie partner" },
+  { n: "1", label: "referente unico" },
+  { n: "100%", label: "materiali certificati" },
+];
 
-// Variante A — Split: statement a sinistra, categorie partner numerate a destra.
+// Variante A — Dark Band: blocco scuro full-contrast al centro del sito.
+// Marquee come banda luminosa, statement + riga statistiche.
 export default function PartnersA() {
-  const reduce = useReducedMotion();
-
   return (
-    <section className="bg-bg shell py-24 md:py-32">
-      <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-        <div className="md:col-span-7">
-          <Reveal>
+    <section className="overflow-hidden bg-ink py-24 text-bg md:py-32">
+      <div className="shell">
+        <div className="grid grid-cols-1 items-end gap-10 md:grid-cols-12">
+          <Reveal className="md:col-span-8">
             <span className="overline text-accent">La rete</span>
-            <p className="mt-6 max-w-xl font-display text-2xl font-light leading-snug tracking-tight text-ink md:text-4xl">
-              Collaboro con aziende selezionate del territorio che condividono i miei valori. Tu hai
-              un unico referente — <span className="italic text-accent">io</span> — per un servizio
-              completo e coordinato.
+            <p className="mt-6 max-w-2xl font-display text-3xl font-light leading-[1.1] tracking-tight text-bg md:text-5xl">
+              Una rete di aziende selezionate del territorio. Tu hai un unico
+              referente — <span className="italic text-accent">io</span>.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.1} className="md:col-span-4">
+            <p className="font-body text-sm leading-relaxed text-bg/60">
+              Partner qualificati per impianti elettrici, serramenti,
+              condizionamento e idraulica: materiali certificati e soluzioni
+              tecniche affidabili, coordinati da una sola mano.
             </p>
           </Reveal>
         </div>
+      </div>
 
-        <div className="md:col-span-5">
-          <div className="border-t border-line">
-            {PARTNERS.map((p, i) => (
-              <motion.div
-                key={p.key}
-                className="flex items-baseline gap-5 border-b border-line py-5"
-                initial={reduce ? false : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10% 0px" }}
-                transition={{ duration: 0.6, ease, delay: i * 0.08 }}
-              >
-                <span className="font-body text-[0.7rem] uppercase tracking-[0.2em] text-muted">
-                  0{i + 1}
-                </span>
-                <span className="font-display text-xl font-light tracking-tight text-ink md:text-2xl">
-                  {p.label}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+      {/* Banda marquee — bordo hairline chiaro su scuro */}
+      <Reveal delay={0.15}>
+        <div className="mt-16 border-y border-bg/15 py-8 md:mt-20 md:py-10">
+          <Marquee
+            items={PARTNERS.map((p) => p.label)}
+            itemClassName="font-display text-3xl font-light text-bg md:text-5xl"
+            separatorClassName="px-2 text-accent"
+            duration={32}
+          />
+        </div>
+      </Reveal>
+
+      {/* Riga statistiche */}
+      <div className="shell mt-14 md:mt-16">
+        <div className="grid grid-cols-1 gap-px overflow-hidden border-y border-bg/15 sm:grid-cols-3">
+          {STATS.map((s, i) => (
+            <Reveal
+              key={s.label}
+              delay={i * 0.08}
+              className="flex items-baseline gap-4 py-6 sm:justify-center sm:px-4"
+            >
+              <span className="font-display text-4xl font-light text-accent md:text-5xl">
+                {s.n}
+              </span>
+              <span className="font-body text-[0.7rem] uppercase leading-tight tracking-[0.18em] text-bg/55">
+                {s.label}
+              </span>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

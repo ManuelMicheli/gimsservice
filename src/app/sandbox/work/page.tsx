@@ -10,9 +10,9 @@ export default function WorkSandbox() {
     <main className="min-h-screen bg-bg">
       <Switcher
         variants={[
-          { id: "a", label: "A · Grid", node: <WorkA /> },
-          { id: "b", label: "B · Rows", node: <WorkB /> },
-          { id: "c", label: "C · Scroll", node: <WorkC /> },
+          { id: "a", label: "A · Index", node: <WorkA /> },
+          { id: "b", label: "B · Cinematic", node: <WorkB /> },
+          { id: "c", label: "C · Gallery", node: <WorkC /> },
         ]}
       />
     </main>

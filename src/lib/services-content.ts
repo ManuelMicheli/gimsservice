@@ -79,7 +79,7 @@ export const SERVICE_PAGES: ServicePage[] = [
 
   {
     slug: "decorazioni-pareti",
-    imgKey: "decorazione",
+    imgKey: "cover-decorazioni",
     gallery: ["g-decorazione", "decorazione-2"],
     h1: "Decorazioni e finiture decorative per pareti",
     metaTitle: "Decoratore Bareggio — Decorazioni e finiture pareti",
@@ -120,7 +120,7 @@ export const SERVICE_PAGES: ServicePage[] = [
 
   {
     slug: "spatolato-veneziano",
-    imgKey: "g-spatolato",
+    imgKey: "cover-spatolato",
     gallery: ["g-spatolato", "g-spatolato-2", "g-spatolato-nicchie", "g-spatolato-3"],
     h1: "Spatolato e stucco veneziano per superfici di pregio",
     metaTitle: "Spatolato Veneziano Bareggio — Stucco antico",
@@ -161,7 +161,7 @@ export const SERVICE_PAGES: ServicePage[] = [
 
   {
     slug: "cartongesso",
-    imgKey: "reno-cartongesso",
+    imgKey: "cover-cartongesso",
     gallery: ["g-cartongesso", "g-cartongesso-2", "g-cartongesso-3", "g-cartongesso-4", "g-cartongesso-5", "g-hero"],
     h1: "Cartongesso a Bareggio: pareti, controsoffitti e arredo",
     metaTitle: "Cartongesso Bareggio e Milano — Pareti e controsoffitti",
@@ -203,7 +203,7 @@ export const SERVICE_PAGES: ServicePage[] = [
 
   {
     slug: "pavimenti-e-rivestimenti",
-    imgKey: "g-pavimenti",
+    imgKey: "cover-pavimenti",
     gallery: ["g-pavimenti", "g-pavimenti-2", "g-pavimenti-3", "g-pavimenti-4", "g-pavimenti-5", "g-pavimenti-posa", "g-pavimenti-posa-2"],
     h1: "Piastrellista a Bareggio: pavimenti e rivestimenti",
     metaTitle: "Piastrellista Bareggio — Pavimenti e rivestimenti",
@@ -245,7 +245,7 @@ export const SERVICE_PAGES: ServicePage[] = [
 
   {
     slug: "ristrutturazione-bagni",
-    imgKey: "g-bagno",
+    imgKey: "bagno",
     gallery: ["g-bagno", "g-bagno-2", "g-bagno-3", "g-bagno-4", "g-bagno-5", "g-bagno-6", "g-bagno-7", "g-bagno-before", "g-bagno-before-2"],
     h1: "Ristrutturazione bagni chiavi in mano a Bareggio",
     metaTitle: "Ristrutturazione Bagni Bareggio — Chiavi in mano",
@@ -328,7 +328,7 @@ export const SERVICE_PAGES: ServicePage[] = [
 
   {
     slug: "manutenzione-stabili",
-    imgKey: "reno-manutenzione",
+    imgKey: "cover-manutenzione",
     gallery: ["g-manutenzione", "g-manutenzione-2", "g-manutenzione-3", "g-manifesto"],
     h1: "Manutenzione stabili e condomini nell'ovest milanese",
     metaTitle: "Manutenzione Stabili Bareggio — Condomini e immobili",

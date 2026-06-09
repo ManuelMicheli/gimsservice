@@ -10,9 +10,9 @@ export default function AcronymSandbox() {
     <main className="min-h-screen bg-bg">
       <Switcher
         variants={[
-          { id: "a", label: "A · Rows", node: <AcronymA /> },
-          { id: "b", label: "B · Lockup", node: <AcronymB /> },
-          { id: "c", label: "C · Sticky", node: <AcronymC /> },
+          { id: "a", label: "A · Drawer", node: <AcronymA /> },
+          { id: "b", label: "B · Curtain", node: <AcronymB /> },
+          { id: "c", label: "C · Panel", node: <AcronymC /> },
         ]}
       />
     </main>

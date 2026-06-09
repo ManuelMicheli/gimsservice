@@ -10,9 +10,9 @@ export default function PartnersSandbox() {
     <main className="min-h-screen bg-bg">
       <Switcher
         variants={[
-          { id: "a", label: "A · Split", node: <PartnersA /> },
-          { id: "b", label: "B · Marquee", node: <PartnersB /> },
-          { id: "c", label: "C · Spec strip", node: <PartnersC /> },
+          { id: "a", label: "A · Dark Band", node: <PartnersA /> },
+          { id: "b", label: "B · Dual Marquee", node: <PartnersB /> },
+          { id: "c", label: "C · Framed", node: <PartnersC /> },
         ]}
       />
     </main>

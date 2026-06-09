@@ -1,62 +1,103 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import Reveal from "@/components/ui/Reveal";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { LETTERS } from "@/components/sandbox/acronym/letters";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-const LETTERS = [
-  { l: "G", word: "Giardino", desc: "Cura del verde e degli spazi esterni." },
-  { l: "I", word: "Imbiancatura", desc: "Tinteggiature per interni ed esterni." },
-  { l: "M", word: "Muratura", desc: "Opere edili e ristrutturazioni." },
-  { l: "S", word: "Sanitari", desc: "Impianti e bagni chiavi in mano." },
-];
-
-// Variante A — Editorial Rows. Ogni lettera è una riga full-width.
+/**
+ * Variante A — Slide Drawer.
+ * Linguetta verticale fissa a sinistra; click → pannello scorre da sinistra
+ * con l'acronimo, backdrop che oscura la pagina.
+ */
 export default function AcronymA() {
-  const reduce = useReducedMotion();
+  const [open, setOpen] = useState(false);
 
   return (
-    <section className="bg-bg shell py-24 md:py-32">
-      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <Reveal>
-          <span className="overline text-accent">Il nome</span>
-          <h2 className="mt-5 max-w-2xl font-display text-4xl font-light leading-tight tracking-tight text-ink md:text-6xl">
-            Cosa significa G.I.M.S.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="max-w-sm font-body text-muted">
-            Quattro mestieri, un solo artigiano: tutto ciò che serve per la tua casa.
-          </p>
-        </Reveal>
+    <div className="relative min-h-[160vh] overflow-hidden bg-bg">
+      {/* finta pagina dietro, solo per contesto sandbox */}
+      <div className="shell py-32">
+        <span className="overline text-muted">Anteprima — contenuto pagina dietro</span>
+        <h2 className="mt-6 max-w-3xl font-display text-4xl font-light leading-tight text-ink/30 md:text-6xl">
+          Il resto della home scorre qui. La linguetta resta ancorata a sinistra.
+        </h2>
       </div>
 
-      <div className="mt-16 border-t border-line md:mt-20">
-        {LETTERS.map((item, i) => (
-          <motion.div
-            key={item.l}
-            className="group grid grid-cols-12 items-center gap-4 border-b border-line py-7 transition-colors duration-500 hover:bg-ink/[0.02] md:py-9"
-            initial={reduce ? false : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-12% 0px" }}
-            transition={{ duration: 0.7, ease, delay: i * 0.08 }}
-          >
-            <span className="col-span-2 font-body text-[0.7rem] uppercase tracking-[0.2em] text-muted md:col-span-1">
-              0{i + 1}
-            </span>
-            <span className="col-span-3 font-display text-6xl font-light leading-none text-ink transition-colors duration-500 group-hover:text-accent md:col-span-2 md:text-8xl">
-              {item.l}
-            </span>
-            <h3 className="col-span-7 font-display text-2xl font-light tracking-tight text-ink transition-transform duration-500 ease-soft group-hover:translate-x-2 md:col-span-4 md:text-4xl">
-              {item.word}
-            </h3>
-            <p className="col-span-12 mt-2 font-body text-sm leading-relaxed text-muted md:col-span-5 md:mt-0 md:text-right">
-              {item.desc}
-            </p>
-          </motion.div>
-        ))}
-      </div>
-    </section>
+      {/* Linguetta */}
+      <button
+        onClick={() => setOpen(true)}
+        aria-label="Cosa significa G.I.M.S."
+        className="group fixed left-0 top-1/2 z-40 flex -translate-y-1/2 items-center gap-3 rounded-r-md bg-ink py-5 pl-3 pr-2.5 text-bg shadow-lg transition-colors hover:bg-accent"
+      >
+        <span
+          className="font-body text-[0.7rem] uppercase tracking-[0.28em]"
+          style={{ writingMode: "vertical-rl" }}
+        >
+          Cosa significa G.I.M.S.
+        </span>
+        <span className="text-accent transition-transform duration-500 ease-soft group-hover:translate-x-0.5 group-hover:text-bg" aria-hidden>
+          →
+        </span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.div
+              className="fixed inset-0 z-40 bg-ink/50 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              onClick={() => setOpen(false)}
+            />
+            <motion.aside
+              className="fixed left-0 top-0 z-50 flex h-full w-[88vw] max-w-[460px] flex-col bg-ink px-8 py-10 text-bg md:px-10"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.6, ease }}
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <span className="overline text-accent">Il nome</span>
+                  <h2 className="mt-4 font-display text-4xl font-light leading-none">G.I.M.S.</h2>
+                </div>
+                <button
+                  onClick={() => setOpen(false)}
+                  aria-label="Chiudi"
+                  className="font-body text-sm uppercase tracking-[0.18em] text-bg/60 transition-colors hover:text-bg"
+                >
+                  Chiudi ✕
+                </button>
+              </div>
+
+              <div className="mt-10 flex flex-col">
+                {LETTERS.map((item, i) => (
+                  <motion.div
+                    key={item.l}
+                    className="border-t border-bg/15 py-5 last:border-b"
+                    initial={{ opacity: 0, x: -24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, ease, delay: 0.25 + i * 0.08 }}
+                  >
+                    <div className="flex items-baseline gap-4">
+                      <span className="font-display text-5xl font-light leading-none text-accent">{item.l}</span>
+                      <h3 className="font-display text-2xl font-light tracking-tight">{item.word}</h3>
+                    </div>
+                    <p className="mt-2 font-body text-sm leading-relaxed text-bg/70">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              <p className="mt-auto pt-8 font-body text-sm text-bg/60">
+                Quattro mestieri, un solo artigiano: tutto ciò che serve per la tua casa.
+              </p>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

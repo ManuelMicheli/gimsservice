@@ -9,7 +9,6 @@ import {
   buildJsonLd,
 } from "@/lib/seo";
 import SmoothScroll from "@/components/layout/SmoothScroll";
-import Preloader from "@/components/layout/Preloader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -72,7 +71,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Preloader />
         <SmoothScroll />
         {children}
       </body>

@@ -1,22 +1,132 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { PROJECTS, ROTATING_WORDS } from "@/lib/site";
-import SmartImage from "@/components/ui/SmartImage";
 import Reveal from "@/components/ui/Reveal";
 import RotatingWord from "@/components/ui/RotatingWord";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
+// Frazione di scroll verticale rispetto alla distanza orizzontale.
+// < 1 = la riga scorre più veloce e la sezione finisce prima (appena la CTA è in vista).
+const SCROLL_LEN = 0.65;
+
+/** Card placeholder (nessuna foto): gradient palette + numero + meta. */
+function Card({ p }: { p: (typeof PROJECTS)[number] }) {
+  return (
+    <a
+      href="#contatti"
+      className="group relative block h-full w-[82vw] shrink-0 overflow-hidden rounded-sm border border-line bg-line/40 sm:w-[56vw] lg:w-[38vw] xl:w-[32vw]"
+    >
+      {/* sfondo placeholder */}
+      <div className="absolute inset-0 bg-gradient-to-br from-ink/[0.06] to-accent/[0.10] transition-colors duration-700 group-hover:from-ink/[0.10] group-hover:to-accent/[0.16]" />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.05]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #16140f 1px, transparent 1px), linear-gradient(to bottom, #16140f 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+        }}
+      />
+
+      <span className="absolute right-6 top-5 font-display text-6xl font-light leading-none text-ink/15 md:text-7xl">
+        {p.n}
+      </span>
+
+      <span className="absolute left-6 top-6 font-body text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+        Foto in arrivo
+      </span>
+
+      <div className="absolute inset-x-6 bottom-6">
+        <span className="flex items-center gap-3 font-body text-[0.66rem] uppercase tracking-[0.2em] text-accent">
+          {p.category}
+        </span>
+        <h3 className="mt-2 flex items-end justify-between font-display text-3xl font-light leading-none tracking-tight text-ink md:text-4xl">
+          {p.title}
+          <span className="mb-1 text-base text-ink transition-transform duration-500 ease-soft group-hover:translate-x-1.5" aria-hidden>
+            →
+          </span>
+        </h3>
+      </div>
+    </a>
+  );
+}
+
+function CtaCard() {
+  return (
+    <a
+      href="#contatti"
+      className="flex h-full w-[82vw] shrink-0 flex-col justify-between rounded-sm border border-ink bg-ink p-7 text-bg transition-colors hover:bg-accent sm:w-[56vw] lg:w-[38vw] xl:w-[32vw]"
+    >
+      <span className="overline text-bg/60">Galleria completa</span>
+      <span className="font-display text-4xl font-light leading-tight">
+        Guarda tutti<br />i lavori →
+      </span>
+    </a>
+  );
+}
+
 /**
- * Lavori in evidenza — Alternating Rows.
- * Righe grandi con immagine alternata sx/dx, numero gigante, frame alternato in hover.
+ * Lavori in evidenza — Pinned Horizontal Scroll.
+ * La sezione si "pinna" e la riga di card placeholder scorre in orizzontale
+ * mentre l'utente scrolla la pagina. Fallback: scroll orizzontale nativo.
  */
 export default function FeaturedWork() {
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [distance, setDistance] = useState(0);
+  const [vh, setVh] = useState(0);
+  const [idx, setIdx] = useState(0);
+  const [progress, setProgress] = useState(0);
 
-  return (
-    <section id="lavori" className="shell py-20 md:py-36">
+  // Distanza orizzontale = bordo destro dell'ultima card (CTA) - viewport.
+  // Misurata dal bordo reale dell'ultimo figlio così non resta MAI spazio dopo la CTA.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const calc = () => {
+      const last = track.lastElementChild as HTMLElement | null;
+      const content = last ? last.offsetLeft + last.offsetWidth : track.scrollWidth;
+      setDistance(Math.max(0, content - window.innerWidth));
+      setVh(window.innerHeight);
+    };
+    calc();
+    // ricalcolo dopo layout/font + ad ogni cambio dimensione (evita race al mount).
+    const raf = requestAnimationFrame(calc);
+    const t = setTimeout(calc, 600);
+    const ro = new ResizeObserver(calc);
+    ro.observe(track);
+    window.addEventListener("resize", calc);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+      ro.disconnect();
+      window.removeEventListener("resize", calc);
+    };
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+  const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    const p = Math.min(Math.max(v, 0), 1);
+    setProgress(p);
+    setIdx(Math.round(p * (PROJECTS.length - 1)));
+  });
+
+  const Heading = (
+    <div className="shell">
       <Reveal>
         <span className="overline text-accent">02 — Lavori in evidenza</span>
       </Reveal>
@@ -25,86 +135,64 @@ export default function FeaturedWork() {
           Realizzo <RotatingWord words={ROTATING_WORDS} /> che durano nel tempo.
         </h2>
       </Reveal>
+    </div>
+  );
 
-      {/* ===== MOBILE — Overlay Cards ===== */}
-      <div className="mt-12 flex flex-col gap-5 md:hidden">
-        {PROJECTS.map((p, i) => (
-          <motion.a
-            key={p.n}
-            href="#contatti"
-            className="relative block aspect-[4/5] w-full overflow-hidden rounded-lg bg-line"
-            initial={reduce ? false : { opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-8% 0px" }}
-            transition={{ duration: 0.7, ease, delay: i * 0.03 }}
-          >
-            <SmartImage imgKey={p.img} alt={p.title} label={p.title} sizes="100vw" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
-            <span className="absolute right-5 top-5 font-display text-3xl font-light leading-none text-bg/70">
-              {p.n}
-            </span>
-            <div className="absolute inset-x-5 bottom-5 flex items-end justify-between">
-              <h3 className="font-display text-[2rem] font-light leading-none tracking-tight text-bg">
-                {p.title}
-              </h3>
-              <span className="mb-1 font-body text-[0.66rem] uppercase tracking-[0.18em] text-bg">
-                Vedi →
-              </span>
+  // Fallback (reduced motion): strip a scroll orizzontale nativo.
+  if (reduce) {
+    return (
+      <section id="lavori" className="overflow-hidden py-20 md:py-32">
+        {Heading}
+        <div className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:px-8 md:gap-8 md:px-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {PROJECTS.map((p) => (
+            <div key={p.n} className="aspect-[4/5] snap-start sm:aspect-[4/3]">
+              <Card p={p} />
             </div>
-          </motion.a>
-        ))}
-      </div>
+          ))}
+          <CtaCard />
+        </div>
+      </section>
+    );
+  }
 
-      {/* ===== DESKTOP — Alternating Rows ===== */}
-      <div className="mt-24 hidden flex-col gap-28 md:flex">
-        {PROJECTS.map((p, i) => {
-          const flip = i % 2 === 1;
-          return (
-            <motion.a
-              key={p.n}
-              href="#contatti"
-              className="group grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-12"
-              initial={reduce ? false : { opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-12% 0px" }}
-              transition={{ duration: 0.8, ease }}
-            >
-              <div className={`relative aspect-[16/10] overflow-hidden rounded-sm bg-line md:col-span-8 ${flip ? "md:order-2 md:col-start-5" : ""}`}>
-                <div className="absolute inset-0 transition-transform duration-[1s] ease-soft group-hover:-translate-y-full">
-                  <SmartImage imgKey={p.img} alt={`${p.title} — vista principale`} label={p.title} sizes="(max-width:768px) 100vw, 66vw" />
-                </div>
-                <div className="absolute inset-0 translate-y-full transition-transform duration-[1s] ease-soft group-hover:translate-y-0">
-                  <SmartImage imgKey={p.imgAlt} alt={`${p.title} — vista alternata`} label={`${p.title} · dettaglio`} sizes="(max-width:768px) 100vw, 66vw" />
-                </div>
-              </div>
-              <div className={`md:col-span-4 ${flip ? "md:order-1 md:row-start-1" : ""}`}>
-                <span className="font-display text-6xl font-light leading-none text-accent md:text-8xl">{p.n}</span>
-                <h3 className="mt-5 font-display text-3xl font-light tracking-tight text-ink md:text-4xl">{p.title}</h3>
-                <span className="mt-5 inline-flex items-center gap-2 font-body text-[0.74rem] uppercase tracking-[0.18em] text-ink">
-                  <span className="link-underline">Vedi il lavoro</span>
-                  <span className="transition-transform duration-500 ease-soft group-hover:translate-x-1">→</span>
-                </span>
-              </div>
-            </motion.a>
-          );
-        })}
-      </div>
+  return (
+    <section
+      id="lavori"
+      ref={sectionRef}
+      style={{ height: distance ? vh + distance * SCROLL_LEN : undefined }}
+      className="relative"
+    >
+      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-10">
+        {Heading}
 
-      {/* CTA galleria */}
-      <div className="mt-12 md:mt-28">
-        <Reveal>
-          <a
-            href="#contatti"
-            className="flex flex-col items-start justify-between gap-6 rounded-sm border border-ink bg-ink p-8 text-bg transition-colors hover:bg-accent md:flex-row md:items-center md:p-12"
-          >
-            <span className="font-display text-3xl font-light leading-tight md:text-4xl">
-              Guarda tutti i lavori
-            </span>
-            <span className="inline-flex items-center gap-2 font-body text-[0.74rem] uppercase tracking-[0.18em]">
-              Vai alla galleria <span aria-hidden>→</span>
-            </span>
-          </a>
-        </Reveal>
+        {/* contatore + progress */}
+        <div className="shell mt-8 flex items-center gap-6">
+          <span className="font-body text-[0.74rem] tabular-nums tracking-[0.1em] text-ink">
+            {String(idx + 1).padStart(2, "0")}
+            <span className="text-muted"> / {String(PROJECTS.length).padStart(2, "0")}</span>
+          </span>
+          <div className="relative h-px flex-1 bg-line">
+            <div
+              className="absolute inset-y-0 left-0 bg-accent"
+              style={{ width: `${Math.max(progress * 100, 4)}%` }}
+            />
+          </div>
+          <span className="hidden font-body text-[0.7rem] uppercase tracking-[0.18em] text-muted sm:block">
+            Scorri ↓
+          </span>
+        </div>
+
+        {/* track orizzontale guidato dallo scroll */}
+        <motion.div
+          ref={trackRef}
+          style={{ x }}
+          className="mt-10 flex h-[58vh] gap-5 pl-5 pr-5 sm:pl-8 md:gap-8 md:pl-12 lg:pl-16 xl:pl-20 2xl:pl-28"
+        >
+          {PROJECTS.map((p) => (
+            <Card key={p.n} p={p} />
+          ))}
+          <CtaCard />
+        </motion.div>
       </div>
     </section>
   );
