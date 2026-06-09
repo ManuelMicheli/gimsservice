@@ -51,8 +51,9 @@ export default function Header() {
             width={504}
             height={327}
             priority
+            quality={100}
             className={`w-auto transition-all duration-500 ease-soft ${
-              scrolled ? "h-10 md:h-11" : "h-12 md:h-14"
+              scrolled ? "h-11 md:h-12" : "h-14 md:h-16"
             }`}
           />
         </Link>

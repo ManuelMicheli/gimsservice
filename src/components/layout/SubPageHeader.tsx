@@ -28,7 +28,7 @@ export default function SubPageHeader() {
 
   return (
     <>
-      <header className="border-b border-line bg-bg">
+      <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-md">
         <div className="shell flex items-center justify-between py-5">
           <Link href="/" aria-label={`${SITE.brand} — home`} className="flex items-center">
             <Image
@@ -37,7 +37,8 @@ export default function SubPageHeader() {
               width={504}
               height={327}
               priority
-              className="h-11 w-auto md:h-12"
+              quality={100}
+              className="h-12 w-auto md:h-[3.25rem]"
             />
           </Link>
 

@@ -138,8 +138,12 @@ for (let py = 0; py < h; py++) {
   for (let px = 0; px < w; px++) {
     const p = py * w + px;
     const i = p * 4;
-    let a = frame[p] ? 0 : inkAt(i);
-    if (a < 20) a = 0;
+    // coverage con rampa: riempimento pieno -> opaco (255), solo l'edge
+    // anti-alias resta parziale. Evita riempimenti slavati (rosso != scuro).
+    const A_LO = 30, A_HI = 110;
+    const cov = frame[p] ? 0 : inkAt(i);
+    const a =
+      cov <= A_LO ? 0 : cov >= A_HI ? 255 : Math.round(((cov - A_LO) / (A_HI - A_LO)) * 255);
     white[i] = 255; white[i + 1] = 255; white[i + 2] = 255; white[i + 3] = a;
     color[i] = data[i]; color[i + 1] = data[i + 1]; color[i + 2] = data[i + 2]; color[i + 3] = a;
     if (a > 0) {
