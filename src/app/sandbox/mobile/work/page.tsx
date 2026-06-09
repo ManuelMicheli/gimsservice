@@ -10,9 +10,9 @@ export default function WorkMobileSandbox() {
   return (
     <Switcher
       variants={[
-        { id: "a", label: "A · Stacked", node: <PhoneFrame label="A · Stacked Editorial"><WorkMobileA /></PhoneFrame> },
-        { id: "b", label: "B · Overlay", node: <PhoneFrame label="B · Overlay Cards"><WorkMobileB /></PhoneFrame> },
-        { id: "c", label: "C · Caption", node: <PhoneFrame label="C · Caption Strip"><WorkMobileC /></PhoneFrame> },
+        { id: "a", label: "A · Stack", node: <PhoneFrame label="A · Cinematic Stack"><WorkMobileA /></PhoneFrame> },
+        { id: "b", label: "B · Gallery", node: <PhoneFrame label="B · Tactile Gallery"><WorkMobileB /></PhoneFrame> },
+        { id: "c", label: "C · Editorial", node: <PhoneFrame label="C · Editorial Parallax"><WorkMobileC /></PhoneFrame> },
       ]}
     />
   );

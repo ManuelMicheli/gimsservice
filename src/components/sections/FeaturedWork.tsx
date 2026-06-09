@@ -48,6 +48,61 @@ function Card({ p }: { p: (typeof PROJECTS)[number] }) {
   );
 }
 
+/**
+ * Mobile — Cinematic Stack. Deck di card pinnate (position: sticky) che si
+ * impilano scrollando: la card sotto rimpicciolisce e si scurisce mentre la
+ * successiva le scorre sopra. 100% CSS scroll-driven (work-stack-out / work-cap
+ * / work-parallax in globals.css), niente JS. Graceful degrade dove non
+ * supportato (contenuto semplicemente visibile).
+ */
+function MobileDeck() {
+  return (
+    <div className="mt-12 flex flex-col gap-8 px-5">
+      {PROJECTS.map((p, i) => (
+        <a
+          key={p.n}
+          href="#contatti"
+          className="work-stack-out sticky top-6 block aspect-[4/5] overflow-hidden rounded-xl bg-line shadow-[0_30px_60px_-30px_rgba(0,0,0,0.55)]"
+          style={{ zIndex: 10 + i }}
+        >
+          <div className="absolute inset-0 work-parallax">
+            <Image
+              src={`/images/${p.img}.jpg`}
+              alt={`${p.title} — ${p.category}`}
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/30" />
+
+          <span className="absolute right-5 top-4 font-display text-[4.5rem] font-light leading-none text-bg/15">
+            {p.n}
+          </span>
+
+          <div className="work-cap absolute inset-x-5 bottom-5">
+            <span className="font-body text-[0.62rem] uppercase tracking-[0.22em] text-accent">
+              {p.category} · {p.place} · {p.year}
+            </span>
+            <h3 className="mt-2 flex items-end justify-between font-display text-[2.1rem] font-light leading-[0.95] tracking-tight text-bg">
+              {p.title}
+              <span aria-hidden className="mb-1 text-base">→</span>
+            </h3>
+          </div>
+        </a>
+      ))}
+
+      <a
+        href="#contatti"
+        className="mt-2 flex items-center justify-between rounded-xl bg-ink p-6 text-bg transition-colors active:bg-accent"
+      >
+        <span className="font-display text-2xl font-light leading-tight">Guarda tutti i lavori</span>
+        <span aria-hidden className="text-lg">→</span>
+      </a>
+    </div>
+  );
+}
+
 function CtaCard() {
   return (
     <a
@@ -113,7 +168,10 @@ export default function FeaturedWork() {
     const update = () => {
       raf = 0;
       const total = section.offsetHeight - window.innerHeight;
-      const p = total > 0 ? Math.min(Math.max((window.scrollY - section.offsetTop) / total, 0), 1) : 0;
+      // rect.top è relativo al viewport (indipendente da offsetParent): quando la
+      // sezione si pinna rect.top = 0, e diventa negativo man mano che scrolla.
+      const scrolled = -section.getBoundingClientRect().top;
+      const p = total > 0 ? Math.min(Math.max(scrolled / total, 0), 1) : 0;
       if (trackRef.current) trackRef.current.style.transform = `translate3d(${-distance * p}px, 0, 0)`;
       if (barRef.current) barRef.current.style.width = `${Math.max(p * 100, 4)}%`;
       const ni = Math.round(p * (PROJECTS.length - 1));
@@ -162,10 +220,10 @@ export default function FeaturedWork() {
 
   return (
     <section id="lavori" className="relative">
-      {/* ===== MOBILE — scroll orizzontale nativo (smooth, niente scroll-jacking) ===== */}
-      <div className="overflow-hidden py-20 md:hidden">
+      {/* ===== MOBILE — Cinematic Stack (deck sticky, scroll-driven CSS) ===== */}
+      <div className="py-20 md:hidden">
         {Heading}
-        {NativeStrip}
+        <MobileDeck />
       </div>
 
       {/* ===== DESKTOP — Pinned Horizontal Scroll (guidato dallo scroll, su mouse è fluido) ===== */}
