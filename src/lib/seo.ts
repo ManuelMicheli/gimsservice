@@ -46,7 +46,7 @@ export const AREA_SERVED = [
  * Parole chiave principali. Mix di:
  * - mestiere generico (imbianchino, piastrellista, ristrutturazioni)
  * - mestiere + località (imbianchino Bareggio, ...)
- * - servizi specifici (spatolato veneziano, cartongesso, ristrutturazione bagni)
+ * - servizi specifici (spatolato veneziano, cartongesso, pavimenti)
  */
 export const KEYWORDS = [
   // mestiere generico
@@ -66,7 +66,6 @@ export const KEYWORDS = [
   "stucco veneziano",
   "decorazioni pareti",
   "cartongesso pareti e controsoffitti",
-  "ristrutturazione bagni chiavi in mano",
   "posa pavimenti e rivestimenti",
   "parquet e laminato",
   "tapparelle installazione e riparazione",
@@ -80,7 +79,6 @@ export const KEYWORDS = [
   "ristrutturazioni Bareggio",
   "ristrutturazioni Milano ovest",
   "cartongesso Milano",
-  "ristrutturazione bagno Bareggio",
   "imbianchino Cornaredo",
   "imbianchino Sedriano",
   "imbianchino Rho",
@@ -88,7 +86,7 @@ export const KEYWORDS = [
 
 /** Descrizione meta principale (≤160 char raccomandati per lo snippet). */
 export const META_DESCRIPTION =
-  "Imbianchino e artigiano edile a Bareggio (MI) con oltre 30 anni di esperienza: imbiancatura, decorazioni, spatolato veneziano, cartongesso, posa pavimenti, ristrutturazione bagni chiavi in mano e tapparelle. Un solo referente, dal sopralluogo alla consegna. Preventivo gratuito.";
+  "Imbianchino e artigiano edile a Bareggio (MI) con oltre 30 anni di esperienza: imbiancatura, decorazioni, spatolato veneziano, cartongesso, posa pavimenti e tapparelle. Un solo referente, dal sopralluogo alla consegna. Preventivo gratuito.";
 
 /** Titolo principale. */
 export const META_TITLE =

@@ -37,7 +37,6 @@ const TINTS: Record<string, [string, string]> = {
   "cartongesso-2": ["#d6cfc3", "#a59e90"],
   pavimenti: ["#5a4127", "#8a5a36"],
   "pavimenti-2": ["#6b4d2e", "#a06b41"],
-  bagno: ["#dfdbd2", "#a9a294"],
   tapparelle: ["#cac3b5", "#7a7468"],
   manutenzione: ["#cbc4b6", "#6b675e"],
   "area-a": ["#2a241b", "#8a5a36"],
@@ -57,7 +56,7 @@ const AVAILABLE = new Set([
   "spatolati", "spatolati-2",
   "cartongesso", "cartongesso-2",
   "pavimenti", "pavimenti-2",
-  "bagno", "tapparelle", "manutenzione",
+  "tapparelle", "manutenzione",
   "area-a", "area-b",
   // Foto reali G.I.M.S. Service (cantieri Bareggio / ovest milanese)
   "g-hero", "g-manifesto",
@@ -66,8 +65,6 @@ const AVAILABLE = new Set([
   "g-spatolato", "g-spatolato-2", "g-spatolato-3", "g-spatolato-nicchie",
   "g-cartongesso", "g-cartongesso-2", "g-cartongesso-3", "g-cartongesso-4", "g-cartongesso-5",
   "g-pavimenti", "g-pavimenti-2", "g-pavimenti-3", "g-pavimenti-4", "g-pavimenti-5", "g-pavimenti-posa", "g-pavimenti-posa-2",
-  "g-bagno", "g-bagno-2", "g-bagno-3", "g-bagno-4", "g-bagno-5", "g-bagno-6", "g-bagno-7",
-  "g-bagno-before", "g-bagno-before-2",
   "g-manutenzione", "g-manutenzione-2", "g-manutenzione-3",
   // Migliori lavori (foto selezionate dal cliente)
   "g-best-1", "g-best-2", "g-best-3", "g-best-4", "g-best-5",

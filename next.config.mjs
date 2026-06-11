@@ -5,6 +5,13 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["framer-motion"],
   },
+  // Servizio "ristrutturazione bagni" dismesso: redirect permanente per le URL già indicizzate.
+  async redirects() {
+    return [
+      { source: "/servizi/ristrutturazione-bagni", destination: "/servizi", permanent: true },
+      { source: "/servizi/ristrutturazione-bagni/:city", destination: "/servizi", permanent: true },
+    ];
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     // Cache lunga sulle immagini ottimizzate (1 anno).

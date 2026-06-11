@@ -244,48 +244,6 @@ export const SERVICE_PAGES: ServicePage[] = [
   },
 
   {
-    slug: "ristrutturazione-bagni",
-    imgKey: "bagno",
-    gallery: ["g-bagno", "g-bagno-2", "g-bagno-3", "g-bagno-4", "g-bagno-5", "g-bagno-6", "g-bagno-7", "g-bagno-before", "g-bagno-before-2"],
-    h1: "Ristrutturazione bagni chiavi in mano a Bareggio",
-    metaTitle: "Ristrutturazione Bagni Bareggio — Chiavi in mano",
-    metaDescription:
-      "Ristrutturazione bagno chiavi in mano a Bareggio e ovest milanese: demolizione, impianti, rivestimenti, sanitari e finiture con un unico referente. Preventivo gratuito.",
-    keywords: [
-      "ristrutturazione bagno Bareggio",
-      "rifacimento bagno Milano",
-      "ristrutturazione bagno chiavi in mano",
-      "rifare il bagno ovest milanese",
-      "sostituzione vasca con doccia",
-    ],
-    eyebrow: "Ristrutturazione bagno",
-    lead: "Trasformo il tuo bagno in un ambiente di comfort e stile, chiavi in mano, con un solo referente.",
-    intro: [
-      "Rifare il bagno è uno degli interventi che danno più soddisfazione — e anche uno dei più delicati, perché mette insieme demolizioni, impianti, rivestimenti e finiture. Lo seguo dall'inizio alla fine: tu hai un solo interlocutore, io coordino tutto.",
-      "Dalla rimozione del vecchio bagno al rifacimento di impianti idraulici ed elettrici, alla posa di pavimenti e rivestimenti, fino a sanitari, mobile e finiture: ti riconsegno il bagno pronto all'uso, pulito e funzionante.",
-      "Per impianti specialistici lavoro con artigiani di fiducia (idraulico, elettricista), coordinati da me. Intervengo a Bareggio e in tutto l'ovest milanese.",
-    ],
-    includes: [
-      { title: "Demolizione e smaltimento", desc: "Rimozione del vecchio bagno e smaltimento dei materiali, in ordine." },
-      { title: "Impianti idraulici ed elettrici", desc: "Rifacimento o adeguamento di scarichi, allacci e punti luce." },
-      { title: "Pavimenti e rivestimenti", desc: "Posa precisa di piastrelle e gres, anche per la zona doccia." },
-      { title: "Sostituzione vasca con doccia", desc: "Trasformazioni mirate per più comfort e accessibilità." },
-      { title: "Sanitari, mobile e finiture", desc: "Montaggio sanitari, mobile, box doccia e tutte le finiture." },
-    ],
-    reasons: [
-      "Un unico referente che coordina tutti i lavori",
-      "Cantiere pulito e smaltimento incluso",
-      "Consegna chiavi in mano, bagno pronto all'uso",
-    ],
-    faq: [
-      { q: "Quanto dura la ristrutturazione di un bagno?", a: "In genere alcuni giorni lavorativi, in base a metratura e interventi sugli impianti. Definisco i tempi nel preventivo, dopo il sopralluogo." },
-      { q: "Vi occupate anche di idraulica ed elettrico?", a: "Sì: coordino idraulico ed elettricista di fiducia. Per te resta un unico referente dall'inizio alla fine." },
-      { q: "Potete trasformare la vasca in doccia?", a: "Sì, è uno degli interventi che faccio più spesso: più comfort, più spazio e maggiore accessibilità." },
-    ],
-    serviceType: "Ristrutturazione bagni",
-  },
-
-  {
     slug: "tapparelle",
     imgKey: "tapparelle",
     gallery: ["tapparelle", "g-manutenzione-2"],

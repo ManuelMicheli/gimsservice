@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "G.I.M.S. Service — Imbianchino e Ristrutturazioni a Bareggio",
     short_name: "GIMS Service",
     description:
-      "Imbianchino e artigiano edile a Bareggio (MI): imbiancatura, decorazioni, cartongesso, pavimenti, ristrutturazione bagni e tapparelle.",
+      "Imbianchino e artigiano edile a Bareggio (MI): imbiancatura, decorazioni, cartongesso, pavimenti e tapparelle.",
     start_url: "/",
     display: "standalone",
     background_color: "#f4f1ec",

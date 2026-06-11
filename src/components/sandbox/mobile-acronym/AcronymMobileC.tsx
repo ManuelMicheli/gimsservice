@@ -7,7 +7,7 @@ const LETTERS = [
   { l: "G", word: "Giardino", desc: "Cura del verde e degli spazi esterni." },
   { l: "I", word: "Imbiancatura", desc: "Tinteggiature per interni ed esterni." },
   { l: "M", word: "Muratura", desc: "Opere edili e ristrutturazioni." },
-  { l: "S", word: "Sanitari", desc: "Impianti e bagni chiavi in mano." },
+  { l: "S", word: "Sanitari", desc: "Impianti idraulici e sanitari, con artigiani di fiducia." },
 ];
 
 // C · Centered Monogram — lettere enormi centrate, nome sotto, ritmo verticale ampio.

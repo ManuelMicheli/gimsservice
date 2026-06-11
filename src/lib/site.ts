@@ -41,9 +41,8 @@ export const SERVICES: Service[] = [
   { n: "03", title: "Spatolati", img: "cover-spatolato", slug: "spatolato-veneziano", desc: "Finiture spatolate, anche in stucco antico veneziano, con materiali certificati e tecniche professionali per superfici di pregio." },
   { n: "04", title: "Cartongesso", img: "cover-cartongesso", slug: "cartongesso", desc: "Pareti e controsoffitti in cartongesso con materiali certificati e tecniche professionali." },
   { n: "05", title: "Pavimenti e Rivestimenti", img: "cover-pavimenti", slug: "pavimenti-e-rivestimenti", desc: "Fornitura e posa di pavimenti in piastrelle, laminato, PVC e parquet, con materiali certificati e tecniche professionali." },
-  { n: "06", title: "Ristrutturazione Bagni", img: "bagno", slug: "ristrutturazione-bagni", desc: "Rendi unico il tuo bagno: trasformo lo spazio in un ambiente di comfort e stile, chiavi in mano." },
-  { n: "07", title: "Tapparelle", img: "tapparelle", slug: "tapparelle", desc: "Installazione e manutenzione di tapparelle con materiali resistenti e lavorazioni accurate." },
-  { n: "08", title: "Manutenzione Stabili", img: "cover-manutenzione", slug: "manutenzione-stabili", desc: "Manutenzione ordinaria e straordinaria di stabili, con interventi programmati e materiali certificati." },
+  { n: "06", title: "Tapparelle", img: "tapparelle", slug: "tapparelle", desc: "Installazione e manutenzione di tapparelle con materiali resistenti e lavorazioni accurate." },
+  { n: "07", title: "Manutenzione Stabili", img: "cover-manutenzione", slug: "manutenzione-stabili", desc: "Manutenzione ordinaria e straordinaria di stabili, con interventi programmati e materiali certificati." },
 ];
 
 export type Project = {
@@ -58,11 +57,10 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   { n: "01", title: "Stucco Veneziano", category: "Spatolato", place: "Bareggio", year: "2024", img: "g-spatolato", imgAlt: "g-spatolato-nicchie" },
-  { n: "02", title: "Bagno chiavi in mano", category: "Ristrutturazione", place: "Milano", year: "2024", img: "g-bagno", imgAlt: "g-bagno-3" },
-  { n: "03", title: "Pareti e luce", category: "Cartongesso", place: "Binasco", year: "2023", img: "g-cartongesso", imgAlt: "g-cartongesso-3" },
-  { n: "04", title: "Posa pavimenti", category: "Pavimenti", place: "Bareggio", year: "2025", img: "g-pavimenti", imgAlt: "g-pavimenti-posa" },
-  { n: "05", title: "Finiture interni", category: "Imbiancatura", place: "Sesto S.G.", year: "2024", img: "g-imbiancatura", imgAlt: "g-imbiancatura-2" },
-  { n: "06", title: "Decorazioni d'autore", category: "Decorazioni", place: "Milano", year: "2025", img: "g-decorazione", imgAlt: "g-best-5" },
+  { n: "02", title: "Pareti e luce", category: "Cartongesso", place: "Binasco", year: "2023", img: "g-cartongesso", imgAlt: "g-cartongesso-3" },
+  { n: "03", title: "Posa pavimenti", category: "Pavimenti", place: "Bareggio", year: "2025", img: "g-pavimenti", imgAlt: "g-pavimenti-posa" },
+  { n: "04", title: "Finiture interni", category: "Imbiancatura", place: "Sesto S.G.", year: "2024", img: "g-imbiancatura", imgAlt: "g-imbiancatura-2" },
+  { n: "05", title: "Decorazioni d'autore", category: "Decorazioni", place: "Milano", year: "2025", img: "g-decorazione", imgAlt: "g-best-5" },
 ];
 
 export const ROTATING_WORDS = [
@@ -70,7 +68,7 @@ export const ROTATING_WORDS = [
   "decorazioni",
   "spatolati",
   "cartongesso",
-  "bagni",
+  "pavimenti",
 ];
 
 export type Testimonial = { n: string; name: string; place: string; text: string; avatar: string };
@@ -128,7 +126,6 @@ export const FAQ_TEASER = [
 export const SERVICE_TYPES = [
   "Imbiancatura",
   "Cartongesso",
-  "Bagno",
   "Pavimenti",
   "Decorazioni",
   "Altro",

@@ -5,7 +5,7 @@ import ManifestoScroll from "@/components/sections/ManifestoScroll";
 const STICKY_IMAGES: { key: string; src?: string; alt: string }[] = [
   { key: "chi-siamo", src: "/images/chi-siamo.png", alt: "Soggiorno finito con finiture su misura" },
   { key: "g-manutenzione", alt: "Manutenzione stabili — intervento su parti comuni" },
-  { key: "bagno", alt: "Ambiente finito — risultato consegnato chiavi in mano" },
+  { key: "g-best-1", alt: "Ambiente finito — risultato consegnato chiavi in mano" },
 ];
 
 // Server component: markup statico (no hydration). Lo sticky-scroll (desktop
