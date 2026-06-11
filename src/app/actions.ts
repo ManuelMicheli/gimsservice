@@ -1,6 +1,6 @@
 "use server";
 
-import { SERVICE_TYPES } from "@/lib/site";
+import { SERVICE_TYPES, SITE } from "@/lib/site";
 
 export type ContactState = {
   ok: boolean;
@@ -12,10 +12,22 @@ function isEmail(v: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 }
 
+function esc(v: string) {
+  return v
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+const FALLBACK_MSG = `Invio momentaneamente non disponibile. Scrivimi a ${SITE.email} o chiamami al ${SITE.phoneDisplay}.`;
+
 /**
  * Server Action del form contatti.
- * TODO (cliente): collegare invio reale — es. Resend / Nodemailer / webhook,
- * inviando a josegiardino68@gmail.com. Qui validiamo e restituiamo lo stato.
+ * Invia la richiesta a SITE.email via Resend (https://resend.com).
+ * Config su Vercel: RESEND_API_KEY (obbligatoria); CONTACT_FROM opzionale
+ * (default onboarding@resend.dev, valido senza dominio verificato).
+ * Senza chiave non fingiamo il successo: messaggio con contatti diretti.
  */
 export async function submitContact(
   _prev: ContactState,
@@ -46,8 +58,46 @@ export async function submitContact(
     return { ok: false, message: "Controlla i campi evidenziati.", errors };
   }
 
-  // Placeholder invio. Sostituire con integrazione reale.
-  console.log("[GIMS contact]", { nome, email, telefono, tipo, messaggio });
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("[GIMS contact] RESEND_API_KEY mancante: richiesta non inviata.");
+    return { ok: false, message: FALLBACK_MSG };
+  }
+
+  const html = `
+    <h2>Nuova richiesta dal sito gims-service</h2>
+    <p><strong>Nome:</strong> ${esc(nome)}</p>
+    <p><strong>Email:</strong> ${esc(email)}</p>
+    <p><strong>Telefono:</strong> ${esc(telefono) || "—"}</p>
+    <p><strong>Tipo di intervento:</strong> ${esc(tipo) || "—"}</p>
+    <p><strong>Messaggio:</strong></p>
+    <p>${esc(messaggio).replace(/\n/g, "<br/>")}</p>
+  `;
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: process.env.CONTACT_FROM ?? "GIMS Service <onboarding@resend.dev>",
+        to: [SITE.email],
+        reply_to: email,
+        subject: `Richiesta preventivo${tipo ? ` — ${tipo}` : ""} — ${nome}`,
+        html,
+      }),
+    });
+
+    if (!res.ok) {
+      console.error("[GIMS contact] Resend error:", res.status, await res.text());
+      return { ok: false, message: FALLBACK_MSG };
+    }
+  } catch (err) {
+    console.error("[GIMS contact] invio fallito:", err);
+    return { ok: false, message: FALLBACK_MSG };
+  }
 
   return {
     ok: true,
