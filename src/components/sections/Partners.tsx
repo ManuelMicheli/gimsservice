@@ -45,7 +45,7 @@ export default function Partners() {
       <div className="border-y border-line bg-ink/[0.03] py-4 md:py-6">
         <Marquee
           items={QUALIFIERS}
-          itemClassName="font-body text-[0.62rem] uppercase tracking-[0.28em] text-muted md:text-xs"
+          itemClassName="font-body text-[0.66rem] uppercase tracking-[0.28em] text-muted md:text-xs"
           separatorClassName="px-1 text-accent"
           separator="—"
           duration={40}

@@ -81,7 +81,7 @@ function MobileDeck() {
           </span>
 
           <div className="work-cap absolute inset-x-5 bottom-5">
-            <span className="font-body text-[0.62rem] uppercase tracking-[0.22em] text-accent">
+            <span className="font-body text-[0.66rem] uppercase tracking-[0.22em] text-accent">
               {p.category} · {p.place} · {p.year}
             </span>
             <h3 className="mt-2 flex items-end justify-between font-display text-[2.1rem] font-light leading-[0.95] tracking-tight text-bg">

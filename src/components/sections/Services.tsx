@@ -48,13 +48,13 @@ export default function Services() {
                 <Image src={`/images/${s.img}.jpg`} alt={`${s.title} — G.I.M.S. Service, Bareggio`} fill sizes="80px" className="object-cover" />
               </div>
               <div className="min-w-0 flex-1">
-                <span className="font-body text-[0.58rem] uppercase tracking-[0.2em] text-accent">
+                <span className="font-body text-[0.7rem] uppercase tracking-[0.2em] text-accent">
                   {s.n}
                 </span>
                 <h3 className="font-display text-[1.35rem] font-light leading-tight tracking-tight text-ink">
                   {s.title}
                 </h3>
-                <p className="mt-1 font-body text-[0.74rem] leading-snug text-muted">{s.desc}</p>
+                <p className="mt-1 font-body text-sm leading-snug text-muted">{s.desc}</p>
               </div>
             </a>
           ))}

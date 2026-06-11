@@ -114,7 +114,7 @@ export default function ServicePageView({ page }: { page: ServicePage }) {
             {page.includes.map((it) => (
               <div key={it.title} className="bg-bg p-7">
                 <h3 className="font-display text-lg font-normal text-ink">{it.title}</h3>
-                <p className="mt-2 font-body text-[0.82rem] leading-relaxed text-muted">{it.desc}</p>
+                <p className="mt-2 font-body text-sm leading-relaxed text-muted">{it.desc}</p>
               </div>
             ))}
           </div>
@@ -132,7 +132,7 @@ export default function ServicePageView({ page }: { page: ServicePage }) {
             <Reveal delay={0.1}>
               <ul className="space-y-5">
                 {page.reasons.map((r) => (
-                  <li key={r} className="flex gap-4 border-b border-white/10 pb-5 font-body text-[0.95rem] text-bg/85">
+                  <li key={r} className="flex gap-4 border-b border-bg/10 pb-5 font-body text-[0.95rem] text-bg/85">
                     <span className="text-accent">—</span>
                     {r}
                   </li>
@@ -155,7 +155,7 @@ export default function ServicePageView({ page }: { page: ServicePage }) {
               <li key={s.n} className="border-t border-line pt-5">
                 <span className="font-body text-[0.7rem] uppercase tracking-[0.2em] text-accent">{s.n}</span>
                 <h3 className="mt-2 font-display text-lg font-normal text-ink">{s.title}</h3>
-                <p className="mt-2 font-body text-[0.82rem] leading-relaxed text-muted">{s.desc}</p>
+                <p className="mt-2 font-body text-sm leading-relaxed text-muted">{s.desc}</p>
               </li>
             ))}
           </ol>
@@ -207,7 +207,7 @@ export default function ServicePageView({ page }: { page: ServicePage }) {
         <section className="shell border-t border-line py-14 md:py-20">
           <Reveal>
             <span className="overline text-accent">Zone servite</span>
-            <h2 className="mt-4 font-display text-2xl font-light leading-tight tracking-tight text-ink md:text-3xl">
+            <h2 className="mt-4 font-display text-2xl font-light leading-tight tracking-tight text-ink md:text-4xl">
               {page.serviceType} in tutto l&apos;ovest milanese
             </h2>
             <p className="mt-4 max-w-2xl font-body text-[0.9rem] leading-relaxed text-muted">
@@ -241,7 +241,7 @@ export default function ServicePageView({ page }: { page: ServicePage }) {
                 <h3 className="font-display text-lg font-normal text-ink transition-colors group-hover:text-accent">
                   {s.serviceType}
                 </h3>
-                <p className="mt-2 font-body text-[0.8rem] leading-relaxed text-muted">{s.lead}</p>
+                <p className="mt-2 font-body text-sm leading-relaxed text-muted">{s.lead}</p>
                 <span className="mt-4 inline-block font-body text-[0.72rem] uppercase tracking-[0.14em] text-accent">
                   Scopri →
                 </span>

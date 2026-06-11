@@ -105,7 +105,7 @@ export default function CityServicePageView({
             {page.includes.map((it) => (
               <div key={it.title} className="bg-bg p-7">
                 <h3 className="font-display text-lg font-normal text-ink">{it.title}</h3>
-                <p className="mt-2 font-body text-[0.82rem] leading-relaxed text-muted">{it.desc}</p>
+                <p className="mt-2 font-body text-sm leading-relaxed text-muted">{it.desc}</p>
               </div>
             ))}
           </div>
@@ -123,7 +123,7 @@ export default function CityServicePageView({
             <Reveal delay={0.1}>
               <ul className="space-y-5">
                 {page.reasons.map((r) => (
-                  <li key={r} className="flex gap-4 border-b border-white/10 pb-5 font-body text-[0.95rem] text-bg/85">
+                  <li key={r} className="flex gap-4 border-b border-bg/10 pb-5 font-body text-[0.95rem] text-bg/85">
                     <span className="text-accent">—</span>
                     {r}
                   </li>
@@ -146,7 +146,7 @@ export default function CityServicePageView({
               <li key={s.n} className="border-t border-line pt-5">
                 <span className="font-body text-[0.7rem] uppercase tracking-[0.2em] text-accent">{s.n}</span>
                 <h3 className="mt-2 font-display text-lg font-normal text-ink">{s.title}</h3>
-                <p className="mt-2 font-body text-[0.82rem] leading-relaxed text-muted">{s.desc}</p>
+                <p className="mt-2 font-body text-sm leading-relaxed text-muted">{s.desc}</p>
               </li>
             ))}
           </ol>
@@ -156,7 +156,7 @@ export default function CityServicePageView({
         <section className="shell border-t border-line py-14 md:py-20">
           <Reveal>
             <span className="overline text-accent">Zona servita</span>
-            <h2 className="mt-4 font-display text-2xl font-light leading-tight tracking-tight text-ink md:text-3xl">
+            <h2 className="mt-4 font-display text-2xl font-light leading-tight tracking-tight text-ink md:text-4xl">
               {page.serviceType} a {city.name} ({city.cap}) e nei comuni vicini
             </h2>
             <p className="mt-4 max-w-2xl font-body text-[0.9rem] leading-relaxed text-muted">
@@ -195,7 +195,7 @@ export default function CityServicePageView({
         <section className="shell border-t border-line py-14 md:py-20">
           <Reveal>
             <span className="overline text-accent">{page.serviceType} in altre zone</span>
-            <h2 className="mt-4 font-display text-2xl font-light leading-tight tracking-tight text-ink md:text-3xl">
+            <h2 className="mt-4 font-display text-2xl font-light leading-tight tracking-tight text-ink md:text-4xl">
               Lavoro in tutto l&apos;ovest milanese
             </h2>
           </Reveal>
@@ -216,7 +216,7 @@ export default function CityServicePageView({
         <section className="shell border-t border-line py-14 md:py-20">
           <Reveal>
             <span className="overline text-accent">Altri servizi a {city.name}</span>
-            <h2 className="mt-4 font-display text-2xl font-light leading-tight tracking-tight text-ink md:text-3xl">
+            <h2 className="mt-4 font-display text-2xl font-light leading-tight tracking-tight text-ink md:text-4xl">
               Un solo referente per tutta la casa
             </h2>
           </Reveal>

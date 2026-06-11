@@ -11,7 +11,7 @@ const ZONES = ["Bareggio", "Milano", "Binasco", "Sesto San Giovanni", "Hinterlan
  */
 export default function ServiceArea() {
   return (
-    <section id="area" className="py-16 md:py-36">
+    <section id="area" className="py-20 md:py-32">
       {/* ===== MOBILE — Content-First ===== */}
       <div className="px-5 md:hidden">
         <Reveal>
@@ -19,13 +19,13 @@ export default function ServiceArea() {
           <h2 className="mt-5 font-display text-[2rem] font-light leading-[1.08] tracking-tight text-ink">
             Lavoro a Bareggio e in tutto l&apos;<span className="italic">ovest milanese</span>.
           </h2>
-          <p className="mt-4 font-body text-[0.86rem] leading-relaxed text-muted">
+          <p className="mt-4 font-body text-sm leading-relaxed text-muted">
             Locale, affidabile, puntuale. Vengo da te per il sopralluogo e seguo il cantiere di
             persona, dal primo incontro alla consegna.
           </p>
           <ul className="mt-5 flex flex-wrap gap-2">
             {ZONES.map((z) => (
-              <li key={z} className="rounded-full border border-line px-3 py-1.5 font-body text-[0.64rem] uppercase tracking-[0.12em] text-muted">
+              <li key={z} className="rounded-full border border-line px-3 py-1.5 font-body text-[0.66rem] uppercase tracking-[0.12em] text-muted">
                 {z}
               </li>
             ))}
