@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer id="contatti" className="bg-ink text-bg">
       {/* Form contatti */}
-      <div className="shell border-b border-white/10 py-20 md:py-28">
+      <div className="shell border-b border-bg/10 py-20 md:py-28">
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
             <span className="overline text-bg/50">Contatti</span>
@@ -26,7 +26,7 @@ export default function Footer() {
               <a href={`mailto:${SITE.email}`} className="link-underline w-fit">
                 {SITE.email}
               </a>
-              <a href={SITE.whatsapp} target="_blank" className="link-underline w-fit">
+              <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="link-underline w-fit">
                 WhatsApp
               </a>
               <span className="mt-2 text-bg/50">{SITE.address}</span>
@@ -83,8 +83,8 @@ export default function Footer() {
               {[
                 ["FAQ", "#faq"],
                 ["Contatti", "#contatti"],
-                ["Privacy Policy", "#"],
-                ["Cookie Policy", "#"],
+                ["Privacy Policy", "/privacy"],
+                ["Cookie Policy", "/cookie"],
               ].map(([l, h]) => (
                 <li key={l}>
                   <Link href={h} className="transition-colors hover:text-bg">
@@ -115,16 +115,16 @@ export default function Footer() {
       </div>
 
       {/* Legale */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-bg/10">
         <div className="shell flex flex-col gap-3 py-7 font-body text-[0.72rem] text-bg/45 md:flex-row md:items-center md:justify-between">
           <span>
             © {SITE.brand} — {SITE.vat}
           </span>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-bg/80">
+            <Link href="/privacy" className="inline-block py-2 hover:text-bg/80">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-bg/80">
+            <Link href="/cookie" className="inline-block py-2 hover:text-bg/80">
               Cookie Policy
             </Link>
           </div>
