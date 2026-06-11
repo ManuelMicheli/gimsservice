@@ -9,6 +9,7 @@ import {
   buildJsonLd,
 } from "@/lib/seo";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import WhatsAppWidget from "@/components/layout/WhatsAppWidget";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -73,6 +74,7 @@ export default function RootLayout({
         />
         <SmoothScroll />
         {children}
+        <WhatsAppWidget />
       </body>
     </html>
   );

@@ -7,8 +7,9 @@ import { SERVICE_TYPES } from "@/lib/site";
 
 const initial: ContactState = { ok: false, message: "" };
 
+// Il form vive nel footer (bg-ink scuro): testo chiaro, non text-ink.
 const fieldCls =
-  "w-full border-b border-line bg-transparent py-3 font-body text-ink placeholder:text-muted/70 outline-none transition-colors focus:border-ink";
+  "w-full border-b border-bg/20 bg-transparent py-3 font-body text-bg placeholder:text-bg/50 outline-none transition-colors focus:border-bg";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -16,7 +17,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-4 font-body text-[0.78rem] uppercase tracking-[0.16em] text-bg transition-all duration-500 ease-soft hover:bg-accent disabled:opacity-60"
+      className="inline-flex items-center gap-2 rounded-full bg-bg px-8 py-4 font-body text-[0.78rem] uppercase tracking-[0.16em] text-ink transition-all duration-500 ease-soft hover:bg-accent hover:text-bg disabled:opacity-60"
     >
       {pending ? "Invio in corso…" : "Invia richiesta →"}
     </button>
@@ -30,7 +31,7 @@ export default function ContactForm() {
     return (
       <div className="flex min-h-[18rem] flex-col items-start justify-center gap-3">
         <span className="overline text-accent">Richiesta inviata</span>
-        <p className="max-w-md font-display text-2xl text-ink md:text-3xl">
+        <p className="max-w-md font-display text-2xl text-bg md:text-3xl">
           {state.message}
         </p>
       </div>
@@ -72,7 +73,12 @@ export default function ContactForm() {
         />
       </div>
       <div>
-        <select name="tipo" defaultValue="" className={`${fieldCls} cursor-pointer`} aria-label="Tipo di intervento">
+        <select
+          name="tipo"
+          defaultValue=""
+          className={`${fieldCls} cursor-pointer [&>option]:bg-bg [&>option]:text-ink`}
+          aria-label="Tipo di intervento"
+        >
           <option value="" disabled>
             Tipo di intervento
           </option>
@@ -96,7 +102,7 @@ export default function ContactForm() {
 
       <label className="flex items-start gap-3 sm:col-span-2">
         <input name="privacy" type="checkbox" className="mt-1 accent-[var(--accent)]" />
-        <span className="font-body text-[0.78rem] leading-relaxed text-muted">
+        <span className="font-body text-[0.78rem] leading-relaxed text-bg/60">
           Acconsento al trattamento dei dati secondo l&apos;informativa privacy.*
         </span>
       </label>
