@@ -47,10 +47,10 @@ export default function Hero() {
 
         <div className="mt-11 flex flex-col items-start gap-7 border-t border-bg/15 pt-8 md:flex-row md:items-center md:justify-between">
           <div className="flex w-full flex-col-reverse items-start gap-6 md:w-auto md:flex-row md:items-center md:gap-9">
-            <Button href="#contatti" variant="solid" className="w-full justify-center !bg-bg !text-ink hover:!bg-accent hover:!text-bg md:w-auto">
+            <Button href="#contatti" variant="inverse" className="w-full justify-center md:w-auto">
               Richiedi un preventivo gratuito
             </Button>
-            <p className="max-w-xs font-body text-sm leading-relaxed text-white md:text-bg/75">
+            <p className="max-w-xs font-body text-sm leading-relaxed text-bg md:text-bg/75">
               Un solo artigiano, dal primo sopralluogo alla consegna.
             </p>
           </div>
