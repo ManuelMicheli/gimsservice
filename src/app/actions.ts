@@ -24,9 +24,11 @@ const FALLBACK_MSG = `Invio momentaneamente non disponibile. Scrivimi a ${SITE.e
 
 /**
  * Server Action del form contatti.
- * Invia la richiesta a SITE.email via Resend (https://resend.com).
+ * Invia la richiesta via Resend (https://resend.com).
  * Config su Vercel: RESEND_API_KEY (obbligatoria); CONTACT_FROM opzionale
- * (default onboarding@resend.dev, valido senza dominio verificato).
+ * (default onboarding@resend.dev, valido senza dominio verificato);
+ * CONTACT_TO opzionale (default SITE.email — nota: senza dominio verificato
+ * Resend consegna solo all'email del proprietario dell'account).
  * Senza chiave non fingiamo il successo: messaggio con contatti diretti.
  */
 export async function submitContact(
@@ -83,7 +85,7 @@ export async function submitContact(
       },
       body: JSON.stringify({
         from: process.env.CONTACT_FROM ?? "GIMS Service <onboarding@resend.dev>",
-        to: [SITE.email],
+        to: [process.env.CONTACT_TO ?? SITE.email],
         reply_to: email,
         subject: `Richiesta preventivo${tipo ? ` — ${tipo}` : ""} — ${nome}`,
         html,
