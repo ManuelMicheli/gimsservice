@@ -21,7 +21,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section id="recensioni" className="border-y border-line bg-surface py-16 md:py-36">
+    <section id="recensioni" className="border-y border-line bg-surface py-20 md:py-32">
       {/* ===== MOBILE — Editorial Slider ===== */}
       <div className="px-5 md:hidden">
         <span className="overline text-accent">03 — Recensioni</span>
@@ -61,14 +61,14 @@ export default function Testimonials() {
             <button
               onClick={() => go(-1)}
               aria-label="Precedente"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink"
             >
               ←
             </button>
             <button
               onClick={() => go(1)}
               aria-label="Successiva"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-ink bg-ink text-bg"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-ink bg-ink text-bg"
             >
               →
             </button>
@@ -115,8 +115,12 @@ export default function Testimonials() {
                 key={d.n}
                 onClick={() => setI(k)}
                 aria-label={`Recensione ${k + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-500 ${k === i ? "w-8 bg-accent" : "w-1.5 bg-line"}`}
-              />
+                className="group -m-1 p-2.5"
+              >
+                <span
+                  className={`block h-1.5 rounded-full transition-all duration-500 ${k === i ? "w-8 bg-accent" : "w-1.5 bg-line group-hover:bg-muted"}`}
+                />
+              </button>
             ))}
           </div>
         </div>
