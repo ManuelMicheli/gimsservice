@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 const ease = [0.16, 1, 0.3, 1] as const;
 const LETTERS = [
   { l: "G", word: "Giardino", desc: "Il cognome di José Giardino, l'artigiano dietro G.I.M.S." },
-  { l: "I", word: "Imbiancatura", desc: "Tinteggiature per interni ed esterni." },
+  { l: "I", word: "Imbiancatura", desc: "Tinteggiature, decorazioni e spatolati per interni ed esterni." },
   { l: "M", word: "Muratura", desc: "Opere edili e ristrutturazioni." },
-  { l: "S", word: "Sanitari", desc: "Impianti idraulici e sanitari, con artigiani di fiducia." },
+  { l: "S", word: "Sanitari", desc: "Impianti idraulici e sanitari certificati." },
 ];
 
 // A · Editorial Rows — lettera grande inline col nome, numero + desc, hairline.
