@@ -6,9 +6,9 @@ import { PROJECTS, ROTATING_WORDS } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
 import RotatingWord from "@/components/ui/RotatingWord";
 
-// Frazione di scroll verticale rispetto alla distanza orizzontale.
-// < 1 = la riga scorre più veloce e la sezione finisce prima (appena la CTA è in vista).
-const SCROLL_LEN = 0.65;
+// Quota di scroll verticale (in viewport) assegnata a ogni slide del crossfade.
+// Più alto = serve scrollare di più per cambiare immagine.
+const SCROLL_LEN = 0.7;
 
 /** Card foto reale: singola immagine full-bleed + meta. */
 function Card({ p }: { p: (typeof PROJECTS)[number] }) {
@@ -118,52 +118,34 @@ function CtaCard() {
 }
 
 /**
- * Lavori in evidenza — Pinned Horizontal Scroll.
- * La sezione si "pinna" e la riga di card scorre in orizzontale mentre l'utente
- * scrolla. Guidato da un handler scroll diretto (rAF, niente framer-motion).
+ * Lavori in evidenza — Pinned Crossfade.
+ * La sezione si "pinna" e, scrollando, le immagini si alternano in dissolvenza
+ * UNA alla volta nella stessa posizione fissa (niente traslazione orizzontale).
+ * Guidato da un handler scroll diretto (rAF, niente framer-motion).
  * Fallback reduced-motion: scroll orizzontale nativo.
  */
+// Slide del crossfade: i progetti + la card CTA finale.
+const SLIDES = PROJECTS.length + 1;
+
 export default function FeaturedWork() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
-  const [distance, setDistance] = useState(0);
   const [vh, setVh] = useState(0);
   const [idx, setIdx] = useState(0);
   const [reduce, setReduce] = useState(false);
 
   useEffect(() => {
     setReduce(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    setVh(window.innerHeight);
+    const onR = () => setVh(window.innerHeight);
+    window.addEventListener("resize", onR);
+    return () => window.removeEventListener("resize", onR);
   }, []);
 
-  // Distanza orizzontale = bordo destro dell'ultima card (CTA) - viewport.
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const calc = () => {
-      const last = track.lastElementChild as HTMLElement | null;
-      const content = last ? last.offsetLeft + last.offsetWidth : track.scrollWidth;
-      setDistance(Math.max(0, content - window.innerWidth));
-      setVh(window.innerHeight);
-    };
-    calc();
-    const raf = requestAnimationFrame(calc);
-    const t = setTimeout(calc, 600);
-    const ro = new ResizeObserver(calc);
-    ro.observe(track);
-    window.addEventListener("resize", calc);
-    return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(t);
-      ro.disconnect();
-      window.removeEventListener("resize", calc);
-    };
-  }, []);
-
-  // Scroll → traslazione orizzontale della track (transform diretto, niente re-render).
+  // Scroll → indice della slide attiva (crossfade in posizione, niente traslazione).
   useEffect(() => {
     const section = sectionRef.current;
-    if (reduce || !section || !distance) return;
+    if (reduce || !section) return;
     let raf = 0;
     const update = () => {
       raf = 0;
@@ -172,9 +154,8 @@ export default function FeaturedWork() {
       // sezione si pinna rect.top = 0, e diventa negativo man mano che scrolla.
       const scrolled = -section.getBoundingClientRect().top;
       const p = total > 0 ? Math.min(Math.max(scrolled / total, 0), 1) : 0;
-      if (trackRef.current) trackRef.current.style.transform = `translate3d(${-distance * p}px, 0, 0)`;
       if (barRef.current) barRef.current.style.width = `${Math.max(p * 100, 4)}%`;
-      const ni = Math.round(p * (PROJECTS.length - 1));
+      const ni = Math.round(p * (SLIDES - 1));
       setIdx((prev) => (prev !== ni ? ni : prev));
     };
     const onScroll = () => {
@@ -188,7 +169,7 @@ export default function FeaturedWork() {
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf);
     };
-  }, [distance, reduce]);
+  }, [reduce]);
 
   const Heading = (
     <div className="shell">
@@ -235,7 +216,7 @@ export default function FeaturedWork() {
       ) : (
         <div
           ref={sectionRef}
-          style={{ height: distance ? vh + distance * SCROLL_LEN : undefined }}
+          style={{ height: vh ? vh + SLIDES * vh * SCROLL_LEN : undefined }}
           className="hidden md:block"
         >
           <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-10">
@@ -244,7 +225,7 @@ export default function FeaturedWork() {
             {/* contatore + progress */}
             <div className="shell mt-8 flex items-center gap-6">
               <span className="font-body text-[0.74rem] tabular-nums tracking-[0.1em] text-ink">
-                {String(idx + 1).padStart(2, "0")}
+                {String(Math.min(idx + 1, PROJECTS.length)).padStart(2, "0")}
                 <span className="text-muted"> / {String(PROJECTS.length).padStart(2, "0")}</span>
               </span>
               <div className="relative h-px flex-1 bg-line">
@@ -255,15 +236,25 @@ export default function FeaturedWork() {
               </span>
             </div>
 
-            {/* track orizzontale guidato dallo scroll */}
-            <div
-              ref={trackRef}
-              className="mt-10 flex h-[58vh] gap-5 pl-5 pr-5 will-change-transform sm:pl-8 md:gap-8 md:pl-12 lg:pl-16 xl:pl-20 2xl:pl-28"
-            >
-              {PROJECTS.map((p) => (
-                <Card key={p.n} p={p} />
+            {/* slot fisso: le slide si alternano in dissolvenza nella stessa posizione */}
+            <div className="relative mt-10 h-[58vh]">
+              {PROJECTS.map((p, i) => (
+                <div
+                  key={p.n}
+                  className="absolute inset-0 flex justify-center px-5 transition-opacity duration-700 ease-soft sm:px-8 md:px-12"
+                  style={{ opacity: i === idx ? 1 : 0, pointerEvents: i === idx ? "auto" : "none" }}
+                  aria-hidden={i !== idx}
+                >
+                  <Card p={p} />
+                </div>
               ))}
-              <CtaCard />
+              <div
+                className="absolute inset-0 flex justify-center px-5 transition-opacity duration-700 ease-soft sm:px-8 md:px-12"
+                style={{ opacity: idx >= PROJECTS.length ? 1 : 0, pointerEvents: idx >= PROJECTS.length ? "auto" : "none" }}
+                aria-hidden={idx < PROJECTS.length}
+              >
+                <CtaCard />
+              </div>
             </div>
           </div>
         </div>

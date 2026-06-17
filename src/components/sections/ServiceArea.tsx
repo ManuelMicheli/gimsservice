@@ -2,7 +2,7 @@ import { SITE } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 
-const ZONES = ["Bareggio", "Milano", "Binasco", "Sesto San Giovanni", "Hinterland ovest"];
+const ZONES = ["Bareggio", "Corbetta", "Sedriano", "Cornaredo", "Rho", "Milano", "Hinterland ovest"];
 
 /**
  * Area servita.

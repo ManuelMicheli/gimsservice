@@ -3,7 +3,7 @@
 import { SITE } from "@/lib/site";
 import Button from "@/components/ui/Button";
 
-const ZONES = ["Bareggio", "Milano", "Binasco", "Sesto San Giovanni", "Hinterland ovest"];
+const ZONES = ["Bareggio", "Corbetta", "Sedriano", "Cornaredo", "Rho", "Milano", "Hinterland ovest"];
 
 // C · Map Banner — mappa banner in alto, contenuto sotto su off-white.
 export default function AreaMobileC() {

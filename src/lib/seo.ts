@@ -38,15 +38,13 @@ export const AREA_SERVED = [
   "Abbiategrasso",
   "Corbetta",
   "Milano",
-  "Binasco",
-  "Sesto San Giovanni",
 ] as const;
 
 /**
  * Parole chiave principali. Mix di:
  * - mestiere generico (imbianchino, piastrellista, ristrutturazioni)
  * - mestiere + località (imbianchino Bareggio, ...)
- * - servizi specifici (spatolato veneziano, cartongesso, pavimenti)
+ * - servizi specifici (spatolato, cartongesso, pavimenti)
  */
 export const KEYWORDS = [
   // mestiere generico
@@ -62,8 +60,7 @@ export const KEYWORDS = [
   "artigiano edile",
   "impresa edile",
   // servizi
-  "spatolato veneziano",
-  "stucco veneziano",
+  "spatolato",
   "decorazioni pareti",
   "cartongesso pareti e controsoffitti",
   "posa pavimenti e rivestimenti",
@@ -86,7 +83,7 @@ export const KEYWORDS = [
 
 /** Descrizione meta principale (≤160 char raccomandati per lo snippet). */
 export const META_DESCRIPTION =
-  "Imbianchino e artigiano edile a Bareggio (MI) con oltre 30 anni di esperienza: imbiancatura, decorazioni, spatolato veneziano, cartongesso, posa pavimenti e tapparelle. Un solo referente, dal sopralluogo alla consegna. Preventivo gratuito.";
+  "Imbianchino e artigiano edile a Bareggio (MI) con oltre 30 anni di esperienza: imbiancatura, decorazioni, spatolato, cartongesso, posa pavimenti e tapparelle. Un solo referente, dal sopralluogo alla consegna. Preventivo gratuito.";
 
 /** Titolo principale. */
 export const META_TITLE =

@@ -2,7 +2,7 @@ import { SITE } from "@/lib/site";
 import SmartImage from "@/components/ui/SmartImage";
 import Reveal from "@/components/ui/Reveal";
 
-const ZONES = ["Bareggio", "Milano", "Binasco", "Sesto San Giovanni", "Hinterland ovest"];
+const ZONES = ["Bareggio", "Corbetta", "Sedriano", "Cornaredo", "Rho", "Milano", "Hinterland ovest"];
 
 // Variante A — Split (attuale): testo+chip+foto sx, mappa dx.
 export default function AreaA() {

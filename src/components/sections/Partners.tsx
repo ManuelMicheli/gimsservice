@@ -30,7 +30,7 @@ export default function Partners() {
       <Reveal className="mx-auto max-w-3xl px-6 py-12 text-center md:py-16">
         <span className="overline text-accent">La rete</span>
         <p className="mt-6 font-display text-2xl font-light leading-snug tracking-tight text-ink md:text-4xl">
-          Collaboro con aziende selezionate che condividono i miei valori di
+          Collaboro con aziende selezionate e studi di architettura che condividono i miei valori di
           professionalità e attenzione ai dettagli — con un unico referente:{" "}
           <span className="italic text-accent">io</span>.
         </p>

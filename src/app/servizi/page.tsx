@@ -10,7 +10,7 @@ import SubPageHeader from "@/components/layout/SubPageHeader";
 export const metadata: Metadata = {
   title: "Servizi — Imbianchino, decorazioni e ristrutturazioni a Bareggio",
   description:
-    "Tutti i servizi di G.I.M.S. Service a Bareggio e ovest milanese: imbiancatura, decorazioni, spatolato veneziano, cartongesso, pavimenti, tapparelle e manutenzione stabili.",
+    "Tutti i servizi di G.I.M.S. Service a Bareggio e ovest milanese: imbiancatura, decorazioni, spatolato, cartongesso, pavimenti, tapparelle e manutenzione stabili.",
   alternates: { canonical: "/servizi" },
   openGraph: {
     type: "website",

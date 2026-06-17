@@ -78,85 +78,46 @@ export const SERVICE_PAGES: ServicePage[] = [
   },
 
   {
-    slug: "decorazioni-pareti",
+    slug: "decorazioni-spatolati",
     imgKey: "cover-decorazioni",
-    gallery: ["g-decorazione", "decorazione-2"],
-    h1: "Decorazioni e finiture decorative per pareti",
-    metaTitle: "Decoratore Bareggio — Decorazioni e finiture pareti",
+    gallery: ["g-decorazione", "decorazione-2", "g-spatolato", "g-spatolato-2", "g-spatolato-nicchie", "g-spatolato-3"],
+    h1: "Decorazioni e spatolati per pareti di pregio",
+    metaTitle: "Decorazioni e Spatolati Bareggio — Finiture pareti",
     metaDescription:
-      "Decorazioni di pregio per pareti a Bareggio e ovest milanese: finiture materiche, velature, effetti decorativi con materiali certificati. Sopralluogo e preventivo gratuiti.",
+      "Decorazioni e spatolati a Bareggio e ovest milanese: velature, effetti materici, finiture spatolate e stucco lucido per pareti di pregio, applicate a mano. Preventivo gratuito.",
     keywords: [
       "decoratore Bareggio",
       "decorazioni pareti",
-      "finiture decorative",
+      "spatolato",
+      "finiture spatolate",
+      "stucco lucido Milano",
       "velature pareti",
-      "pittura decorativa Milano",
     ],
-    eyebrow: "Decorazioni d'interni",
-    lead: "Dai carattere alle tue pareti con finiture decorative realizzate a regola d'arte.",
+    eyebrow: "Decorazioni & Spatolati",
+    lead: "Dai carattere alle tue pareti con decorazioni e spatolati realizzati a regola d'arte, interamente a mano.",
     intro: [
-      "Le decorazioni sono il modo più diretto per dare personalità a un ambiente. Realizzo velature, effetti materici e finiture decorative su misura, con materiali certificati e tecniche che conosco da decenni di cantiere.",
-      "Parto sempre da un confronto su ambiente, luce e stile che hai in mente: poi preparo campioni reali sulla parete, così scegli con cura prima di partire. Niente effetti improvvisati — solo finiture che durano e che ti rappresentano.",
+      "Decorazioni e spatolati sono il modo più diretto per dare personalità a un ambiente. Realizzo velature, effetti materici, finiture spatolate e stucchi su misura, con materiali certificati e tecniche che conosco da decenni di cantiere.",
+      "Parto sempre da un confronto su ambiente, luce e stile: poi preparo campioni reali sulla parete, così scegli con cura prima di partire. Lo spatolato in particolare non perdona l'approssimazione — contano la preparazione del fondo, il numero di passaggi e la mano di chi lo stende: lo applico interamente a spatola, una passata dopo l'altra.",
       "Lavoro a Bareggio e in tutto l'ovest milanese, su singole pareti d'accento o su interi ambienti.",
     ],
     includes: [
       { title: "Velature e patinature", desc: "Profondità e movimento del colore con passaggi sovrapposti, fatti a mano." },
       { title: "Effetti materici", desc: "Superfici materiche e sabbiate per pareti d'accento di carattere." },
+      { title: "Spatolato e stucco lucido", desc: "Finitura levigata e brillante, effetto marmo, per ambienti di rappresentanza." },
       { title: "Campionature in cantiere", desc: "Provini reali sulla tua parete prima di iniziare: scegli sul sicuro." },
       { title: "Finiture su misura", desc: "Tonalità ed effetti calibrati su luce e arredo dell'ambiente." },
     ],
     reasons: [
       "Campioni reali prima di partire",
-      "Materiali certificati e tecniche professionali",
-      "Finiture coordinate con luce e arredo",
+      "Applicazione interamente a mano, a spatola",
+      "Materiali certificati e finiture coordinate con luce e arredo",
     ],
     faq: [
       { q: "Posso vedere un campione prima di decidere?", a: "Sì, preparo provini reali direttamente sulla tua parete: così valuti effetto e tonalità con la luce dell'ambiente prima di iniziare." },
-      { q: "Le decorazioni si possono pulire?", a: "Dipende dalla finitura: molte sono resistenti e pulibili. Ti consiglio la soluzione giusta in base all'uso della stanza." },
+      { q: "Lo spatolato è adatto al bagno?", a: "Sì, con il ciclo e la protezione corretti è adatto anche ad ambienti umidi. Valuto la situazione in sopralluogo e scelgo il prodotto giusto." },
       { q: "Decorate anche una sola parete?", a: "Certo. Una parete d'accento è spesso la scelta migliore per dare carattere senza appesantire l'ambiente." },
     ],
-    serviceType: "Decorazioni d'interni",
-  },
-
-  {
-    slug: "spatolato-veneziano",
-    imgKey: "cover-spatolato",
-    gallery: ["g-spatolato", "g-spatolato-2", "g-spatolato-nicchie", "g-spatolato-3"],
-    h1: "Spatolato e stucco veneziano per superfici di pregio",
-    metaTitle: "Spatolato Veneziano Bareggio — Stucco antico",
-    metaDescription:
-      "Spatolato e stucco veneziano a Bareggio e ovest milanese: finiture lucide e materiche per pareti di pregio, applicate a mano. 30+ anni di esperienza. Preventivo gratuito.",
-    keywords: [
-      "spatolato veneziano",
-      "stucco veneziano Bareggio",
-      "stucco antico",
-      "finiture spatolate",
-      "marmorino Milano",
-    ],
-    eyebrow: "Finiture di pregio",
-    lead: "Lo spatolato veneziano è la finitura più nobile: profondità, luce e tatto che solo la mano sa dare.",
-    intro: [
-      "Lo spatolato e lo stucco antico veneziano sono finiture che non perdonano l'approssimazione: contano la preparazione del fondo, il numero di passaggi e la mano di chi le stende. Le realizzo da anni e le applico interamente a spatola, una passata dopo l'altra.",
-      "Il risultato è una superficie viva, con riflessi e profondità che cambiano con la luce: ideale per ingressi, soggiorni, sale da pranzo e ambienti che vuoi rendere unici.",
-      "Lavoro a Bareggio e nell'ovest milanese, con campionatura preventiva di colore e grado di lucentezza.",
-    ],
-    includes: [
-      { title: "Stucco veneziano lucido", desc: "Finitura levigata e brillante, effetto marmo, per ambienti di rappresentanza." },
-      { title: "Marmorino e finiture materiche", desc: "Superfici materiche dall'aspetto naturale, calde al tatto." },
-      { title: "Preparazione del fondo", desc: "Rasatura e fondo perfetti: lo spatolato vive di una base impeccabile." },
-      { title: "Campionatura colore e lucentezza", desc: "Definiamo insieme tonalità e brillantezza prima di iniziare." },
-    ],
-    reasons: [
-      "Applicazione interamente a mano, a spatola",
-      "Fondo preparato a regola d'arte",
-      "Campione di colore e lucentezza prima del lavoro",
-    ],
-    faq: [
-      { q: "Lo spatolato veneziano è adatto al bagno?", a: "Sì, con il ciclo e la protezione corretti è adatto anche ad ambienti umidi. Valuto la situazione in sopralluogo e scelgo il prodotto giusto." },
-      { q: "Quanto dura una finitura in stucco veneziano?", a: "Se il fondo è preparato bene e la finitura protetta, dura molti anni mantenendo profondità e brillantezza." },
-      { q: "Si può fare su una parete già tinteggiata?", a: "Sì, previa preparazione del fondo. In sopralluogo verifico lo stato della parete e ti dico cosa serve." },
-    ],
-    serviceType: "Spatolato e stucco veneziano",
+    serviceType: "Decorazioni e spatolati",
   },
 
   {
@@ -287,7 +248,7 @@ export const SERVICE_PAGES: ServicePage[] = [
   {
     slug: "manutenzione-stabili",
     imgKey: "cover-manutenzione",
-    gallery: ["g-manutenzione", "g-manutenzione-2", "g-manutenzione-3", "g-manifesto"],
+    gallery: [],
     h1: "Manutenzione stabili e condomini nell'ovest milanese",
     metaTitle: "Manutenzione Stabili Bareggio — Condomini e immobili",
     metaDescription:
@@ -320,7 +281,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     faq: [
       { q: "Lavorate con gli amministratori di condominio?", a: "Sì, sono un referente unico e affidabile: concordiamo un piano di interventi e gestisco tutto in modo ordinato e programmato." },
       { q: "Fate anche interventi straordinari urgenti?", a: "Sì. Per infiltrazioni, distacchi o ammaloramenti intervengo in tempi rapidi dopo un sopralluogo di valutazione." },
-      { q: "Coprite anche i comuni dell'ovest milanese?", a: "Sì: Bareggio e tutto l'hinterland ovest, da Milano a Binasco fino ai comuni limitrofi." },
+      { q: "Coprite anche i comuni dell'ovest milanese?", a: "Sì: Bareggio e tutto l'hinterland ovest, dai comuni limitrofi come Corbetta e Sedriano fino a Milano." },
     ],
     serviceType: "Manutenzione stabili e condomini",
   },

@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
 
 const ease = [0.16, 1, 0.3, 1] as const;
-const ZONES = ["Bareggio", "Milano", "Binasco", "Sesto San Giovanni", "Hinterland ovest"];
+const ZONES = ["Bareggio", "Corbetta", "Sedriano", "Cornaredo", "Rho", "Milano", "Hinterland ovest"];
 
 // Variante C — Zone List: zone come lista serif gigante a sx, mappa a dx.
 export default function AreaC() {

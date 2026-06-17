@@ -55,8 +55,8 @@ export default function CityServicePageView({
             </p>
             <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <Button href="#contatti" variant="solid">Richiedi un preventivo gratuito</Button>
-              <a href={SITE.phoneHref} className="link-underline font-body text-sm text-ink">
-                oppure chiama il {SITE.phoneDisplay}
+              <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="link-underline font-body text-sm text-ink">
+                oppure scrivimi su WhatsApp
               </a>
             </div>
           </Reveal>
